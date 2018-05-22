@@ -1,0 +1,59 @@
+.dropdownMenu{
+  background: #65cea7;
+  position: absolute;
+  list-style: none;
+  font-size: 14px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  background-clip: padding-box;
+  border: 0;
+  margin-top: 0px;
+  border-radius: 2px 0 2px 2px;
+  padding: 5px;
+  right: 0;
+  left: auto;
+  transition: all 1s;
+  top:10px;
+  z-index: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+
+  &.open{
+    top: 100%;
+    z-index: 101;
+    height: 122px;
+    width: 200px;
+    overflow: hidden;
+    li.selected,
+    li:hover{
+      background: rgb(66, 79, 99);
+    }
+  }
+  li{
+    line-height: 2;
+    transition: all 0.2s ease-out 0s;
+    border-radius: 2px;
+    &.selected,&:hover{
+      background: rgb(66, 79, 99);
+    }
+    a{
+      color: #fff;
+      font-size: 13px;
+      padding: 7px 10px;
+      .countryicon{
+        height:12px;
+        margin-right: 5px;
+      }
+      .icon{
+        margin-right: 5px;
+        font-size: 16px;
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+      }
+    }
+  }
+}
+

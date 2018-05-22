@@ -1,0 +1,47 @@
+.lang_box{
+  position: relative;
+  height: 32px;
+  .title{
+    display: flex;
+    justify-content: space-between;
+    line-height: 30px;
+    padding:0 10px;
+    border-radius: 2px;
+    position: relative;
+    z-index: 100;
+    box-sizing: border-box;
+    &:hover{
+      background: #212226;
+      color: #fff;
+      .icon{
+        color: #fff;
+        transform: rotate(-180deg);
+        transform-origin: 50% 56%;
+      };
+    }
+    .icon{
+
+      line-height: 30px;
+      font-size: 10px;
+      transition: all .5s;
+    }
+  }
+
+  &.open{
+    .title{
+      background: #212226;
+      color: #fff;
+    }
+    .dropdownMenu{
+      top: 100%;
+      z-index: 101;
+      height: 122px;
+      width: 200px;
+      overflow: hidden;
+      li.selected,
+      li:hover{
+        background: rgb(66, 79, 99);
+      }
+    }
+  }
+}
