@@ -21,6 +21,7 @@ const MainLayout = ({ children,location,isLogin}) => (
 );
 
 function mapStateToProps(state) {
+  //获取是否登录状态值
   const {isLogin}  = state.main;
   const { currentLocale } = state.lang;
 
