@@ -3,8 +3,10 @@ import {layout,main } from './index.less';
 import Header from './header';
 import LeftSide from './left';
 import RightSide from './right';
+
 const MainLayout = ({ children,location,isLogin}) => (
     <div className={layout}>
+      {/*当路由不为'/login' 或 登录状态为 true 的时候 显现侧边栏 */}
       {
         (isLogin || location.pathname !== '/login')  && <LeftSide location={location}/>
       }
