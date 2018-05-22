@@ -6,12 +6,13 @@ import RightSide from './right';
 
 const MainLayout = ({ children,location,isLogin}) => (
     <div className={layout}>
-      {/*当路由不为'/login' 或 登录状态为 true 的时候 显现侧边栏 */}
+      {/*当路由不为'/login' 或 登录状态为 true 的时候 显现侧边导航 */}
       {
         (isLogin || location.pathname !== '/login')  && <LeftSide location={location}/>
       }
 
         <RightSide>
+          {/*当路由不为'/login' 或 登录状态为 true 的时候 显现顶部状态栏 */}
           {
             (isLogin || location.pathname !== '/login') && <Header/>
           }
