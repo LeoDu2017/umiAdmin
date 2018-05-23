@@ -15,5 +15,6 @@ export default{
     utils:path.resolve(__dirname, 'src/utils/'),
     locale:path.resolve(__dirname, 'src/locale/'),
     components:path.resolve(__dirname, 'src/components/'),
+    services:path.resolve(__dirname, 'src/services/'),
   }
 }

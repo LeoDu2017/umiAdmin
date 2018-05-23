@@ -7,7 +7,7 @@ import WrappedNormalLoginForm from './loginForm';
 import Svg from 'components/Svg';
 import DropdownMeanu from 'components/Dropdown';
 
-const login = ({dispatch,currentIndex,copyRight,languages}) => (
+const login = ({loading,dispatch,currentIndex,copyRight,languages}) => (
 
   <Col className={styles.main}>
     <Col className={styles.header}>
@@ -28,6 +28,7 @@ const login = ({dispatch,currentIndex,copyRight,languages}) => (
             width="400px"
           >
             <WrappedNormalLoginForm>  </WrappedNormalLoginForm>
+
           </Modal>
         </Button>
         <Button
@@ -171,6 +172,7 @@ const login = ({dispatch,currentIndex,copyRight,languages}) => (
    let copyRight = systemDate.getFullYear();
 
    return {
+     loading: state.loading.models.login,
      currentIndex,
      currentLocale,
      copyRight,
