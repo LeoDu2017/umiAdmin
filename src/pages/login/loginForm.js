@@ -17,7 +17,7 @@ const Login = ({
                         <Form onSubmit={handleSubmit.bind(this,dispatch,validateFieldsAndScroll)} className={styles.login_form}>
                           <h1 className={styles.header}>EUROOO ADMIN</h1>
                           <FormItem>
-                            {getFieldDecorator('userName', {
+                            {getFieldDecorator('username', {
                               rules: [{ required: true, message: 'Please input your username!' }],
                             })(
                               <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />

@@ -1,6 +1,6 @@
 const qs = require('qs')
 const Mock = require('mockjs')
-const config = require('../utils/config')
+const config = require('../src/utils/config')
 
 const { apiPrefix } = config
 
@@ -58,9 +58,14 @@ const adminUsers = [
     permissions: userPermission.DEFAULT,
   }, {
     id: 2,
-    username: 'LeoDu',
-    password: 'abc12345',
+    username: '吴彦祖',
+    password: '123456',
     permissions: userPermission.DEVELOPER,
+  },{
+    id: 3,
+    username: 'LeoDu',
+    password: '123456',
+    permissions: userPermission.ADMIN,
   },
 ]
 
@@ -91,6 +96,9 @@ const NOTFOUND = {
 module.exports = {
 
   [`POST ${apiPrefix}/user/login`] (req, res) {
+
+  
+
     const { username, password } = req.body
 
     const user = adminUsers.filter(item => item.username === username)
@@ -104,7 +112,8 @@ module.exports = {
       })
       res.json({ success: true, message: 'Ok' })
     } else {
-      res.status(400).end()
+      res.json({ success: false, message: '登录失败' })
+      // res.status(400).end()
     }
   },
 

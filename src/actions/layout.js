@@ -181,7 +181,7 @@ export function getList(linkType){
       child:[],
     }]
   };
-  return list[linkType]
+  return list.hasOwnProperty(linkType) ? list[linkType] : list.index
 }
 
 // 展开二级菜单，如果有二级菜单则展开二级菜单反之进行跳转

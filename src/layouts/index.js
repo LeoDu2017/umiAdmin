@@ -25,12 +25,12 @@ const MainLayout = ({ children,location,isLogin}) => (
 
 function mapStateToProps(state) {
   //获取是否登录状态值 true/false
-  const {isLogin}  = state.main;
+  const {isLogin}  = state.login;
   //获取当前locale
   const { currentLocale } = state.lang;
 
   return {
-    loading: state.loading.models.main,
+    loading: state.loading.models.app,
     isLogin,
     currentLocale
   }
