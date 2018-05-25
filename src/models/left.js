@@ -24,6 +24,9 @@ const left = {
       return { ...state,currentIndex}
     },
     toggleSubMeanu(state,{payload:index}){
+      if(index === -1){
+        return {...state,currentIndex:index}
+      }
       let currentlist = state.list;
       let sublist = currentlist[index].child;
       let sublength = sublist.length + 1;

@@ -21,9 +21,9 @@ const LeftSide = ({min,location,currentIndex,subIndex,dispatch,list}) =>(
             <Menu.Item
               className={currentIndex === item.index ? `${styles.item} ${active}` : styles.item}
               key={item.link}
-              style={(currentIndex === item.index && !min ) ? {height:`${(item.child.length+1)*40}px`}:{height:'40px'}}>
+              style={(currentIndex === item.index && !min) ? {height:`${(item.child.length+1)*40}px`}:{height:'40px'}}>
 
-              <Col className={styles.link} onClick={toggleSubMeanu.bind(this,dispatch,item.index,item.link,location.search,item.child.length)}>
+              <Col className={styles.link} onClick={toggleSubMeanu.bind(this,dispatch,item.index,item.link,location.search,item.child.length,currentIndex)}>
                 <Svg className={icon} type={item.type}> </Svg>
                 <span className={text}>
                   { item.name }
@@ -71,7 +71,6 @@ function mapStateToProps (state,props){
 
   const {currentIndex,min,list,linkType,subIndex} = state.left;
   let homeName = intl.get('HOME');
-  console.log(props.location)
 
   if(list.length === 0 || list[0].name !== homeName || type != linkType){
     let data = getList(type);

@@ -185,13 +185,22 @@ export function getList(linkType){
 }
 
 // 展开二级菜单，如果有二级菜单则展开二级菜单反之进行跳转
-export function toggleSubMeanu(dispatch,index,link,search,childLength){
+export function toggleSubMeanu(dispatch,index,link,search,childLength,currentIndex){
+
   if(childLength === 0){
     router.push(`${link}${search}`)
   }
+  let i = index !== currentIndex ? index : -1;
+
+  // let parent = event.target.parentNode;
+  // if(parent.nodeName !== 'LI'){
+  //   parent = parent.parentNode
+  // }
+  // let height = parent.style.height;
+
   dispatch({
     type:'left/toggleSubMeanu',
-    payload:index
+    payload:i
   })
 }
 
