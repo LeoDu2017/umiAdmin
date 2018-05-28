@@ -1,6 +1,7 @@
 import intl from 'react-intl-universal';
 import router from 'umi/router';
 
+
 // 打开选项的下拉框
 export function handletoggleOpen(dispatch,i,n){
   let currentIndex = n === i ? -1 : i;
@@ -28,15 +29,15 @@ export function handleToggle(dispatch,min){
 
 // 获得导航栏数据
 export function getList(linkType){
-  let list = {
+  const list = {
     index:[{
       name: intl.get('HOME'),
       link:'/',
       type:'home',
       index:0,
       sublength:1,
-      child:[]
-    }],
+    child:[]
+  }],
     spots:[{
       name:intl.get('HOME'),
       link:'/',
@@ -185,7 +186,7 @@ export function getList(linkType){
 }
 
 // 展开二级菜单，如果有二级菜单则展开二级菜单反之进行跳转
-export function toggleSubMeanu(dispatch,index,link,search,childLength,currentIndex){
+export function toggleSubMeanu(dispatch,index,link,location,search,childLength,currentIndex){
 
   if(childLength === 0){
     router.push(`${link}${search}`)

@@ -7,7 +7,7 @@ import Logo from '../../assets/login-logo_casaitaliana.png';
 import Svg from 'components/Svg';
 import {handleToggle,getList,toggleSubMeanu,selectSubMeanu} from 'actions/layout';
 
-const LeftSide = ({min,location,currentIndex,subIndex,dispatch,list}) =>(
+const LeftSide = ({min,location,currentIndex,subIndex,dispatch,list,open}) =>(
   <Col className= { min ? `${left_side} ${styles.min}` : left_side }>
     <Button className={_toggleBtn} onClick={handleToggle.bind(null,dispatch,!min)}>
       <Svg type="bars" className={ btnicon }> </Svg>
@@ -21,15 +21,15 @@ const LeftSide = ({min,location,currentIndex,subIndex,dispatch,list}) =>(
             <Menu.Item
               className={currentIndex === item.index ? `${styles.item} ${active}` : styles.item}
               key={item.link}
-              style={(currentIndex === item.index && !min) ? {height:`${(item.child.length+1)*40}px`}:{height:'40px'}}>
+              style={(currentIndex === item.index && !min && open) ? {height:`${(item.child.length+1)*40}px`}:{height:'40px'}}>
 
-              <Col className={styles.link} onClick={toggleSubMeanu.bind(this,dispatch,item.index,item.link,location.search,item.child.length,currentIndex)}>
+              <Col className={styles.link} onClick={toggleSubMeanu.bind(this,dispatch,item.index,item.link,location,location.search,item.child.length,currentIndex)}>
                 <Svg className={icon} type={item.type}> </Svg>
                 <span className={text}>
                   { item.name }
                 </span>
                 {
-                  item.child.length > 0 && <Svg type={ currentIndex === item.index ? "minus" : "add"}
+                  item.child.length > 0 && <Svg type={ currentIndex === item.index && open ? "minus" : "add"}
                                                 className={styles.togglefold}> </Svg>
                 }
               </Col>
@@ -69,7 +69,7 @@ function mapStateToProps (state,props){
   let arr = props.location.pathname.split('/');
   let type = arr[1] ? arr[1] : 'index';
 
-  const {currentIndex,min,list,linkType,subIndex} = state.left;
+  const {currentIndex,min,list,linkType,subIndex,open} = state.left;
   let homeName = intl.get('HOME');
 
   if(list.length === 0 || list[0].name !== homeName || type != linkType){
@@ -84,7 +84,8 @@ function mapStateToProps (state,props){
     currentIndex,
     list: getList(type),
     min,
-    subIndex
+    subIndex,
+    open
   }
 }
 export default connect(mapStateToProps)(LeftSide)

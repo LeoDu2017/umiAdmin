@@ -13,12 +13,9 @@ export default{
       return{...state,currentIndex:index}
     },
     checklogin(state,action) {
-      console.log(action)
       return {...state,isLogin:action.payload.isLogin };
     },
-
     loginfail(state,action) {
-      console.log(action.payload.loginfail)
       return {...state, loginfail:action.payload.loginfail};
     },
   },
