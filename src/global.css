@@ -1,13 +1,11 @@
-
 html, body, :global(#root) {
   height: 100%;
   color: #7a7676;
   font-family:"Helvetica Neue", Helvetica, "PingFang SC", 微软雅黑, Tahoma, Arial, sans-serif;
-  font-size:14px;
 }
 
 
-
+:global(#root),
 :global(.g-t-header),
 :global(.ant-btn-sm),
 :global(.g-t-main .ant-input),
@@ -45,12 +43,14 @@ html, body, :global(#root) {
 }
 :global(.g-t-form-wrap){
   padding:30px 15px;
+  height: calc(100vh - 169px);
+  overflow: hidden;
+  overflow-y: auto;
 }
 :global(.g-t-wrap){
   padding: 30px;
 }
 :global(.g-t-main){
-  margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
