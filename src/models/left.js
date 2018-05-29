@@ -7,8 +7,8 @@ const left = {
     list:[],
     linklist: {
       index:['home'],
-      spots:['home','spots','brand','product','order','capital','system'],
-      futures:['home','spots','brand','product','system']
+      spots:['home','shop','brand','product','order','capital','system'],
+      futures:['home','shop','brand','product','system']
     },
     currentIndex: 0,
     subIndex: 0,
