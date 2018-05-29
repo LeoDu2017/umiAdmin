@@ -6,6 +6,7 @@ export default{
     "CANCEL":"Annuler",
     "SURE":"Déterminer",
     "LANG":"Langue",
+    "EDIT":"Édition",
     "PWD":"Modifier le mot de passe",
     "INO":"Modifier l’information de votre compte",
     "OUT":"Se déconnecter",
@@ -41,5 +42,11 @@ export default{
     "LOGISTICS":"EUROOO a logistique internationale de l'entrepôt privé et de portée mondiale de la distribution gratuite de services.EUROOO peut exempter de tout souci de fournisseurs de produits d'exportation.",
     "AFTERSALE":"Après mon",
     "DEAL":"Le processus de négociation, produit par EUROOO tout le processus de suivi de la qualité de la détection de tout donner à EUROOO achevée.EUROOO par l'acheteur pour fournir sans installation de de service et de service après - vente.",
+    "COMPANYNAME":"Le nom de la société",
+    "INPUTCOMPANYNAME":"Veuillez indiquer le nom de votre entreprise",
+    "SHOPNAME":"Nom du magasin",
+    "INPUTSHOPNAME":"Veuillez indiquer le nom de votre magasin",
+    "COMPANYTYPE":"Type d'entreprise",
+    "SELECTCOMPANYTYPE":"Sélectionnez le type de votre compagnie",
   }
 }

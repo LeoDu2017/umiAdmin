@@ -154,8 +154,8 @@ export function getList(linkType){
       child:[]
     },{
       name:intl.get('SHOP'),
-      link:'/futures/shop',
-      type:'shop',
+      link:'/futures/spots',
+      type:'spots',
       index:1,
       sublength:1,
       child:[]

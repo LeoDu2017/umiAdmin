@@ -6,6 +6,7 @@ export default {
     "CANCEL":"取消",
     "SURE":"确定",
     "LANG":"语言",
+    "EDIT":"编辑",
     "PWD":"修改密码",
     "INO":"修改账户资料",
     "OUT":"退出",
@@ -41,7 +42,12 @@ export default {
     "LOGISTICS":"EUROOO拥有国际自有仓储物流以及全球范围免费配送服务。EUROOO能够免除供应商一切产品出口忧虑。",
     "AFTERSALE":"无忧售后",
     "DEAL":"交易过程中，产品通过EUROOO的质量检测后一切后续流程全部交给EUROOO完成。由EUROOO为买家提供免费安装服务和售后服务。",
-
+    "COMPANYNAME":"公司名称",
+    "INPUTCOMPANYNAME":"请填写您的公司名称",
+    "SHOPNAME":"店铺名称",
+    "INPUTSHOPNAME":"请填写您的店铺名称",
+    "COMPANYTYPE":"公司类型",
+    "SELECTCOMPANYTYPE":"请选择您的公司类型",
   }
 
 

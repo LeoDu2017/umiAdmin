@@ -6,6 +6,7 @@ export default{
     "CANCEL":"Annullare",
     "SURE":"Determinare",
     "LANG":"La Lingua",
+    "EDIT":"Editore",
     "PWD":"Modifica la password",
     "INO":"Modificare lo profile di conto",
     "OUT":"Esci",
@@ -41,5 +42,11 @@ export default{
     "LOGISTICS":"EUROOO Internazionale di immagazzinamento privato Con La distribuzione gratuita di servizi di Logistica e di portata globale.EUROOO fornitore di tutte le preoccupazioni che possono essere esentate dall'esportazione di prodotti.",
     "AFTERSALE":"Dopo la vendita senza preoccupazioni",
     "DEAL":"Nel corso dell'operazione di controllo di qualità, prodotto da EUROOO dopo tutto il successivo Processo EUROOO consegnato tutto finito.Da EUROOO per gli acquirenti di fornire servizi di installazione gratuita e servizi Post - vendita.",
+    "COMPANYNAME":"IL nome della Società",
+    "INPUTCOMPANYNAME":"Per favore, metti il tuo nome.",
+    "SHOPNAME":"IL nome del negozio",
+    "INPUTSHOPNAME":"Per favore, metti il tuo nome del negozio",
+    "COMPANYTYPE":"La società di tipo A",
+    "SELECTCOMPANYTYPE":"TI Prego, scegli il tuo Tipo.",
   }
 }

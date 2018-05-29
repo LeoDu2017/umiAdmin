@@ -4,7 +4,7 @@ import { login } from 'services/login';
 export default{
   namespace:'login',
   state:{
-    isLogin: false,
+    isLogin: true,
     loginfail:false,
     currentIndex: 0,
   },

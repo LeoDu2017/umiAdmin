@@ -6,12 +6,13 @@ export default {
     "CANCEL":"Cancel",
     "SURE":"Confirm",
     "LANG":"Language",
+    "EDIT":"Edit",
     "PWD":"Modify password",
     "INO":"Rectify the account information",
     "OUT":"Sign out",
     "HOME":"Home page",
     "SHOP":"Shop management",
-    "SHOPINFO":"About shop",
+    "SHOPINFO":"About spots",
     "SHOPADMIN":"Store keeper",
     "BRAND":"Brand management",
     "BRANDLIST":"Brand list",
@@ -41,6 +42,11 @@ export default {
     "LOGISTICS":"EUROOO has international private warehousing and logistics and free distribution services worldwide. EUROOO can relieve all suppliers' worries about exports.",
     "AFTERSALE":"Free after sale",
     "DEAL":"In the transaction process, all the subsequent processes are passed to the EUROOO after the quality inspection of EUROOO. EUROOO provides free installation services and after-sales service to buyers.",
-
+    "COMPANYNAME":"Corporate name",
+    "INPUTCOMPANYNAME":"Please fill in the name of your company",
+    "SHOPNAME":"Shop name",
+    "INPUTSHOPNAME":"Please fill in the name of your shop",
+    "COMPANYTYPE":"Type of company",
+    "SELECTCOMPANYTYPE":"Please choose your company type",
   }
 }
