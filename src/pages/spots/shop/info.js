@@ -94,7 +94,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           >
             {getFieldDecorator('email', {
               rules: [{
-                type: 'email', message: 'The input is not valid E-mail!',
+                type: 'email', message: intl.get('ERROREMAIL'),
               }, {
                 required: true, message: intl.get('INPUTEMAIL'),
               }],

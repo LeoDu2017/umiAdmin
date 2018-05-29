@@ -50,5 +50,6 @@ export default{
     "SELECTCOMPANYTYPE":"TI Prego, scegli il tuo Tipo.",
     "EMAIL":"Posta Elettronica",
     "INPUTEMAIL":"Per favore, metti il tuo indirizzo E - Mail.",
+    "ERROREMAIL":"IL tuo contributo E - Mail non corretta",
   }
 }

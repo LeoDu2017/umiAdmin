@@ -50,5 +50,6 @@ export default{
     "SELECTCOMPANYTYPE":"Sélectionnez le type de votre compagnie",
     "EMAIL":"Courrier électronique",
     "INPUTEMAIL":"Veuillez remplir votre adresse de courrier électronique.",
+    "ERROREMAIL":"Pas votre boîte aux lettres d'entrée correcte",
   }
 }

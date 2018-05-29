@@ -50,6 +50,7 @@ export default {
     "SELECTCOMPANYTYPE":"Please choose your company type",
     "EMAIL":"E-mail",
     "INPUTEMAIL":"Please input your E-mail!",
+    "ERROREMAIL":"The mailbox you entered is incorrect",
 
   }
 }
