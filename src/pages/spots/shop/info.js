@@ -88,6 +88,21 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
             )}
           </FormItem>
 
+          <FormItem
+            {...formItemLayout}
+            label= {intl.get('EMAIL')}
+          >
+            {getFieldDecorator('email', {
+              rules: [{
+                type: 'email', message: 'The input is not valid E-mail!',
+              }, {
+                required: true, message: intl.get('INPUTEMAIL'),
+              }],
+            })(
+              <Input placeholder={intl.get('INPUTEMAIL')}/>
+            )}
+          </FormItem>
+
         </Form>
       </Col>
     </Col>

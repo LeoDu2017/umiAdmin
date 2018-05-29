@@ -48,6 +48,8 @@ export default {
     "INPUTSHOPNAME":"请填写您的店铺名称",
     "COMPANYTYPE":"公司类型",
     "SELECTCOMPANYTYPE":"请选择您的公司类型",
+    "EMAIL":"邮箱",
+    "INPUTEMAIL":"请填写您的公司邮箱",
   }
 
 

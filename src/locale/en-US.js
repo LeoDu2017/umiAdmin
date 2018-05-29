@@ -48,5 +48,8 @@ export default {
     "INPUTSHOPNAME":"Please fill in the name of your shop",
     "COMPANYTYPE":"Type of company",
     "SELECTCOMPANYTYPE":"Please choose your company type",
+    "EMAIL":"E-mail",
+    "INPUTEMAIL":"Please input your E-mail!",
+
   }
 }

@@ -48,5 +48,7 @@ export default{
     "INPUTSHOPNAME":"Per favore, metti il tuo nome del negozio",
     "COMPANYTYPE":"La società di tipo A",
     "SELECTCOMPANYTYPE":"TI Prego, scegli il tuo Tipo.",
+    "EMAIL":"Posta Elettronica",
+    "INPUTEMAIL":"Per favore, metti il tuo indirizzo E - Mail.",
   }
 }

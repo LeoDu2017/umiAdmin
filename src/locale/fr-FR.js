@@ -48,5 +48,7 @@ export default{
     "INPUTSHOPNAME":"Veuillez indiquer le nom de votre magasin",
     "COMPANYTYPE":"Type d'entreprise",
     "SELECTCOMPANYTYPE":"Sélectionnez le type de votre compagnie",
+    "EMAIL":"Courrier électronique",
+    "INPUTEMAIL":"Veuillez remplir votre adresse de courrier électronique.",
   }
 }
