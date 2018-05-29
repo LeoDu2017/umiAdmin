@@ -55,5 +55,13 @@ export default{
     "INPUTCONTACTNUM":"Veuillez remplir votre titreuillez donner votre numéro de téléphone",
     "ADMINTITLE":"Titre",
     "INPUTADMINTITLE":"Veuillez remplir votre titre",
+    "ADMINNAME":"Personne de contact",
+    "INPUTADMINNAME":"Veuillez indiquer le nom de votre contact",
+    "SHOPPRODUCT":"Principaux produits",
+    "SELECTSHOPPRODUCT":"Veuillez choisir vos produits principaux",
+    "FURNITURE":"Meuble",
+    "MATERIAL":"Matériau",
+    "ORNAMENTS":"Décorations",
+    "SPOTS":"Spots",
   }
 }

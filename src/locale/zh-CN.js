@@ -55,6 +55,14 @@ export default {
     "INPUTCONTACTNUM":"请填写您的联系电话",
     "ADMINTITLE":"职称",
     "INPUTADMINTITLE":"请填写您的职称",
+    "ADMINNAME":"联系人",
+    "INPUTADMINNAME":"请填写您的联系人姓名",
+    "SHOPPRODUCT":"主营产品",
+    "SELECTSHOPPRODUCT":"请选择您的主营产品",
+    "FURNITURE":"家具",
+    "MATERIAL":"材料",
+    "ORNAMENTS":"装饰品",
+    "SPOTS":"现货",
   }
 
 

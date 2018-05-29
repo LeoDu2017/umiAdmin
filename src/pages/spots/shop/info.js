@@ -72,6 +72,35 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
 
           <FormItem
             {...formItemLayout}
+            label={intl.get('SHOPPRODUCT')}
+          >
+            {getFieldDecorator('shop_product', {
+              rules: [{required: true, message:intl.get('SELECTSHOPPRODUCT')}],
+            })(
+              <Checkbox.Group>
+                <Row>
+                  <Checkbox value="1">{intl.get('FURNITURE')}</Checkbox>
+                  <Checkbox value="2">{intl.get('MATERIAL')}</Checkbox>
+                  <Checkbox value="3">{intl.get('ORNAMENTS')}</Checkbox>
+                  <Checkbox value="4">{intl.get('SPOTS')}</Checkbox>
+                </Row>
+              </Checkbox.Group>,
+            )}
+          </FormItem>
+
+          <FormItem
+            {...formItemLayout}
+            label={intl.get('ADMINNAME')}
+          >
+            {getFieldDecorator('contact', {
+              rules: [{required: true, message:intl.get('INPUTADMINNAME')}],
+            })(
+              <Input placeholder={intl.get('INPUTADMINNAME')}/>
+            )}
+          </FormItem>
+
+          <FormItem
+            {...formItemLayout}
             label={intl.get('ADMINTITLE')}
           >
             {getFieldDecorator('title', {

@@ -55,5 +55,13 @@ export default{
     "INPUTCONTACTNUM":"Per favore, metti il tuo telefono",
     "ADMINTITLE":"Il titolo",
     "INPUTADMINTITLE":"Per favore, metti il tuo titolo",
+    "ADMINNAME":"I contatti",
+    "INPUTADMINNAME":"Per favore, metti il tuo nome del contatto",
+    "SHOPPRODUCT":"I principali prodotti",
+    "SELECTSHOPPRODUCT":"TI Prego, scegli il tuo prodotto principale",
+    "FURNITURE":"Mobili",
+    "MATERIAL":"Materiale",
+    "ORNAMENTS":"Arredamento",
+    "SPOTS":"Spots",
   }
 }

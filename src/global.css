@@ -5,16 +5,46 @@ html, body, :global(#root) {
   font-family:"Helvetica Neue", Helvetica, "PingFang SC", 微软雅黑, Tahoma, Arial, sans-serif;
   font-size:14px;
 }
+
+
+
+:global(.g-t-header),
+:global(.ant-btn-sm),
+:global(.g-t-main .ant-input),
+:global(.ant-form label),
+:global(.g-t-main .ant-select),
+:global(.ant-select-dropdown),
+:global(.ant-form-item-label label),
+:global(.g-t-main .ant-form-explain){
+  font-size: 14px;
+}
+
 :global(.g-t-header){
   border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
   padding: 15px;
   text-transform: uppercase;
   color: #535351;
-  font-size: 14px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   line-height: 24px;
+}
+:global(.g-t-main .ant-form-explain){
+  font-weight: 700;
+  line-height: 24px;
+}
+:global(.ant-form-item){
+  padding:0 30px;
+}
+:global(.ant-form-item-label label){
+  color: #7a7676;
+}
+:global(.ant-form-item-required:before){
+  font-size:12px;
+  margin-right: 2px;
+}
+:global(.g-t-form-wrap){
+  padding:30px 15px;
 }
 :global(.g-t-wrap){
   padding: 30px;
@@ -26,35 +56,4 @@ html, body, :global(#root) {
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
-:global(.ant-btn-sm){
-  font-size: 14px;
-}
-:global(.ant-form-item){
-  padding:0 30px;
-}
-:global(.ant-form-item-label label){
-  color: #7a7676;
-  font-size:14px;
-}
-:global(.ant-form-item-required:before){
-  font-size:12px;
-  margin-right: 2px;
-}
-:global(.g-t-form-wrap){
-  padding:30px 15px;
-}
-:global(.g-t-main .ant-input){
-  font-size: 14px;
-}
-:global(.g-t-main .ant-select){
-  font-size: 14px;
-}
-:global(.ant-select-dropdown){
-  font-size: 14px;
-}
-:global(.g-t-main .ant-form-explain){
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 24px;
 }
