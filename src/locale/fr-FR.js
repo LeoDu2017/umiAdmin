@@ -51,5 +51,9 @@ export default{
     "EMAIL":"Courrier électronique",
     "INPUTEMAIL":"Veuillez remplir votre adresse de courrier électronique.",
     "ERROREMAIL":"Pas votre boîte aux lettres d'entrée correcte",
+    "CONTACTNUM":"Le numéro de téléphone de contact",
+    "INPUTCONTACTNUM":"Veuillez remplir votre titreuillez donner votre numéro de téléphone",
+    "ADMINTITLE":"Titre",
+    "INPUTADMINTITLE":"Veuillez remplir votre titre",
   }
 }

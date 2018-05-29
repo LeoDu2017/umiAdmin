@@ -51,5 +51,9 @@ export default{
     "EMAIL":"Posta Elettronica",
     "INPUTEMAIL":"Per favore, metti il tuo indirizzo E - Mail.",
     "ERROREMAIL":"IL tuo contributo E - Mail non corretta",
+    "CONTACTNUM":"IL telefono",
+    "INPUTCONTACTNUM":"Per favore, metti il tuo telefono",
+    "ADMINTITLE":"Il titolo",
+    "INPUTADMINTITLE":"Per favore, metti il tuo titolo",
   }
 }

@@ -51,6 +51,10 @@ export default {
     "EMAIL":"E-mail",
     "INPUTEMAIL":"Please input your E-mail!",
     "ERROREMAIL":"The mailbox you entered is incorrect",
+    "CONTACTNUM":"Contact number",
+    "INPUTCONTACTNUM":"Please fill in your contact phone",
+    "ADMINTITLE":"Title",
+    "INPUTADMINTITLE":"Please fill in your title",
 
   }
 }

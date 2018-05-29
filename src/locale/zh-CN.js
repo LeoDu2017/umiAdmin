@@ -50,7 +50,11 @@ export default {
     "SELECTCOMPANYTYPE":"请选择您的公司类型",
     "EMAIL":"邮箱",
     "INPUTEMAIL":"请填写您的公司邮箱",
-    "ERROREMAIL":"您输入的邮箱不正确",
+    "ERROREMAIL":"请填写您的邮箱不正确",
+    "CONTACTNUM":"联系电话",
+    "INPUTCONTACTNUM":"请填写您的联系电话",
+    "ADMINTITLE":"职称",
+    "INPUTADMINTITLE":"请填写您的职称",
   }
 
 

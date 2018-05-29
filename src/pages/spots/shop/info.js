@@ -72,6 +72,17 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
 
           <FormItem
             {...formItemLayout}
+            label={intl.get('ADMINTITLE')}
+          >
+            {getFieldDecorator('title', {
+
+            })(
+              <Input placeholder={intl.get('INPUTADMINTITLE')}/>
+            )}
+          </FormItem>
+
+          <FormItem
+            {...formItemLayout}
             label="店铺LOGO"
             extra="longgggggggggggggggggggggggggggggggggg"
           >
@@ -90,13 +101,22 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
 
           <FormItem
             {...formItemLayout}
+            label={intl.get('CONTACTNUM')}
+          >
+            {getFieldDecorator('mobile', {
+              rules: [{required: true, message:intl.get('INPUTCONTACTNUM')}],
+            })(
+              <Input placeholder={intl.get('INPUTCONTACTNUM')}/>
+            )}
+          </FormItem>
+
+          <FormItem
+            {...formItemLayout}
             label= {intl.get('EMAIL')}
           >
             {getFieldDecorator('email', {
               rules: [{
                 type: 'email', message: intl.get('ERROREMAIL'),
-              }, {
-                required: true, message: intl.get('INPUTEMAIL'),
               }],
             })(
               <Input placeholder={intl.get('INPUTEMAIL')}/>
