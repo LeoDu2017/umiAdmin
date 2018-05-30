@@ -31,6 +31,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           <FormItem
             {...formItemLayout}
             label={intl.get('COMPANYNAME')}
+            className="g-f-item"
           >
             {getFieldDecorator('company_name', {
               rules: [{required: true, message:intl.get('INPUTCOMPANYNAME')}],
@@ -42,6 +43,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           <FormItem
             {...formItemLayout}
             label={intl.get('SHOPNAME')}
+            className="g-f-item"
           >
             {getFieldDecorator('shop_name', {
               rules: [{required: true, message:intl.get('INPUTSHOPNAME')}],
@@ -53,6 +55,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           <FormItem
             {...formItemLayout}
             label={intl.get('COMPANYTYPE')}
+            className="g-f-item"
           >
             {getFieldDecorator('company_type', {
               rules: [{required: true, message:intl.get('SELECTCOMPANYTYPE')}],
@@ -73,6 +76,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           <FormItem
             {...formItemLayout}
             label={intl.get('SHOPPRODUCT')}
+            className="g-f-item"
           >
             {getFieldDecorator('shop_product', {
               rules: [{required: true, message:intl.get('SELECTSHOPPRODUCT')}],
@@ -91,6 +95,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           <FormItem
             {...formItemLayout}
             label={intl.get('ADMINNAME')}
+            className="g-f-item"
           >
             {getFieldDecorator('contact', {
               rules: [{required: true, message:intl.get('INPUTADMINNAME')}],
@@ -102,6 +107,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           <FormItem
             {...formItemLayout}
             label={intl.get('ADMINTITLE')}
+            className="g-f-item"
           >
             {getFieldDecorator('title', {
 
@@ -114,6 +120,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
             {...formItemLayout}
             label="店铺LOGO"
             extra="longgggggggggggggggggggggggggggggggggg"
+            className="g-f-item"
           >
             {getFieldDecorator('shop_logo', {
               rules: [{required: true, message:intl.get('SELECTCOMPANYTYPE')}],
@@ -131,6 +138,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           <FormItem
             {...formItemLayout}
             label={intl.get('CONTACTNUM')}
+            className="g-f-item"
           >
             {getFieldDecorator('mobile', {
               rules: [{required: true, message:intl.get('INPUTCONTACTNUM')}],
@@ -142,6 +150,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           <FormItem
             {...formItemLayout}
             label= {intl.get('EMAIL')}
+            className="g-f-item"
           >
             {getFieldDecorator('email', {
               rules: [{

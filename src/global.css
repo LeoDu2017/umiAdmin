@@ -5,17 +5,7 @@ html, body, :global(#root) {
 }
 
 
-:global(#root),
-:global(.g-t-header),
-:global(.ant-btn-sm),
-:global(.g-t-main .ant-input),
-:global(.ant-form label),
-:global(.g-t-main .ant-select),
-:global(.ant-select-dropdown),
-:global(.ant-form-item-label label),
-:global(.g-t-main .ant-form-explain){
-  font-size: 14px;
-}
+
 
 :global(.g-t-header){
   border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
@@ -31,12 +21,10 @@ html, body, :global(#root) {
   font-weight: 700;
   line-height: 24px;
 }
-:global(.ant-form-item){
-  padding:0 30px;
+:global(.g-f-item){
+  padding:0 30px !important;
 }
-:global(.ant-form-item-label label){
-  color: #7a7676;
-}
+
 :global(.ant-form-item-required:before){
   font-size:12px;
   margin-right: 2px;

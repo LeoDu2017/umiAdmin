@@ -6,8 +6,10 @@ export default{
     "@info-color":"#F8AC59",
     "@link-color": "#dc6aac",
     "@border-radius-base": "2px",
-    "@font-size-base": "16px",
-    "@line-height-base": "1.2"
+    "@font-size-base": "14px",
+    "@line-height-base": "1.2",
+    "@label-color":"#7a7676",
+
   },
   alias: {
     models: path.resolve(__dirname, 'src/models/'),
