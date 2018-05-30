@@ -1,12 +1,15 @@
+em, i {
+  font-style: normal;
+}
+dl {
+  margin-top: 0;
+  margin-bottom:0;
+}
 html, body, :global(#root) {
   height: 100%;
   color: #7a7676;
   font-family:"Helvetica Neue", Helvetica, "PingFang SC", 微软雅黑, Tahoma, Arial, sans-serif;
 }
-
-
-
-
 :global(.g-t-header){
   border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
   padding: 15px;
@@ -44,4 +47,19 @@ html, body, :global(#root) {
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+:global(.ant-modal-body){
+  padding: 0;
+}
+:global(.ant-modal-content){
+  box-shadow: none !important;
+}
+:global(.ant-btn-danger){
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  color: #fff;
+}
+:global(.ant-btn-danger:hover){
+  background-color: #c9302c;
+  border-color: #ac2925;
 }

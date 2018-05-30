@@ -1,9 +1,12 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Form, Input, Tooltip, Icon, Cascader,Upload, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import Albums from 'components/Albums';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
+
+
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -162,6 +165,7 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
           </FormItem>
 
         </Form>
+        <Albums/>
       </Col>
     </Col>
   </Col>
