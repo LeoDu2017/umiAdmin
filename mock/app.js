@@ -1,8 +1,8 @@
-const qs = require('qs')
-const Mock = require('mockjs')
-const config = require('../src/utils/config')
+const qs = require('qs');
+const Mock = require('mockjs');
+const config = require('../src/utils/config');
 
-const { apiPrefix } = config
+const { apiPrefix } = config;
 
 let usersListData = Mock.mock({
   'data|80-100': [
@@ -97,7 +97,7 @@ module.exports = {
 
   [`POST ${apiPrefix}/user/login`] (req, res) {
 
-  
+
 
     const { username, password } = req.body
 

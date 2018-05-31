@@ -14,6 +14,7 @@ module.exports = {
   APIV1,
   APIV2,
   api: {
+    getTrees:`${APIV1}/tree`,
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV1}/userInfo`,
