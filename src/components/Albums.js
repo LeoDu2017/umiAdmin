@@ -23,6 +23,20 @@ const albums = ({dispatch,currentTree,tree,total,openAll}) =>(
       <Col className={styles.main}>
         <Col className={styles.left}>
           <Col className={styles.actions}>
+            <ul>
+              <li>
+                  <Svg className={styles.icon} type="add"/>
+                  添加
+              </li>
+              <li>
+                  <Svg className={styles.icon} type="pencil"/>
+                  重命名
+              </li>
+              <li>
+                  <Svg className={styles.icon} type="delete"/>
+                  删除
+              </li>
+            </ul>
           </Col>
           <Col className={styles.tree}>
             <dl>
@@ -38,10 +52,10 @@ const albums = ({dispatch,currentTree,tree,total,openAll}) =>(
                 </span>
               </dt>
               {
-                <dd style={openAll ? {'height':`${tree.length*28}px`}:{'height':'0'}}>
+                <dd style={openAll ? {'height':`${tree.length*28}px`}:{'height':"0"}}>
                   {
-                    tree.map(item => (
-                      <dl key={item.id}>
+                    tree.map((item,index) => (
+                      <dl key={item.id} style={{'top':`${index*20}%`,'z-index':`${-index+100}`}}>
                         <dt onClick={selectClassify.bind(null,item.id,dispatch)}
                             className={currentTree === item.id ? styles.selected : ''}
                             id={item.id}>

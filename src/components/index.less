@@ -94,6 +94,27 @@
         line-height: 45px;
         background: #eee;
         text-align: center;
+        ul{
+          width: 100%;
+          display: inline-flex;
+          flex-direction: row;
+          justify-content: center;
+          -webkit-padding-start:0;
+          li{
+            width: 33.3333%;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 700;
+
+            &:hover{
+              color: #3071A9;
+            }
+            .icon{
+              font-size: 14px;
+              margin-right: 2px;
+            }
+          }
+        }
       }
       .tree {
         position: relative;
@@ -104,35 +125,41 @@
           padding-left: 15px;
           margin-bottom: 0;
           overflow: hidden;
-          transition: height 0.2s ease-in-out;
+          transition: height .35s linear;
+          position: relative;
+          &>dl{
+            position: absolute;
+          }
         }
         dl{
           list-style: none;
-          dt{
-            padding: 0 10px;
-            cursor: pointer;
-            min-width: 170px;
-            line-height: 28px;
-            .title{
-              font-size: 12px;
-            }
+          height: auto;
+        }
+        dt{
+          padding: 0 10px;
+          cursor: pointer;
+          min-width: 170px;
+          line-height: 28px;
+          background: #fff;
+          .title{
+            font-size: 12px;
+          }
+          .icon{
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            margin-top: 6px;
+            vertical-align: -2px;
+            color: #9f9f9f;
+          }
+          .ipt{
+            display: none;
+          }
+          &.selected {
+            background: #428bca;
+            color: #fff;
             .icon{
-              width: 16px;
-              height: 16px;
-              margin-right: 5px;
-              margin-top: 6px;
-              vertical-align: -2px;
-              color: #9f9f9f;
-            }
-            .ipt{
-              display: none;
-            }
-            &.selected {
-              background: #428bca;
               color: #fff;
-              .icon{
-                color: #fff;
-              }
             }
           }
         }
