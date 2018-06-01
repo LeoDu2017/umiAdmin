@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './index.less';
+import styles from 'styles/pages.less';
 import Link from 'umi/link';
 import { Row, Col, Button } from 'antd';
 import intl from 'react-intl-universal';

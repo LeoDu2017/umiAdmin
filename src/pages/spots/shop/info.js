@@ -2,7 +2,7 @@ import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Form, Input, Tooltip, Icon, Cascader,Upload, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
 import Albums from 'components/Albums';
-import styles from './index.less';
+import styles from 'styles/shop.less';
 import {showAlbums} from 'actions/albums';
 const FormItem = Form.Item;
 const Option = Select.Option;
