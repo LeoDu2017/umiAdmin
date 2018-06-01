@@ -38,12 +38,23 @@ export function editCurrentTree(id,dispatch){
     payload:currentEditTree
   })
 }
-export function addSubTree(id,dispatch){
+export function addSubTree(id,tree,dispatch){
   const parentId = id;
+  const currentEditTree = '-2';
+  const currentTree = '-2';
+  tree.push({
+    'name':'未命名文件夹',
+    'parent_id':parentId,
+    'id':'-2',
+    'picNum':'0',
+    'open':false
+  });
   dispatch({
-    type:'albums/postSubTree',
-    payload:parentId
+    type:'albums/appendSubTree',
+    payload:tree,currentEditTree,currentTree
   })
+
+
 }
 export function deleteCurrentTree(id,dispatch){}
 export function stop(event){

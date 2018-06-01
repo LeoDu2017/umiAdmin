@@ -28,7 +28,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
             <ul>
               {
                 actions.showAdd &&
-                <li onClick={addSubTree.bind(null,currentTree,dispatch)}>
+                <li onClick={addSubTree.bind(null,currentTree,tree,dispatch)}>
                   <Svg className={styles.icon} type="add"/>
                   添加
                 </li>
@@ -66,7 +66,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                 <dd style={openAll ? {'height':`${tree.length*28}px`}:{'height':"0"}}>
                   {
                     tree.map((item,index) => (
-                      <dl key={item.id} style={{'top':`${index*25}%`,'zIndex':`${-index+100}`}}>
+                      <dl key={item.id} style={{'top':`${index*28}px`,'zIndex':`${-index+100}`}}>
                         <dt onClick={selectClassify.bind(null,item.id,dispatch)}
                             className={currentTree === item.id ? styles.selected : ''}
                             id={item.id}>

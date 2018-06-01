@@ -44,7 +44,11 @@ const albums = {
     },
     setDisplay(state,{payload:display}){
       return{ ...state,display}
+    },
+    appendSubTree(state,{payload:tree,currentEditTree,currentTree}){
+      return{ ...state,tree,currentEditTree,currentTree}
     }
+
   },
 
   effects:{
