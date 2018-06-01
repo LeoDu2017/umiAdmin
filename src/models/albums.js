@@ -4,10 +4,16 @@ const albums = {
   namespace:'albums',
   state:{
     currentTree: '-1',
+    currentEditTree:'-1',
     tree:[],
     total:'0',
     refresh:0,
-    openAll:true
+    openAll:true,
+    actions:{
+      showDelete:false,
+      showEdit:false,
+      showAdd:true
+    }
   },
   reducers:{
     saveTree(state,{payload:tree}){
@@ -30,8 +36,11 @@ const albums = {
       });
       return { ...state,tree:newTree,refresh:a}
     },
-    setCurrentTree(state,{payload:currentTree}){
-      return { ...state,currentTree}
+    setCurrentTree(state,{payload:currentTree,actions,currentEditTree}){
+      return { ...state,currentTree,actions,currentEditTree}
+    },
+    setCurrentEditTree(state,{payload:currentEditTree}){
+      return { ...state,currentEditTree}
     }
   },
 

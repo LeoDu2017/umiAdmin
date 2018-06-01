@@ -1,10 +1,10 @@
 import {Col,Icon,Modal,Button,Input} from 'antd';
 import {connect} from 'dva';
 import styles from './index.less';
-import {selectClassify,toggleOpen} from 'actions/albums';
+import {selectClassify,toggleOpen,addSubTree,editCurrentTree,deleteCurrentTree,stop,saveEditTree} from 'actions/albums';
 import Svg from 'components/Svg';
 
-const albums = ({dispatch,currentTree,tree,total,openAll}) =>(
+const albums = ({dispatch,currentTree,tree,total,openAll,actions,currentEditTree}) =>(
   <Modal
     visible={ true }
     // onCancel={}
@@ -24,18 +24,27 @@ const albums = ({dispatch,currentTree,tree,total,openAll}) =>(
         <Col className={styles.left}>
           <Col className={styles.actions}>
             <ul>
-              <li>
+              {
+                actions.showAdd &&
+                <li onClick={addSubTree.bind(null,currentTree,dispatch)}>
                   <Svg className={styles.icon} type="add"/>
                   添加
-              </li>
-              <li>
+                </li>
+              }
+              {
+                actions.showEdit &&
+                <li onClick={editCurrentTree.bind(null,currentTree,dispatch)}>
                   <Svg className={styles.icon} type="pencil"/>
                   重命名
-              </li>
-              <li>
+                </li>
+              }
+              {
+                actions.showDelete &&
+                <li onClick={deleteCurrentTree.bind(null,currentTree,dispatch)}>
                   <Svg className={styles.icon} type="delete"/>
                   删除
-              </li>
+                </li>
+              }
             </ul>
           </Col>
           <Col className={styles.tree}>
@@ -55,7 +64,7 @@ const albums = ({dispatch,currentTree,tree,total,openAll}) =>(
                 <dd style={openAll ? {'height':`${tree.length*28}px`}:{'height':"0"}}>
                   {
                     tree.map((item,index) => (
-                      <dl key={item.id} style={{'top':`${index*20}%`,'z-index':`${-index+100}`}}>
+                      <dl key={item.id} style={{'top':`${index*25}%`,'zIndex':`${-index+100}`}}>
                         <dt onClick={selectClassify.bind(null,item.id,dispatch)}
                             className={currentTree === item.id ? styles.selected : ''}
                             id={item.id}>
@@ -64,13 +73,24 @@ const albums = ({dispatch,currentTree,tree,total,openAll}) =>(
                                type={ item.open ? 'folder-open' : 'folder-close'}>
                           </Svg>
                         </span>
-                          <span className={styles.title}>
+                          <span className={item.id === currentEditTree ? `${styles.title} ${styles.hide}` : styles.title}>
                           <em>{item.name}</em>
                           (<em>{item.picNum}</em>)
                         </span>
                           {
                             item.id !=='0' &&
-                            <Input type="text" className={styles.ipt} value={item.name}/>
+                            <Col className={styles.editBox}>
+                              <Input
+                                type="text"
+                                className={item.id === currentEditTree ? `${styles.ipt} ${styles.show}` : styles.ipt}
+                                onClick={stop}
+                                defaultValue={item.name}/>
+                              <Button
+                                onClick={saveEditTree}
+                                className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
+                                保存
+                              </Button>
+                            </Col>
                           }
                         </dt>
                         <dd> </dd>
@@ -567,14 +587,16 @@ const albums = ({dispatch,currentTree,tree,total,openAll}) =>(
 );
 
 function mapStateToProps(state){
-  const {tree,total,currentTree,refresh,openAll} = state.albums;
+  const {tree,total,currentTree,refresh,openAll,actions,currentEditTree} = state.albums;
   return{
     loading:state.albums.loading,
     tree,
     total,
     currentTree,
     refresh,
-    openAll
+    openAll,
+    actions,
+    currentEditTree
   }
 }
 

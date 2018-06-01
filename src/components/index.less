@@ -141,9 +141,15 @@
           min-width: 170px;
           line-height: 28px;
           background: #fff;
+          display: inline-flex;
+          align-items: center;
           .title{
             font-size: 12px;
+            &.hide{
+              display: none;
+            }
           }
+
           .icon{
             width: 16px;
             height: 16px;
@@ -152,9 +158,33 @@
             vertical-align: -2px;
             color: #9f9f9f;
           }
-          .ipt{
-            display: none;
+          .editBox{
+            display: inline-flex;
+            align-items: center;
+            .ipt{
+              display: none;
+              height: 21px;
+              font-size: 12px;
+              &.show{
+                display: inline-block;
+              }
+            }
+            .btn{
+              display: none;
+              height: 21px;
+              font-size: 12px;
+              margin-left: 10px;
+              width: 60px;
+              background: #3a3a3a;
+              color: #FFFFFF;
+              padding: 0;
+              border: none;
+              &.show{
+                display: inline-block;
+              }
+            }
           }
+
           &.selected {
             background: #428bca;
             color: #fff;
