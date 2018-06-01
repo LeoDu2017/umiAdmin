@@ -38,7 +38,13 @@ export function editCurrentTree(id,dispatch){
     payload:currentEditTree
   })
 }
-export function addSubTree(id,dispatch){}
+export function addSubTree(id,dispatch){
+  const parentId = id;
+  dispatch({
+    type:'albums/postSubTree',
+    payload:parentId
+  })
+}
 export function deleteCurrentTree(id,dispatch){}
 export function stop(event){
   event.stopPropagation()

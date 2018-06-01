@@ -1,5 +1,5 @@
 import intl from 'react-intl-universal';
-import {getTree} from 'services/albums';
+import {getTree,postSubTree} from 'services/albums';
 const albums = {
   namespace:'albums',
   state:{
@@ -59,6 +59,9 @@ const albums = {
         type:'saveTotal',
         payload:total
       })
+    },
+    *postSubTree({payload:parentID},{select,call,put}){
+      const {data} = yield call(postSubTree);
     }
   },
   subscriptions:{
