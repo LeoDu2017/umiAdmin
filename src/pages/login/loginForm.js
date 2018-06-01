@@ -1,6 +1,6 @@
 import {connect} from 'dva';
 import {Button, Icon, Form, Input,Checkbox} from 'antd';
-import styles from './login.less';
+import styles from '../../styles/login.less';
 import {handleSubmit} from 'actions/loginpage';
 
 const FormItem = Form.Item

@@ -1,7 +1,7 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Col,Button,Icon,Modal} from 'antd';
-import styles from './index.less';
+import styles from '../../styles/login.less';
 import { handleClick,handleMouseLeave} from 'actions/loginpage';
 import WrappedNormalLoginForm from './loginForm';
 import Svg from 'components/Svg';
