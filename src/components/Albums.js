@@ -1,12 +1,12 @@
 import {Col,Icon,Modal,Button,Input} from 'antd';
 import {connect} from 'dva';
 import styles from './index.less';
-import {selectClassify,toggleOpen,addSubTree,editCurrentTree,deleteCurrentTree,stop,saveEditTree} from 'actions/albums';
+import {selectClassify,toggleOpen,addSubTree,editCurrentTree,deleteCurrentTree,stop,saveEditTree,setDispaly} from 'actions/albums';
 import Svg from 'components/Svg';
 
-const albums = ({dispatch,currentTree,tree,total,openAll,actions,currentEditTree}) =>(
+const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,currentEditTree}) =>(
   <Modal
-    visible={ true }
+    visible={ display }
     // onCancel={}
     // wrapClassName={styles.vertical_center_modal}
     closable={false}
@@ -18,7 +18,9 @@ const albums = ({dispatch,currentTree,tree,total,openAll,actions,currentEditTree
     <Col>
       <header>
         <span>我的图库</span>
-        <Svg className={styles.icon} type="close"> </Svg>
+        <span onClick={setDispaly.bind(null,dispatch,false)}>
+          <Svg className={styles.icon} type="close"> </Svg>
+        </span>
       </header>
       <Col className={styles.main}>
         <Col className={styles.left}>
@@ -587,9 +589,10 @@ const albums = ({dispatch,currentTree,tree,total,openAll,actions,currentEditTree
 );
 
 function mapStateToProps(state){
-  const {tree,total,currentTree,refresh,openAll,actions,currentEditTree} = state.albums;
+  const {display,tree,total,currentTree,refresh,openAll,actions,currentEditTree} = state.albums;
   return{
     loading:state.albums.loading,
+    display,
     tree,
     total,
     currentTree,

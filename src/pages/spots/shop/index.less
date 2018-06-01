@@ -1,0 +1,35 @@
+.upLogo{
+  height: 120px;
+  width: 120px;
+  padding: 5px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  &:hover{
+    span{
+      bottom: 0px;
+    }
+  }
+  span{
+    transition: all .35s linear;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    cursor: pointer;
+    &:hover{
+      background: rgba(0,0,0,.7);
+    }
+  }
+}

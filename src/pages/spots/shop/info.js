@@ -2,9 +2,12 @@ import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Form, Input, Tooltip, Icon, Cascader,Upload, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
 import Albums from 'components/Albums';
+import styles from './index.less';
+import {setDispaly} from 'actions/albums';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
+
 
 
 const formItemLayout = {
@@ -18,7 +21,7 @@ const formItemLayout = {
   },
 };
 
-const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
+const infoForm = ({dispatch,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
   <Col span={24} className='g-t-wrap'>
     <Col span={24} className='g-t-main'>
       <header className='g-t-header'>
@@ -130,11 +133,12 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
               valuePropName: 'fileList',
               getValueFromEvent: this.normFile,
             })(
-              <Upload name="logo" action="/upload.do" listType="picture">
-                <Button>
-                  <Icon type="upload" /> Click to upload
-                </Button>
-              </Upload>
+              <Col className={styles.upLogo}>
+                <img src={require('assets/timg.jpg')}/>
+                <span onClick={setDispaly.bind(null,dispatch,true)}>
+                  重新上传
+                </span>
+              </Col>
             )}
           </FormItem>
 
@@ -170,6 +174,8 @@ const infoForm = ({form: {getFieldDecorator,validateFieldsAndScroll,}}) => (
     </Col>
   </Col>
 );
+function mapStateToProps(state){
 
-const shopInfo = Form.create()(infoForm);
+};
+const shopInfo = connect(mapStateToProps)(Form.create()(infoForm));
 export default shopInfo

@@ -41,6 +41,9 @@ const albums = {
     },
     setCurrentEditTree(state,{payload:currentEditTree}){
       return { ...state,currentEditTree}
+    },
+    setDisplay(state,{payload:display}){
+      return{ ...state,display}
     }
   },
 
