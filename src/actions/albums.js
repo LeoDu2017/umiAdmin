@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export function toggleOpen(id,dispatch,event){
   event.stopPropagation();
   dispatch({
@@ -40,21 +42,21 @@ export function editCurrentTree(id,dispatch){
 }
 export function addSubTree(id,tree,dispatch){
   const parentId = id;
-  const currentEditTree = '-2';
-  const currentTree = '-2';
+  let num = Math.ceil(Math.random() * 100)*Math.ceil(Math.random() * 100);
+  const doublication = Boolean(_.find(tree, { id: -num }));
+  const currentEditTree = doublication ? -num*100 : -num;
+  const currentTree = doublication ? -num*100 : -num;
   tree.push({
     'name':'未命名文件夹',
     'parent_id':parentId,
-    'id':'-2',
-    'picNum':'0',
+    'id':currentTree,
+    'picNum':num,
     'open':false
   });
   dispatch({
     type:'albums/appendSubTree',
     payload:tree,currentEditTree,currentTree
   })
-
-
 }
 export function deleteCurrentTree(id,dispatch){}
 export function stop(event){
