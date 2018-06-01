@@ -1,5 +1,5 @@
 import { connect } from 'dva';
-import {layout,main } from './index.less';
+import {layout,main } from '../styles/layouts.less';
 import Header from './header';
 import LeftSide from './left';
 import RightSide from './right';

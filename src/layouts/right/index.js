@@ -1,4 +1,4 @@
-import styles from '../index.less';
+import styles from '../../styles/layouts.less';
 
 const RightSide = (props) => (
   <div className={styles.right_side}>

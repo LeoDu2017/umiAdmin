@@ -1,6 +1,6 @@
 import Link from 'umi/link';
-import Svg from './Svg';
-import { selected, icon } from './index.less';
+import Svg from 'components/Svg';
+import { selected, icon } from 'styles/components.less';
 
 export function renderItems(list){
   let items = [];

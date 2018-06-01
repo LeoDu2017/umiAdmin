@@ -1,5 +1,5 @@
 import { connect } from 'dva';
-import {header,open,toggleBtn,avatar} from '../index.less';
+import {header,open,toggleBtn,avatar} from '../../styles/layouts.less';
 import intl from 'react-intl-universal';
 import { handletoggleOpen,handleMouseLeave} from 'actions/layout';
 import DropdownMeanu from 'components/Dropdown';

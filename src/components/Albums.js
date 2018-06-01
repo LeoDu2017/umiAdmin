@@ -1,6 +1,6 @@
 import {Col,Icon,Modal,Button,Input} from 'antd';
 import {connect} from 'dva';
-import styles from './index.less';
+import styles from 'styles/components.less';
 import {selectClassify,toggleOpen,addSubTree,editCurrentTree,deleteCurrentTree,stop,saveEditTree,showAlbums} from 'actions/albums';
 import Svg from 'components/Svg';
 
