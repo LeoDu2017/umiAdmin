@@ -1,7 +1,7 @@
 import {Col,Icon,Modal,Button,Input} from 'antd';
 import {connect} from 'dva';
 import styles from './index.less';
-import {selectClassify,toggleOpen,addSubTree,editCurrentTree,deleteCurrentTree,stop,saveEditTree,setDispaly} from 'actions/albums';
+import {selectClassify,toggleOpen,addSubTree,editCurrentTree,deleteCurrentTree,stop,saveEditTree,showAlbums} from 'actions/albums';
 import Svg from 'components/Svg';
 
 const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,currentEditTree}) =>(
@@ -18,7 +18,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
     <Col>
       <header>
         <span>我的图库</span>
-        <span onClick={setDispaly.bind(null,dispatch,false)}>
+        <span onClick={showAlbums.bind(null,dispatch,false)}>
           <Svg className={styles.icon} type="close"> </Svg>
         </span>
       </header>

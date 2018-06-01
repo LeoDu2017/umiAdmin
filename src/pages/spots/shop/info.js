@@ -3,12 +3,10 @@ import { connect } from 'dva';
 import { Form, Input, Tooltip, Icon, Cascader,Upload, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
 import Albums from 'components/Albums';
 import styles from './index.less';
-import {setDispaly} from 'actions/albums';
+import {showAlbums} from 'actions/albums';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
-
-
 
 const formItemLayout = {
   labelCol: {
@@ -125,7 +123,7 @@ const infoForm = ({dispatch,form: {getFieldDecorator,validateFieldsAndScroll}}) 
           <FormItem
             {...formItemLayout}
             label="店铺LOGO"
-            extra="longgggggggggggggggggggggggggggggggggg"
+            extra="最佳尺寸250*250px"
             className="g-f-item"
           >
             {getFieldDecorator('shop_logo', {
@@ -135,7 +133,7 @@ const infoForm = ({dispatch,form: {getFieldDecorator,validateFieldsAndScroll}}) 
             })(
               <Col className={styles.upLogo}>
                 <img src={require('assets/timg.jpg')}/>
-                <span onClick={setDispaly.bind(null,dispatch,true)}>
+                <span onClick={showAlbums.bind(null,dispatch,true)}>
                   重新上传
                 </span>
               </Col>
@@ -175,7 +173,10 @@ const infoForm = ({dispatch,form: {getFieldDecorator,validateFieldsAndScroll}}) 
   </Col>
 );
 function mapStateToProps(state){
-
+  const {test} = state.shop;
+  return{
+    test
+  }
 };
 const shopInfo = connect(mapStateToProps)(Form.create()(infoForm));
 export default shopInfo

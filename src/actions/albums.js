@@ -46,7 +46,7 @@ export function stop(event){
 export function saveEditTree(event){
   event.stopPropagation()
 }
-export function setDispaly(dispatch,boolenValue){
+export function showAlbums(dispatch,boolenValue){
   const dispaly = boolenValue;
   dispatch({
     type:'albums/setDisplay',
