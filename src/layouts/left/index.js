@@ -1,9 +1,9 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
-import styles,{left_side,logo,main,meanu,active,icon,btnicon,text,_toggleBtn,submeanu,subitem,sublink,subtext} from '../../styles/layouts.less';
+import styles,{left_side,logo,main,meanu,active,icon,btnicon,text,_toggleBtn,submeanu,subitem,sublink,subtext} from 'styles/layouts.less';
 import Link from 'umi/link';
 import { Button, Col, Menu} from 'antd';
-import Logo from '../../assets/login-logo_casaitaliana.png';
+import Logo from 'assets/login-logo_casaitaliana.png';
 import Svg from 'components/Svg';
 import {handleToggle,getList,toggleSubMeanu,selectSubMeanu} from 'actions/layout';
 
