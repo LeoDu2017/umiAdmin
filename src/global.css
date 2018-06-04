@@ -49,7 +49,7 @@ html, body, :global(#root) {
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 :global(.ant-modal-body){
-  padding: 0;
+  padding: 0 !important;
 }
 :global(.ant-modal-content){
   box-shadow: none !important;
