@@ -1,3 +1,4 @@
+import intl from 'react-intl-universal';
 import {Col,Icon,Modal,Button,Input} from 'antd';
 import {connect} from 'dva';
 import styles from 'styles/components.less';
@@ -17,7 +18,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
   >
     <Col>
       <header>
-        <span>我的图库</span>
+        <span>{intl.get("ALBUMS")}</span>
         <span onClick={showAlbums.bind(null,dispatch,false)}>
           <Svg className={styles.icon} type="close"> </Svg>
         </span>
@@ -30,21 +31,21 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                 actions.showAdd &&
                 <li onClick={addSubTree.bind(null,currentTree,tree,dispatch)}>
                   <Svg className={styles.icon} type="add"/>
-                  添加
+                  {intl.get("ADD")}
                 </li>
               }
               {
                 actions.showEdit &&
                 <li onClick={editCurrentTree.bind(null,currentTree,dispatch)}>
                   <Svg className={styles.icon} type="pencil"/>
-                  重命名
+                  {intl.get('RENAME')}
                 </li>
               }
               {
                 actions.showDelete &&
                 <li onClick={deleteCurrentTree.bind(null,currentTree,dispatch)}>
                   <Svg className={styles.icon} type="delete"/>
-                  删除
+                  {intl.get('RENAME')}
                 </li>
               }
             </ul>
@@ -59,7 +60,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                        type={ openAll ? 'folder-open' : 'folder-close'}> </Svg>
                 </span>
                 <span className={styles.title}>
-                  <em>所有图片</em>(<em>{total}</em>)
+                  <em>{intl.get('ALL')}</em>(<em>{total}</em>)
                 </span>
               </dt>
               {
@@ -90,7 +91,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                               <Button
                                 onClick={saveEditTree}
                                 className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
-                                保存
+                                {intl.get("SAVE")}
                               </Button>
                             </Col>
                           }
@@ -107,14 +108,14 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
         <Col className={styles.right}>
           <Col className={styles.actions}>
             <Col className={styles._left}>
-              <Button className={styles.upBtn}> 上传图片 </Button>
-              <Button className={styles.premaryBtn}> 移动图片到 </Button>
-              <Button className={styles.premaryBtn}> 移动分类到 </Button>
-              <Button type="danger"> 删除所选图片 </Button>
+              <Button className={styles.upBtn}> {intl.get('UPLOAD')} </Button>
+              <Button className={styles.premaryBtn}> {intl.get('MOVEIMG')} </Button>
+              <Button className={styles.premaryBtn}> {intl.get('MOVECLASS')} </Button>
+              <Button type="danger" className={styles.deleteBtn}> {intl.get('DELETESELECTED')} </Button>
             </Col>
             <Col className={styles._right}>
-              <Input className={styles.input} type="text" placeholder="请输入图片名称"/>
-              <Button className={`${styles.premaryBtn} ${styles.border}`}> 搜索 </Button>
+              <Input className={styles.input} type="text" placeholder={intl.get('SERCHHOLDER')}/>
+              <Button className={`${styles.premaryBtn} ${styles.border}`}> {intl.get('SEARCH')} </Button>
             </Col>
           </Col>
           <Col className={styles.imgs}>
@@ -570,7 +571,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
             </ul>
           </Col>
           <Col className={styles.ctrls}>
-            <Button className={styles.premaryBtn}> 使用选中的图片 </Button>
+            <Button className={styles.premaryBtn}> {intl.get('USESELECTED')} </Button>
             <Col className={styles.pages}>
               <Button icon="double-left" disabled="true"  className={styles.previous}></Button>
               <Button className={`${styles.page} ${styles.current}`}>1</Button>
