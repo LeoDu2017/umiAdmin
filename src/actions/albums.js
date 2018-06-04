@@ -62,8 +62,16 @@ export function deleteCurrentTree(id,dispatch){}
 export function stop(event){
   event.stopPropagation()
 }
-export function saveEditTree(event){
-  event.stopPropagation()
+export function saveEditTree(dispatch,id,event){
+  event.stopPropagation();
+  let btn = event.currentTarget;
+  let input = btn.previousElementSibling;
+  let name = input.value;
+  dispatch({
+    type:'albums/updateTreeName',
+    payload:{name,id}
+  })
+
 }
 export function showAlbums(dispatch,boolenValue){
   const dispaly = boolenValue;

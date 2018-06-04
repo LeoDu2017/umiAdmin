@@ -122,19 +122,18 @@ const infoForm = ({dispatch,form: {getFieldDecorator,validateFieldsAndScroll}}) 
 
           <FormItem
             {...formItemLayout}
-            label="店铺LOGO"
-            extra="最佳尺寸250*250px"
+            label={intl.get('SHOPLOGO')}
+            extra={intl.get('OPTIMUM')}
             className="g-f-item"
           >
             {getFieldDecorator('shop_logo', {
               rules: [{required: true, message:intl.get('SELECTCOMPANYTYPE')}],
-              valuePropName: 'fileList',
               getValueFromEvent: this.normFile,
             })(
               <Col className={styles.upLogo}>
                 <img src={require('assets/timg.jpg')}/>
                 <span onClick={showAlbums.bind(null,dispatch,true)}>
-                  重新上传
+                  {intl.get('REUPLOAD')}
                 </span>
               </Col>
             )}
@@ -167,7 +166,7 @@ const infoForm = ({dispatch,form: {getFieldDecorator,validateFieldsAndScroll}}) 
           </FormItem>
 
         </Form>
-        <Albums/>
+        <Albums />
       </Col>
     </Col>
   </Col>

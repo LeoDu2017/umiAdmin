@@ -1,5 +1,5 @@
 import intl from 'react-intl-universal';
-import {getTree,postSubTree} from 'services/albums';
+import {getTree,postSubTree,updateTreeName} from 'services/albums';
 const albums = {
   namespace:'albums',
   state:{
@@ -55,6 +55,7 @@ const albums = {
     *getTree({ payload },{select,call, put}){
       const {data} = yield call(getTree);
       const {tree,total} = data;
+      const currentEditTree = -1;
       yield put({
         type:'saveTree',
         payload:tree
@@ -62,10 +63,31 @@ const albums = {
       yield put({
         type:'saveTotal',
         payload:total
-      })
+      });
+      yield put({
+        type:'setCurrentEditTree',
+        payload:currentEditTree
+      });
+    },
+    *updateTreeName({payload},{select,call,put}){
+
+      const data = yield call(updateTreeName, payload);
+
+      if(data && data.success){
+        const {tree,total} = data;
+        const currentEditTree = -1;
+        yield put({
+          type:'getTree'
+        });
+        yield put({
+          type:'setCurrentEditTree',
+          payload:currentEditTree
+        });
+      }else{}
     },
     *postSubTree({payload:parentID},{select,call,put}){
       const {data} = yield call(postSubTree);
+
     }
   },
   subscriptions:{

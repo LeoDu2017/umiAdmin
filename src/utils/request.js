@@ -13,12 +13,14 @@ const fetch = (options) => {
     data,
     fetchType,
     url,
-  } = options
+  } = options;
 
-  const cloneData = lodash.cloneDeep(data)
+
+  const cloneData = lodash.cloneDeep(data);
+
 
   try {
-    let domin = ''
+    let domin = '';
     if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
       [domin] = url.match(/[a-zA-z]+:\/\/[^/]*/)
       url = url.slice(domin.length)
@@ -63,7 +65,7 @@ const fetch = (options) => {
         data: cloneData,
       })
     case 'post':
-      return axios.post(url, cloneData)
+      return axios.post(url, cloneData);
     case 'put':
       return axios.put(url, cloneData)
     case 'patch':
@@ -74,8 +76,11 @@ const fetch = (options) => {
 }
 
 export default function request (options) {
+
+
   if (options.url && options.url.indexOf('//') > -1) {
-    const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
+    const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`;
+
     if (window.location.origin !== origin) {
       if (CORS && CORS.indexOf(origin) > -1) {
         options.fetchType = 'CORS'
@@ -88,9 +93,13 @@ export default function request (options) {
   }
 
   return fetch(options).then((response) => {
-    const { statusText, status } = response
-    let data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data
+
+    const { statusText, status } = response;
+
+    let data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data;
+
     if (data instanceof Array) {
+
       data = {
         list: data,
       }

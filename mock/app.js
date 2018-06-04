@@ -96,9 +96,6 @@ const NOTFOUND = {
 module.exports = {
 
   [`POST ${apiPrefix}/user/login`] (req, res) {
-
-
-
     const { username, password } = req.body
 
     const user = adminUsers.filter(item => item.username === username)
@@ -109,7 +106,7 @@ module.exports = {
       res.cookie('token', JSON.stringify({ id: user[0].id, deadline: now.getTime() }), {
         maxAge: 900000,
         httpOnly: true,
-      })
+      });
       res.json({ success: true, message: 'Ok' })
     } else {
       res.json({ success: false, message: '登录失败' })

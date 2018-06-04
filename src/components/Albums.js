@@ -45,7 +45,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                 actions.showDelete &&
                 <li onClick={deleteCurrentTree.bind(null,currentTree,dispatch)}>
                   <Svg className={styles.icon} type="delete"/>
-                  {intl.get('RENAME')}
+                  {intl.get('DELETE')}
                 </li>
               }
             </ul>
@@ -86,10 +86,11 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                               <Input
                                 type="text"
                                 className={item.id === currentEditTree ? `${styles.ipt} ${styles.show}` : styles.ipt}
+                                name="rename"
                                 onClick={stop}
                                 defaultValue={item.name}/>
                               <Button
-                                onClick={saveEditTree}
+                                onClick={saveEditTree.bind(this,dispatch,item.id)}
                                 className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
                                 {intl.get("SAVE")}
                               </Button>
@@ -114,30 +115,19 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
               <Button type="danger" className={styles.deleteBtn}> {intl.get('DELETESELECTED')} </Button>
             </Col>
             <Col className={styles._right}>
-              <Input className={styles.input} type="text" placeholder={intl.get('SERCHHOLDER')}/>
-              <Button className={`${styles.premaryBtn} ${styles.border}`}> {intl.get('SEARCH')} </Button>
+              <Input
+                className={styles.input}
+                type="text"
+                value=""
+                placeholder={intl.get('SERCHHOLDER')}/>
+              <Button
+                className={`${styles.premaryBtn} ${styles.border}`}> {intl.get('SEARCH')} </Button>
             </Col>
           </Col>
           <Col className={styles.imgs}>
             <ul>
               <li>
                 <img src="http://img.supvip.cn/4d/a2/8046600/2018-05/5b0e3a634b1f8.jpg@!w640"/>
-                  <Col className={styles.selected}><i></i></Col>
-                  <Col className={styles.edit}>
-                    <span><Svg className={styles.icon} type="pencil"> </Svg></span>
-                    <p>TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg</p>
-                    <Col className={styles.nameEdit}>
-                      <Input
-                        type="text"
-                        value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
-                        name="rename"
-                        className={styles.fileName}/>
-                      <Button className={styles.renameImg}>确定</Button>
-                    </Col>
-                  </Col>
-              </li>
-              <li>
-                <img src="http://img.supvip.cn/4d/a2/8046600/2018-05/5b0e3a634b1f8.jpg@!w640"/>
                 <Col className={styles.selected}><i></i></Col>
                 <Col className={styles.edit}>
                   <span><Svg className={styles.icon} type="pencil"> </Svg></span>
@@ -145,7 +135,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -161,7 +151,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -177,7 +167,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -193,7 +183,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -209,7 +199,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -225,7 +215,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -241,7 +231,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -257,7 +247,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -273,7 +263,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -289,7 +279,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -305,7 +295,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -321,7 +311,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -337,7 +327,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -353,7 +343,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -369,7 +359,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -385,7 +375,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -401,7 +391,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -417,7 +407,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -433,7 +423,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -449,7 +439,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -465,7 +455,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -481,7 +471,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -497,7 +487,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -513,7 +503,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -529,7 +519,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -545,7 +535,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -561,7 +551,23 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <Col className={styles.nameEdit}>
                     <Input
                       type="text"
-                      value="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
+                      name="rename"
+                      className={styles.fileName}/>
+                    <Button className={styles.renameImg}>确定</Button>
+                  </Col>
+                </Col>
+              </li>
+              <li>
+                <img src="http://img.supvip.cn/4d/a2/8046600/2018-05/5b0e3a634b1f8.jpg@!w640"/>
+                <Col className={styles.selected}><i></i></Col>
+                <Col className={styles.edit}>
+                  <span><Svg className={styles.icon} type="pencil"> </Svg></span>
+                  <p>TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg</p>
+                  <Col className={styles.nameEdit}>
+                    <Input
+                      type="text"
+                      defaultValue="TB2CT3kdBUSMeJjSszeXXcKgpXa_!!3293494167.jpg"
                       name="rename"
                       className={styles.fileName}/>
                     <Button className={styles.renameImg}>确定</Button>
@@ -571,16 +577,19 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
             </ul>
           </Col>
           <Col className={styles.ctrls}>
-            <Button className={styles.premaryBtn}> {intl.get('USESELECTED')} </Button>
+            <Button
+              className={styles.premaryBtn}> {intl.get('USESELECTED')} </Button>
             <Col className={styles.pages}>
-              <Button icon="double-left" disabled="true"  className={styles.previous}></Button>
-              <Button className={`${styles.page} ${styles.current}`}>1</Button>
-              <Button className={styles.page}>2</Button>
-              <Button className={styles.page}>3</Button>
-              <Button className={styles.page}>4</Button>
-              <Button className={styles.page}>5</Button>
-              <Button className={styles.page}>6</Button>
-              <Button icon="double-right" className={styles.next}></Button>
+              <Button
+                icon="double-left"
+                disabled="true"
+                className={styles.previous}> </Button>
+              <Button
+                className={`${styles.page} ${styles.current}`}>1</Button>
+              <Button
+                className={styles.page}>2</Button>
+              <Button
+                icon="double-right" className={styles.next}> </Button>
             </Col>
           </Col>
         </Col>
