@@ -63,7 +63,21 @@ export default {
     "MATERIAL":"材料",
     "ORNAMENTS":"装饰品",
     "SPOTS":"现货",
+    "SHOPLOGO":"店铺LOGO",
+    "OPTIMUM":"最佳尺寸250*250px",
+    "REUPLOAD":"重新上传",
+    "ALBUMS":"我的图库",
+    "ADD":"添加",
+    "RENAME":"重命名",
+    "DELETE":"删除",
+    "ALL":"所有图片",
+    "SAVE":"保存",
+    "UPLOAD":"上传图片",
+    "MOVEIMG":"移动图片到",
+    "MOVECLASS":"移动分类到",
+    "DELETESELECTED":"删除所选图片",
+    "SERCHHOLDER":"请输入图片名称",
+    "SEARCH":"搜索",
+    "USESELECTED":"使用选中的图片",
   }
-
-
 }

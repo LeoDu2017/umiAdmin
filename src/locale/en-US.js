@@ -63,6 +63,21 @@ export default {
     "MATERIAL":"Material",
     "ORNAMENTS":"Ornaments",
     "SPOTS":"Spots",
-
+    "SHOPLOGO":"Shop LOGO",
+    "OPTIMUM":"Optimum size 250*250px",
+    "REUPLOAD":"Reupload",
+    "ALBUMS":"My Albums",
+    "ADD":"Add",
+    "RENAME":"Rename",
+    "DELETE":"Delete",
+    "ALL":"All the pictures",
+    "SAVE":"Save",
+    "UPLOAD":"Upload pictures",
+    "MOVEIMG":"Moving picture to",
+    "MOVECLASS":"Mobile classification to",
+    "DELETESELECTED":"Delete the selected picture",
+    "SERCHHOLDER":"Please enter the name of the picture",
+    "SEARCH":"Search",
+    "USESELECTED":"Using the selected picture",
   }
 }
