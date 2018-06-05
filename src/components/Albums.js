@@ -1,5 +1,5 @@
 import intl from 'react-intl-universal';
-import {Col,Icon,Modal,Button,Input} from 'antd';
+import {Col,Icon,Modal,Button,Input,Alert} from 'antd';
 import {connect} from 'dva';
 import styles from 'styles/components.less';
 import {selectClassify,toggleOpen,addSubTree,editCurrentTree,deleteCurrentTree,stop,saveEditTree,showAlbums} from 'actions/albums';
@@ -595,6 +595,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
         </Col>
       </Col>
     </Col>
+
   </Modal>
 );
 

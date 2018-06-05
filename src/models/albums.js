@@ -1,5 +1,6 @@
 import intl from 'react-intl-universal';
 import {getTree,postSubTree,updateTreeName} from 'services/albums';
+import { message } from 'antd';
 const albums = {
   namespace:'albums',
   state:{
@@ -45,6 +46,7 @@ const albums = {
     setDisplay(state,{payload:display}){
       return{ ...state,display}
     },
+
     appendSubTree(state,{payload:tree,currentEditTree,currentTree}){
       return{ ...state,tree,currentEditTree,currentTree}
     }
@@ -70,20 +72,21 @@ const albums = {
       });
     },
     *updateTreeName({payload},{select,call,put}){
-
       const data = yield call(updateTreeName, payload);
+      const currentEditTree = -1;
 
       if(data && data.success){
-        const {tree,total} = data;
-        const currentEditTree = -1;
-        yield put({
-          type:'getTree'
-        });
-        yield put({
-          type:'setCurrentEditTree',
-          payload:currentEditTree
-        });
-      }else{}
+        message.success(data.msg);
+      }else{
+        message.error(data.msg);
+      }
+      yield put({
+        type:'getTree'
+      });
+      yield put({
+        type:'setCurrentEditTree',
+        payload:currentEditTree
+      });
     },
     *postSubTree({payload:parentID},{select,call,put}){
       const {data} = yield call(postSubTree);

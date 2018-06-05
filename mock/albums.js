@@ -29,13 +29,23 @@ module.exports = {
   [`POST ${apiPrefix}/tree/update`] (req, res) {
     const { id, name } = req.body;
     const {tree} = database;
-    Array.from(tree).forEach(i => {
-      if(i.id === id){
-        i.name = name;
-      }
-    });
-    database = {...database,tree};
-    res.status(200).json({msg: '提交成功' })
+
+    let _tree = Array.from(tree);
+    let duplication = _tree.find(i => i.name === name && i.id !== id );
+
+
+    if(duplication){
+      res.status(200).json({success:false,msg: '名称重合' })
+    }else{
+      tree.forEach(i => {
+        if(i.id === id){
+          i.name = name
+        }
+      });
+      database = {...database,tree};
+      res.status(200).json({msg: '提交成功' })
+    }
+
   },
 };
 

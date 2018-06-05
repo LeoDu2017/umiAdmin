@@ -63,3 +63,15 @@ html, body, :global(#root) {
   background-color: #c9302c;
   border-color: #ac2925;
 }
+:global(.alertPanel){
+  position: absolute;
+  top: -50%;
+  z-index: 10000;
+  width: 60%;
+  left: 50%;
+  transition:all .35s;
+}
+:global(.alertPanel.display){
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
