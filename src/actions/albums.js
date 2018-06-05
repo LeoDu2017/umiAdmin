@@ -40,24 +40,7 @@ export function editCurrentTree(id,dispatch){
     payload:currentEditTree
   })
 }
-export function addSubTree(id,tree,dispatch){
-  const parentId = id;
-  let num = Math.ceil(Math.random() * 100)*Math.ceil(Math.random() * 100);
-  const doublication = Boolean(_.find(tree, { id: -num }));
-  const currentEditTree = doublication ? -num*100 : -num;
-  const currentTree = doublication ? -num*100 : -num;
-  tree.push({
-    'name':'未命名文件夹',
-    'parent_id':parentId,
-    'id':currentTree,
-    'picNum':num,
-    'open':false
-  });
-  dispatch({
-    type:'albums/appendSubTree',
-    payload:tree,currentEditTree,currentTree
-  })
-}
+
 export function deleteCurrentTree(id,dispatch){}
 export function stop(event){
   event.stopPropagation()
@@ -67,6 +50,7 @@ export function saveEditTree(dispatch,id,event){
   let btn = event.currentTarget;
   let input = btn.previousElementSibling;
   let name = input.value;
+
   dispatch({
     type:'albums/updateTreeName',
     payload:{name,id}
@@ -78,5 +62,36 @@ export function showAlbums(dispatch,boolenValue){
   dispatch({
     type:'albums/setDisplay',
     payload:dispaly
+  })
+}
+export function addSubTree(id,tree,dispatch){
+  const parentId = id;
+  let num = Math.ceil(Math.random() * 100)*Math.ceil(Math.random() * 100);
+  const doublication = Boolean(_.find(tree, { id: -num }));
+  const currentEditTree = doublication ? -num*100 : -num;
+  const currentTree = doublication ? -num*100 : -num;
+  tree.push({
+    'name':'未命名文件夹',
+    'parent_id':parentId,
+    'id':currentTree,
+    'picNum':num,
+    'add':true,
+    'open':false
+  });
+  dispatch({
+    type:'albums/appendSubTree',
+    payload:tree,currentEditTree,currentTree
+  })
+}
+export function saveSubTree(dispatch,currentTree,event){
+  event.stopPropagation();
+  const parent_id = currentTree;
+  let btn = event.currentTarget;
+  let input = btn.previousElementSibling;
+  let name = input.value;
+
+  dispatch({
+    type:'albums/storeSubTree',
+    payload:{name,parent_id}
   })
 }

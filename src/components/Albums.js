@@ -2,7 +2,17 @@ import intl from 'react-intl-universal';
 import {Col,Icon,Modal,Button,Input,Alert} from 'antd';
 import {connect} from 'dva';
 import styles from 'styles/components.less';
-import {selectClassify,toggleOpen,addSubTree,editCurrentTree,deleteCurrentTree,stop,saveEditTree,showAlbums} from 'actions/albums';
+import {
+  selectClassify,
+  toggleOpen,
+  addSubTree,
+  editCurrentTree,
+  deleteCurrentTree,
+  stop,
+  saveEditTree,
+  showAlbums,
+  saveSubTree
+} from 'actions/albums';
 import Svg from 'components/Svg';
 
 const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,currentEditTree}) =>(
@@ -89,11 +99,18 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                                 name="rename"
                                 onClick={stop}
                                 defaultValue={item.name}/>
-                              <Button
-                                onClick={saveEditTree.bind(this,dispatch,item.id)}
-                                className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
-                                {intl.get("SAVE")}
-                              </Button>
+
+                              {
+                                item.add ? <Button
+                                  onClick={saveSubTree.bind(this,dispatch,item.parent_id)}
+                                  className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
+                                  {intl.get("ADD")}
+                                </Button> : <Button
+                                  onClick={saveEditTree.bind(this,dispatch,item.id)}
+                                  className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
+                                  {intl.get("SAVE")}
+                                </Button>
+                              }
                             </Col>
                           }
                         </dt>

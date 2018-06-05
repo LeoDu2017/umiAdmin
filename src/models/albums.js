@@ -1,5 +1,5 @@
 import intl from 'react-intl-universal';
-import {getTree,postSubTree,updateTreeName} from 'services/albums';
+import {getTree,storeSubTree,updateTreeName} from 'services/albums';
 import { message } from 'antd';
 const albums = {
   namespace:'albums',
@@ -88,9 +88,16 @@ const albums = {
         payload:currentEditTree
       });
     },
-    *postSubTree({payload:parentID},{select,call,put}){
-      const {data} = yield call(postSubTree);
-
+    *storeSubTree({payload},{select,call,put}){
+      const data = yield call(storeSubTree,payload);
+      if(data && data.success){
+        message.success(data.msg);
+      }else{
+        message.error(data.msg);
+      }
+      yield put({
+        type:'getTree'
+      });
     }
   },
   subscriptions:{

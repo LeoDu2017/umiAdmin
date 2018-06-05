@@ -104,6 +104,7 @@ export default function request (options) {
         list: data,
       }
     }
+
     return Promise.resolve({
       success: true,
       message: statusText,
