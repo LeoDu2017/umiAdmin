@@ -84,7 +84,7 @@ const albums = ({display,treeLength,dispatch,currentTree,tree,total,openAll,acti
                 stop={stop}
                 saveSubTree={saveSubTree}
                 saveEditTree={saveEditTree}
-                currentTree={currentTree}                c
+                currentTree={currentTree}
                 style={openAll ? {'height':`${treeLength*28}px`}:{'height':"0"}}
               />
             </dl>

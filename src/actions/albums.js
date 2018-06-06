@@ -67,6 +67,7 @@ export function showAlbums(dispatch,boolenValue){
 export function addSubTree(id,tree,treeLength,dispatch){
   const parentId = id;
   let num = Math.ceil(Math.random() * 100)*Math.ceil(Math.random() * 100);
+  let actions = {};
   const doublication = Boolean(_.find(tree, { id: -num }));
   const currentEditTree = doublication ? -num*100 : -num;
   const currentTree = doublication ? -num*100 : -num;
@@ -81,6 +82,9 @@ export function addSubTree(id,tree,treeLength,dispatch){
       'add':true,
       'open':false
     });
+      actions.showAdd = true,
+      actions.showDelete = true,
+      actions.showEdit = true;
   }else{
     tree.forEach(i => {
       if(i.id === parentId){
@@ -90,18 +94,21 @@ export function addSubTree(id,tree,treeLength,dispatch){
           'subFolder':[],
           'id':currentTree,
           'picNum':num,
-          'add':true,
+          'add':false,
           'open':false
         })
       }
     });
     treeLength = treeLength+1;
+    actions.showAdd = false,
+      actions.showDelete = true,
+      actions.showEdit = true;
   }
 
 
   dispatch({
     type:'albums/appendSubTree',
-    payload:tree,currentEditTree,currentTree,treeLength
+    payload:tree,currentEditTree,currentTree,treeLength,actions
   })
 }
 export function saveSubTree(dispatch,currentTree,event){

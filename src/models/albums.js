@@ -41,6 +41,7 @@ const albums = {
       });
       return { ...state,tree:newTree,refresh:a}
     },
+
     setCurrentTree(state,{payload:currentTree,actions,currentEditTree}){
       return { ...state,currentTree,actions,currentEditTree}
     },
@@ -51,8 +52,8 @@ const albums = {
       return{ ...state,display}
     },
 
-    appendSubTree(state,{payload:tree,currentEditTree,currentTree,treeLength}){
-      return{ ...state,tree,currentEditTree,currentTree,treeLength}
+    appendSubTree(state,{payload:tree,currentEditTree,currentTree,treeLength,actions}){
+      return{ ...state,tree,currentEditTree,currentTree,treeLength,actions}
     }
 
   },
