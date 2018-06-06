@@ -1,18 +1,20 @@
 import {Col,Button,Input} from 'antd';
 import intl from 'react-intl-universal';
 import Svg from 'components/Svg';
-
-const Randeritems = ({style,tree,subClass,treeLength,currentTree,selectClassify,dispatch,toggleOpen,currentEditTree,styles,stop,saveSubTree,saveEditTree}) =>
+import {getSubTree,selectClassify,saveSubTree,saveEditTree} from 'actions/albums';
+const Randeritems = ({style,tree,subClass,treeLength,currentTree,dispatch,currentEditTree,styles,stop,}) =>
   {
     let i = 0;
     return <dd style={style}>
       {
         tree.map((item,index) => {
-            let dl =  <dl key={item.id} style={{'top':`${i/treeLength * 100}%`,'zIndex':`${-i+100}`}}>
+            let dl =  <dl key={item.id} style={{'top':`${i/treeLength * 100}%`,
+                                                'zIndex':`${-i+100}`,
+                                                'height':item.id === currentTree && item.open ? `${(item.subFolder.length + 1)*28}px` : '28px'}}>
               <dt onClick={selectClassify.bind(null,item.id,dispatch) }
                   className={currentTree === item.id ? `${styles.selected} ${subClass}` : subClass }
                   id={item.id}>
-                  <span onClick={toggleOpen.bind(null,item.id,dispatch)}>
+                  <span onClick={getSubTree.bind(null,item.id,dispatch)}>
                     <Svg className={styles.icon}
                          type={ item.open ? 'folder-open' : 'folder-close'}>
                     </Svg>
@@ -49,14 +51,10 @@ const Randeritems = ({style,tree,subClass,treeLength,currentTree,selectClassify,
                 item.subFolder.length > 0
                 && <Randeritems
                   tree={item.subFolder}
-                  selectClassify={selectClassify}
                   dispatch={dispatch}
-                  toggleOpen={toggleOpen}
                   currentEditTree={currentEditTree}
                   styles={styles}
                   stop={stop}
-                  saveSubTree={saveSubTree}
-                  saveEditTree={saveEditTree}
                   currentTree={currentTree}
                   style={{'height':`${item.subFolder.length*28}px`}}
                   subClass = 'subitem'

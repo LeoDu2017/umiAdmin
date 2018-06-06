@@ -17,6 +17,7 @@ module.exports = {
     getTrees:`${APIV1}/tree`,
     updateTreeNames:`${APIV1}/tree/update`,
     storeSubTrees:`${APIV1}/tree/storeSubTree`,
+    getSubTrees:`${APIV1}/tree/getSubTrees`,
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV1}/userInfo`,

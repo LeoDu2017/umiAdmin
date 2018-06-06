@@ -11,7 +11,11 @@ let albumsTreeData = Mock.mock({
       {'name':'\u672a\u5206\u7c7b','parent_id':'-1','subFolder':[],'id': '0','picNum': '0','open':false},
       {'name':'\u9165\u68a8','parent_id':'-1','subFolder':[],'id':'2148384','picNum':'30','open':false},
       {'name':'\u6cb9\u6843','parent_id':'-1','subFolder':[],'id':'2148407','picNum':'0','open':false},
-      {'name':'\u516c\u53f8\u4fe1\u606f','subFolder':[],'parent_id':'-1','id':'2148411','picNum':'95','open':false}
+      {'name':'\u516c\u53f8\u4fe1\u606f','subFolder':[],'parent_id':'-1','id':'2148411','picNum':'95','open':false},
+      {name: "a", parent_id: "2148407", id: "820000197710314456", subFolder: [], picNum: 0, open: false},
+      {name: "b", parent_id: "2148407", id: "820000197710314", subFolder: [], picNum: 0, open: false},
+      {name: "c", parent_id: "2148407", id: "82000019771036", subFolder: [], picNum: 0, open: false},
+      {name: "d", parent_id: "2148407", id: "820000114456", subFolder: [], picNum: 0, open: false},
     ]
   }
 });
@@ -20,10 +24,23 @@ let database = albumsTreeData.data;
 
 module.exports = {
   [`GET ${apiPrefix}/tree`] (req, res) {
-    database.tree.filter( i => i.parent_id === '-1');
-    console.log(database);
+
+    const {tree} = database;
+    const t = tree.filter( i => i.parent_id === '-1');
     res.status(200).json({
-      data: database,
+      data: {...database,tree:t},
+      msg:'OK'
+    })
+  },
+  [`GET ${apiPrefix}/tree/getSubTrees`] (req, res) {
+
+    const { parent_id } = req.query;
+
+    const {tree} = database;
+    const subtree = tree.filter( i => i.parent_id === parent_id);
+
+    res.status(200).json({
+      data: subtree,
       msg:'OK'
     })
   },
@@ -38,7 +55,7 @@ module.exports = {
       open:false
     };
     database.tree.push(new_tree);
-    console.log(database);
+
     res.status(200).json({success:true,msg:'添加成功'})
   },
   [`POST ${apiPrefix}/tree/update`] (req, res) {

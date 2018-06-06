@@ -4,14 +4,12 @@ import {connect} from 'dva';
 import styles from 'styles/components.less';
 import {
   selectClassify,
-  toggleOpen,
+  getSubTree,
   addSubTree,
   editCurrentTree,
   deleteCurrentTree,
   stop,
-  saveEditTree,
-  showAlbums,
-  saveSubTree
+  showAlbums
 } from 'actions/albums';
 import Svg from 'components/Svg';
 import Randeritems from './Randeritems';
@@ -65,7 +63,7 @@ const albums = ({display,treeLength,dispatch,currentTree,tree,total,openAll,acti
               <dt id="-1"
                   className={currentTree === '-1' ? styles.selected : ''}
                   onClick={selectClassify.bind(null,'-1',dispatch)}>
-                <span onClick={toggleOpen.bind(null,'-1',dispatch)}>
+                <span onClick={getSubTree.bind(null,'-1',dispatch)}>
                   <Svg className={styles.icon}
                        type={ openAll ? 'folder-open' : 'folder-close'}> </Svg>
                 </span>
@@ -76,14 +74,10 @@ const albums = ({display,treeLength,dispatch,currentTree,tree,total,openAll,acti
               <Randeritems
                 tree={tree}
                 treeLength={treeLength}
-                selectClassify={selectClassify}
                 dispatch={dispatch}
-                toggleOpen={toggleOpen}
                 currentEditTree={currentEditTree}
                 styles={styles}
                 stop={stop}
-                saveSubTree={saveSubTree}
-                saveEditTree={saveEditTree}
                 currentTree={currentTree}
                 style={openAll ? {'height':`${treeLength*28}px`}:{'height':"0"}}
               />
@@ -584,7 +578,7 @@ const albums = ({display,treeLength,dispatch,currentTree,tree,total,openAll,acti
 );
 
 function mapStateToProps(state){
-  const {display,tree,total,currentTree,refresh,openAll,actions,currentEditTree,treeLength} = state.albums;
+  const {display,open,tree,total,currentTree,refresh,openAll,actions,currentEditTree,treeLength} = state.albums;
   return{
     loading:state.albums.loading,
     display,
@@ -595,7 +589,8 @@ function mapStateToProps(state){
     openAll,
     actions,
     currentEditTree,
-    treeLength
+    treeLength,
+    open
   }
 }
 

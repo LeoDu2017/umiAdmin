@@ -2,10 +2,10 @@ import _ from "lodash";
 export function stop(event){
   event.stopPropagation()
 }
-export function toggleOpen(id,dispatch,event){
+export function getSubTree(id,dispatch,event){
   event.stopPropagation();
   dispatch({
-    type:'albums/toggleOpen',
+    type:'albums/getSubTree',
     payload:id
   })
 }

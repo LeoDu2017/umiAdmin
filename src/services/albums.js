@@ -2,7 +2,7 @@ import request from 'utils/request';
 import { api } from 'utils/config';
 
 
-const { getTrees,storeSubTrees,updateTreeNames } = api;
+const { getTrees,storeSubTrees,updateTreeNames,getSubTrees } = api;
 
 export function getTree () {
   return request({
@@ -23,6 +23,15 @@ export function updateTreeName(data) {
   return request({
     url: updateTreeNames,
     method: 'post',
+    data
+  })
+}
+
+export function getSubTree(parent_id) {
+  const data = {parent_id};
+  return request({
+    url: getSubTrees,
+    method: 'get',
     data
   })
 }

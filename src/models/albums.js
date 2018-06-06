@@ -1,5 +1,5 @@
 import intl from 'react-intl-universal';
-import {getTree,storeSubTree,updateTreeName} from 'services/albums';
+import {getTree,storeSubTree,updateTreeName,getSubTree} from 'services/albums';
 import { message } from 'antd';
 const albums = {
   namespace:'albums',
@@ -10,6 +10,7 @@ const albums = {
     total:'0',
     refresh:0,
     openAll:true,
+    open:'-1',
     treeLength:0,
     actions:{
       showDelete:false,
@@ -27,19 +28,8 @@ const albums = {
     setTreeLength(state,{payload:treeLength}){
       return {...state,treeLength}
     },
-    toggleOpen(state,{payload:id}){
-      if(id === '-1'){
-        return { ...state,openAll:!state.openAll}
-      }
-      const newTree = state.tree;
-      let a = state.refresh;
-      a++;
-      newTree.map(item => {
-        if(item.id === id){
-          return item.open = ! item.open
-        }
-      });
-      return { ...state,tree:newTree,refresh:a}
+    setOpen(state,{payload:open}){
+      return {...state,open}
     },
 
     setCurrentTree(state,{payload:currentTree,actions,currentEditTree}){
@@ -72,6 +62,22 @@ const albums = {
         }
       });
       return {...state,tree}
+    },
+
+    toggleOpen(state,{payload}){
+      const id = payload;
+      const currentTree = id;
+      if(id === '-1'){
+        return { ...state,openAll:!state.openAll}
+      }
+      const tree = state.tree;
+
+      tree.map(item => {
+        if(item.id === id){
+          return item.open = ! item.open
+        }
+      });
+      return { ...state,tree,currentTree}
     }
   },
 
@@ -96,6 +102,39 @@ const albums = {
       yield put({
         type:'setCurrentEditTree',
         payload:currentEditTree
+      });
+    },
+    *getSubTree({payload},{select,call,put}){
+      const id = payload;
+      const open = id;
+      yield put({
+        type:'setOpen',
+        payload:open
+      });
+      if(id !== '-1'){
+        const {data} = yield call(getSubTree,payload);
+        const {open,tree} = yield select(({albums}) => albums);
+        let treeLength = tree.length + data.length;
+
+        tree.forEach(i => {
+          if(i.id === open){
+            i.subFolder = data
+          }
+        });
+
+        yield put({
+          type:'setTreeLength',
+          payload:treeLength
+        });
+
+        yield put({
+          type:'saveTree',
+          payload:tree
+        });
+      }
+      yield put({
+        type:'toggleOpen',
+        payload:id
       });
     },
     *updateTreeName({payload},{select,call,put}){
