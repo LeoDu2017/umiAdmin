@@ -10,6 +10,7 @@ const albums = {
     total:'0',
     refresh:0,
     openAll:true,
+    treeLength:0,
     actions:{
       showDelete:false,
       showEdit:false,
@@ -22,6 +23,9 @@ const albums = {
     },
     saveTotal(state,{payload:total}){
       return { ...state,total}
+    },
+    setTreeLength(state,{payload:treeLength}){
+      return {...state,treeLength}
     },
     toggleOpen(state,{payload:id}){
       if(id === '-1'){
@@ -47,8 +51,8 @@ const albums = {
       return{ ...state,display}
     },
 
-    appendSubTree(state,{payload:tree,currentEditTree,currentTree}){
-      return{ ...state,tree,currentEditTree,currentTree}
+    appendSubTree(state,{payload:tree,currentEditTree,currentTree,treeLength}){
+      return{ ...state,tree,currentEditTree,currentTree,treeLength}
     }
 
   },
@@ -57,6 +61,7 @@ const albums = {
     *getTree({ payload },{select,call, put}){
       const {data} = yield call(getTree);
       const {tree,total} = data;
+      const treeLength = tree.length;
       const currentEditTree = -1;
       yield put({
         type:'saveTree',
@@ -65,6 +70,10 @@ const albums = {
       yield put({
         type:'saveTotal',
         payload:total
+      });
+      yield put({
+        type:'setTreeLength',
+        payload:treeLength
       });
       yield put({
         type:'setCurrentEditTree',

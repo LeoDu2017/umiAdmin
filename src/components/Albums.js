@@ -1,5 +1,5 @@
 import intl from 'react-intl-universal';
-import {Col,Icon,Modal,Button,Input,Alert} from 'antd';
+import {Col,Modal,Button,Input} from 'antd';
 import {connect} from 'dva';
 import styles from 'styles/components.less';
 import {
@@ -14,8 +14,8 @@ import {
   saveSubTree
 } from 'actions/albums';
 import Svg from 'components/Svg';
-
-const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,currentEditTree}) =>(
+import Randeritems from './Randeritems';
+const albums = ({display,treeLength,dispatch,currentTree,tree,total,openAll,actions,currentEditTree}) =>(
   <Modal
     visible={ display }
     // onCancel={}
@@ -39,7 +39,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
             <ul>
               {
                 actions.showAdd &&
-                <li onClick={addSubTree.bind(null,currentTree,tree,dispatch)}>
+                <li onClick={addSubTree.bind(null,currentTree,tree,treeLength,dispatch)}>
                   <Svg className={styles.icon} type="add"/>
                   {intl.get("ADD")}
                 </li>
@@ -73,53 +73,20 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
                   <em>{intl.get('ALL')}</em>(<em>{total}</em>)
                 </span>
               </dt>
-              {
-                <dd style={openAll ? {'height':`${tree.length*28}px`}:{'height':"0"}}>
-                  {
-                    tree.map((item,index) => (
-                      <dl key={item.id} style={{'top':`${index*28}px`,'zIndex':`${-index+100}`}}>
-                        <dt onClick={selectClassify.bind(null,item.id,dispatch)}
-                            className={currentTree === item.id ? styles.selected : ''}
-                            id={item.id}>
-                        <span onClick={toggleOpen.bind(null,item.id,dispatch)}>
-                          <Svg className={styles.icon}
-                               type={ item.open ? 'folder-open' : 'folder-close'}>
-                          </Svg>
-                        </span>
-                          <span className={item.id === currentEditTree ? `${styles.title} ${styles.hide}` : styles.title}>
-                          <em>{item.name}</em>
-                          (<em>{item.picNum}</em>)
-                        </span>
-                          {
-                            item.id !=='0' &&
-                            <Col className={styles.editBox}>
-                              <Input
-                                type="text"
-                                className={item.id === currentEditTree ? `${styles.ipt} ${styles.show}` : styles.ipt}
-                                name="rename"
-                                onClick={stop}
-                                defaultValue={item.name}/>
-
-                              {
-                                item.add ? <Button
-                                  onClick={saveSubTree.bind(this,dispatch,item.parent_id)}
-                                  className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
-                                  {intl.get("ADD")}
-                                </Button> : <Button
-                                  onClick={saveEditTree.bind(this,dispatch,item.id)}
-                                  className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
-                                  {intl.get("SAVE")}
-                                </Button>
-                              }
-                            </Col>
-                          }
-                        </dt>
-                        <dd> </dd>
-                      </dl>
-                    ))
-                  }
-                </dd>
-              }
+              <Randeritems
+                tree={tree}
+                treeLength={treeLength}
+                selectClassify={selectClassify}
+                dispatch={dispatch}
+                toggleOpen={toggleOpen}
+                currentEditTree={currentEditTree}
+                styles={styles}
+                stop={stop}
+                saveSubTree={saveSubTree}
+                saveEditTree={saveEditTree}
+                currentTree={currentTree}                c
+                style={openAll ? {'height':`${treeLength*28}px`}:{'height':"0"}}
+              />
             </dl>
           </Col>
         </Col>
@@ -617,7 +584,7 @@ const albums = ({display,dispatch,currentTree,tree,total,openAll,actions,current
 );
 
 function mapStateToProps(state){
-  const {display,tree,total,currentTree,refresh,openAll,actions,currentEditTree} = state.albums;
+  const {display,tree,total,currentTree,refresh,openAll,actions,currentEditTree,treeLength} = state.albums;
   return{
     loading:state.albums.loading,
     display,
@@ -627,7 +594,8 @@ function mapStateToProps(state){
     refresh,
     openAll,
     actions,
-    currentEditTree
+    currentEditTree,
+    treeLength
   }
 }
 

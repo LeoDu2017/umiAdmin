@@ -75,3 +75,6 @@ html, body, :global(#root) {
   top: 50%;
   transform: translate(-50%,-50%);
 }
+:global(.subitem){
+  min-width: 100% !important;
+}

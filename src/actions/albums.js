@@ -64,23 +64,44 @@ export function showAlbums(dispatch,boolenValue){
     payload:dispaly
   })
 }
-export function addSubTree(id,tree,dispatch){
+export function addSubTree(id,tree,treeLength,dispatch){
   const parentId = id;
   let num = Math.ceil(Math.random() * 100)*Math.ceil(Math.random() * 100);
   const doublication = Boolean(_.find(tree, { id: -num }));
   const currentEditTree = doublication ? -num*100 : -num;
   const currentTree = doublication ? -num*100 : -num;
-  tree.push({
-    'name':'未命名文件夹',
-    'parent_id':parentId,
-    'id':currentTree,
-    'picNum':num,
-    'add':true,
-    'open':false
-  });
+
+  if(parentId === '-1'){
+    tree.push({
+      'name':'未命名文件夹',
+      'parent_id':parentId,
+      'subFolder':[],
+      'id':currentTree,
+      'picNum':num,
+      'add':true,
+      'open':false
+    });
+  }else{
+    tree.forEach(i => {
+      if(i.id === parentId){
+        i.subFolder.push({
+          'name':'未命名文件夹',
+          'parent_id':parentId,
+          'subFolder':[],
+          'id':currentTree,
+          'picNum':num,
+          'add':true,
+          'open':false
+        })
+      }
+    });
+    treeLength = treeLength+1;
+  }
+
+
   dispatch({
     type:'albums/appendSubTree',
-    payload:tree,currentEditTree,currentTree
+    payload:tree,currentEditTree,currentTree,treeLength
   })
 }
 export function saveSubTree(dispatch,currentTree,event){

@@ -9,9 +9,9 @@ let albumsTreeData = Mock.mock({
     'total':'125',
     'tree':[
       {'name':'\u672a\u5206\u7c7b','parent_id':'-1','subFolder':[],'id': '0','picNum': '0','open':false},
-      {'name':'\u9165\u68a8','parent_id':'-1','id':'2148384','picNum':'30','open':false},
-      {'name':'\u6cb9\u6843','parent_id':'-1','id':'2148407','picNum':'0','open':false},
-      {'name':'\u516c\u53f8\u4fe1\u606f','parent_id':'-1','id':'2148411','picNum':'95','open':false}
+      {'name':'\u9165\u68a8','parent_id':'-1','subFolder':[],'id':'2148384','picNum':'30','open':false},
+      {'name':'\u6cb9\u6843','parent_id':'-1','subFolder':[],'id':'2148407','picNum':'0','open':false},
+      {'name':'\u516c\u53f8\u4fe1\u606f','subFolder':[],'parent_id':'-1','id':'2148411','picNum':'95','open':false}
     ]
   }
 });
