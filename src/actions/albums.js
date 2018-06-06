@@ -1,5 +1,7 @@
 import _ from "lodash";
-
+export function stop(event){
+  event.stopPropagation()
+}
 export function toggleOpen(id,dispatch,event){
   event.stopPropagation();
   dispatch({
@@ -40,11 +42,7 @@ export function editCurrentTree(id,dispatch){
     payload:currentEditTree
   })
 }
-
 export function deleteCurrentTree(id,dispatch){}
-export function stop(event){
-  event.stopPropagation()
-}
 export function saveEditTree(dispatch,id,event){
   event.stopPropagation();
   let btn = event.currentTarget;
@@ -79,7 +77,7 @@ export function addSubTree(id,tree,treeLength,dispatch){
       'subFolder':[],
       'id':currentTree,
       'picNum':num,
-      'add':true,
+      'add':true, // 用来切换添加和保存按钮
       'open':false
     });
       actions.showAdd = true,
@@ -94,7 +92,7 @@ export function addSubTree(id,tree,treeLength,dispatch){
           'subFolder':[],
           'id':currentTree,
           'picNum':num,
-          'add':false,
+          'add':true, // 用来切换添加和保存按钮
           'open':false
         })
       }
@@ -117,7 +115,6 @@ export function saveSubTree(dispatch,currentTree,event){
   let btn = event.currentTarget;
   let input = btn.previousElementSibling;
   let name = input.value;
-
   dispatch({
     type:'albums/storeSubTree',
     payload:{name,parent_id}

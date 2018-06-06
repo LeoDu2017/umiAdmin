@@ -5,7 +5,6 @@ import Svg from 'components/Svg';
 const Randeritems = ({style,tree,subClass,treeLength,currentTree,selectClassify,dispatch,toggleOpen,currentEditTree,styles,stop,saveSubTree,saveEditTree}) =>
   {
     let i = 0;
-    console.log(i);
     return <dd style={style}>
       {
         tree.map((item,index) => {

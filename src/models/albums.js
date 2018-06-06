@@ -54,8 +54,25 @@ const albums = {
 
     appendSubTree(state,{payload:tree,currentEditTree,currentTree,treeLength,actions}){
       return{ ...state,tree,currentEditTree,currentTree,treeLength,actions}
-    }
+    },
+    setTreeName(state,{payload}){
+      const {parent_id,id,name} = payload;
+      let tree = state.tree;
+      tree.forEach(item => {
+        if(item.id === id){
+          item.name = name
+        }
 
+        if(item.subFolder.length > 0){
+          item.subFolder.forEach(i => {
+            if(i.parent_id === parent_id){
+              i.name = name;
+            }
+          })
+        }
+      });
+      return {...state,tree}
+    }
   },
 
   effects:{
@@ -84,14 +101,14 @@ const albums = {
     *updateTreeName({payload},{select,call,put}){
       const data = yield call(updateTreeName, payload);
       const currentEditTree = -1;
-
       if(data && data.success){
         message.success(data.msg);
       }else{
         message.error(data.msg);
       }
       yield put({
-        type:'getTree'
+        type:'setTreeName',
+        payload
       });
       yield put({
         type:'setCurrentEditTree',
@@ -100,13 +117,19 @@ const albums = {
     },
     *storeSubTree({payload},{select,call,put}){
       const data = yield call(storeSubTree,payload);
+      const currentEditTree = '-1';
       if(data && data.success){
         message.success(data.msg);
       }else{
         message.error(data.msg);
       }
       yield put({
-        type:'getTree'
+        type:'setTreeName',
+        payload
+      });
+      yield put({
+        type:'setCurrentEditTree',
+        payload:currentEditTree
       });
     }
   },

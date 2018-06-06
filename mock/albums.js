@@ -20,6 +20,8 @@ let database = albumsTreeData.data;
 
 module.exports = {
   [`GET ${apiPrefix}/tree`] (req, res) {
+    database.tree.filter( i => i.parent_id === '-1');
+    console.log(database);
     res.status(200).json({
       data: database,
       msg:'OK'
@@ -31,10 +33,12 @@ module.exports = {
       name,
       parent_id,
       id:Mock.mock('@id'),
+      subFolder:[],
       picNum:0,
       open:false
     };
     database.tree.push(new_tree);
+    console.log(database);
     res.status(200).json({success:true,msg:'添加成功'})
   },
   [`POST ${apiPrefix}/tree/update`] (req, res) {
