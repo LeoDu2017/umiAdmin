@@ -1,41 +1,115 @@
-文件描述：
+**文件描述：**
 
 该文件夹用来放置公用组件包含：
-  图册组件（Albums）、
-  自定义下拉框组件（Dropdown）、
-  自定义图标组件（Svg）；
+> - [ ] 图册组件（Albums）
+> - [ ] 自定义下拉框组件（Dropdown）
+> - [ ]  自定义图标组件（Svg）
 
-图册组件（Albums）:
+**图册组件**（Albums）:
 
-一、操作
+###### 一、操作
 
-  1 添加下级树文件夹：
-  
-    根据功能要求将这个动作解构为两个动作:
+    1. 添加下级树文件夹：
     
-    1）、addSubTree动态操控DOM在页面中动态插入一个空白文本输入框；
-        构思Rect的架构思想的核心就是数据驱动，更新视图首先要从根本的模型更新入手，与传统的JQuery直接修改DOM结构有本质上的区别。
-        根据数据驱动的思想首先我们要操作就对state的tree对象的更改。即往tree数组中添加一条默认数据；
-        
-        export function addSubTree(id,tree,dispatch){
-          const parentId = id;                                                       // 将传入的当前ID设置为新建条目的ParentID
-          let num = Math.ceil(Math.random() * 100) * Math.ceil(Math.random() * 100); // 获得一个随机数作为心条目的ID
-          const doublication = Boolean(_.find(tree, { id: -num }));                  // 检查新生的ID是否已存在
-          const currentEditTree = doublication ? -num*100 : -num;                    // 存在的情况下将该ID成100
-          const currentTree = doublication ? -num*100 : -num;
-          tree.push({
-            'name':'未命名文件夹',
-            'parent_id':parentId,
-            'id':currentTree,
-            'picNum':num,
-            'open':false
-          });
-          dispatch({
-            type:'albums/appendSubTree',
-            payload:tree,currentEditTree,currentTree
-          })
-        }
-        
-    2）、saveSubTree当输入完成点击保存后执行异步操作传递两个参数：
-        （1）、当前选中树的ID（currentTree）作为父级ID传给服务端；
-        （2）、当前输入名称；
+        根据功能要求将这个动作解构为两个动作:
+    
+        1） addSubTree动态操控DOM在页面中动态插入一个空白文本输入框；
+            构思Rect的架构思想的核心就是数据驱动，
+            更新视图首先要从根本的模型更新入手，
+            与传统的JQuery直接修改DOM结构有本质上的区别。
+            根据数据驱动的思想首先我们要操作就对state的tree对象的更改。
+            即往tree数组中添加一条默认数据；
+            
+            2018-06-01
+            /**
+             * id:当前条目的ID，作为新条目的parent_id
+             * tree:当前树Data数据
+             * dispatch:当前model的action派发程序
+            **/
+            export function addSubTree(id,tree,dispatch){
+              // 将传入的当前ID设置为新建条目的ParentID
+              const parentId = id;
+              // 获得一个随机数作为心条目的ID        
+              let num = Math.ceil(Math.random() * 100) * Math.ceil(Math.random() * 100);
+              // 检查新生的ID是否已存在
+              const doublication = Boolean(_.find(tree, { id: -num }));
+              // 存在的情况下将该ID乘100
+              const currentEditTree = doublication ? -num*100 : -num;
+              const currentTree = doublication ? -num*100 : -num;
+              tree.push({
+                'name':'未命名文件夹',
+                'parent_id':parentId,
+                'id':currentTree,
+                'picNum':num,
+                'open':false
+              });
+              dispatch({
+                'type':'albums/appendSubTree',
+                'payload':tree,currentEditTree,currentTree
+              })
+            }
+            2018-06-06
+            /**
+             * id:当前条目的ID，作为新条目的parent_id
+             * tree:当前树Data数据
+             * treeLegth:tree的数据长度用来控制，文件树收缩动画的操作
+             * dispatch:当前model的action派发程序
+            **/
+            export function addSubTree(id,tree,treeLegth,dispatch){
+                // 将传入的当前ID设置为新建条目的ParentID
+                const parentId = id;
+                // 获得一个随机数作为心条目的ID  
+                let num = Math.ceil(Math.random() * 100)*Math.ceil(Math.random() * 100);
+                // 添加actions变量处理当添加末级树结构的时候关闭添加操作
+                let actions = {};
+                // 添加布尔常量用于检测当前动态生成的临时条目是否已经存在
+                const doublication = Boolean(_.find(tree, { id: -num }));
+                // 存在的情况下将该ID乘100
+                const currentEditTree = doublication ? -num*100 : -num;
+                const currentTree = doublication ? -num*100 : -num;
+                // 判断父级ID是否为-1，等于-1的情况为添加的一级条目
+                // 否则为下级条目 并关闭可添加功能
+                if(parentId === '-1'){
+                    tree.push({
+                      'name':'未命名文件夹',
+                      'parent_id':parentId,
+                      'subFolder':[],
+                      'id':currentTree,
+                      'picNum':num,
+                      'add':true,
+                      'open':false
+                    });
+                    actions.showAdd = true,
+                    actions.showDelete = true,
+                    actions.showEdit = true;
+                  }else{
+                    tree.forEach(i => {
+                      if(i.id === parentId){
+                        i.subFolder.push({
+                          'name':'未命名文件夹',
+                          'parent_id':parentId,
+                          'subFolder':[],
+                          'id':currentTree,
+                          'picNum':num,
+                          'add':false,
+                          'open':false
+                        })
+                      }
+                    });
+                    treeLength = treeLength+1;
+                    actions.showAdd = false,
+                    actions.showDelete = true,
+                    actions.showEdit = true;
+                  };
+                  dispatch({
+                    'type':'albums/appendSubTree',
+                    'payload':tree,currentEditTree,currentTree,treeLength,actions
+                  })
+            }
+            
+            
+            
+            
+        2）saveSubTree当输入完成点击保存后执行异步操作传递两个参数：
+            （1）、当前选中树的ID（currentTree）作为父级ID传给服务端；
+            （2）、当前输入名称；
