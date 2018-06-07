@@ -31,19 +31,17 @@ const albums = {
     setOpen(state,{payload:open}){
       return {...state,open}
     },
-
-    setCurrentTree(state,{payload:currentTree,actions,currentEditTree}){
-      return { ...state,currentTree,actions,currentEditTree}
+    setActions(state,{payload:actions}){
+      return {...state,actions}
+    },
+    setCurrentTree(state,{payload:currentTree}){
+      return { ...state,currentTree}
     },
     setCurrentEditTree(state,{payload:currentEditTree}){
       return { ...state,currentEditTree}
     },
     setDisplay(state,{payload:display}){
       return{ ...state,display}
-    },
-
-    appendSubTree(state,{payload:tree,currentEditTree,currentTree,treeLength,actions}){
-      return{ ...state,tree,currentEditTree,currentTree,treeLength,actions}
     },
     setTreeName(state,{payload}){
       const {parent_id,id,name} = payload;
@@ -63,7 +61,6 @@ const albums = {
       });
       return {...state,tree}
     },
-
     toggleOpen(state,{payload}){
       const id = payload;
       const currentTree = id;
@@ -113,7 +110,7 @@ const albums = {
       });
       if(id !== '-1'){
         const {data} = yield call(getSubTree,payload);
-        const {open,tree} = yield select(({albums}) => albums);
+        const {open,tree,} = yield select(({albums}) => albums);
         let treeLength = tree.length + data.length;
 
         tree.forEach(i => {
@@ -170,7 +167,45 @@ const albums = {
         type:'setCurrentEditTree',
         payload:currentEditTree
       });
-    }
+    },
+    *appendSubTree({payload},{select,call,put}){
+      const {tree,currentEditTree,currentTree,treeLength,actions} = payload;
+      yield put({
+        type:'saveTree',
+        payload:tree
+      });
+      yield put({
+        type:'setCurrentEditTree',
+        payload:currentEditTree
+      });
+      yield put({
+        type:'setCurrentTree',
+        payload:currentTree
+      });
+      yield put({
+        type:'setTreeLength',
+        payload:treeLength
+      });
+      yield put({
+        type:'setActions',
+        payload:actions
+      });
+    },
+    *selectCurrentTree({payload},{select,call,put}){
+      const {currentTree,actions,currentEditTree} = payload;
+      yield put({
+        type:'setCurrentTree',
+        payload:currentTree
+      });
+      yield put({
+        type:'setActions',
+        payload:actions
+      });
+      yield put({
+        type:'setCurrentEditTree',
+        payload:currentEditTree
+      });
+    },
   },
   subscriptions:{
     setup({ dispatch,history}){

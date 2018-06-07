@@ -9,12 +9,13 @@ export function getSubTree(id,dispatch,event){
     payload:id
   })
 }
-export function selectClassify(id,dispatch,event){
+export function selectClassify(id,actions_type,dispatch,event){
   event.stopPropagation();
   const currentTree = id;
   const actions={};
   const currentEditTree = '-1';
-  switch(id){
+
+  switch(actions_type){
     case '-1':
         actions.showAdd = true,
         actions.showDelete = false,
@@ -25,14 +26,19 @@ export function selectClassify(id,dispatch,event){
         actions.showDelete = false,
         actions.showEdit = false;
         break;
-    default:
+    case '1':
         actions.showAdd = true,
+        actions.showDelete = true,
+        actions.showEdit = true;
+        break;
+   default:
+        actions.showAdd = false,
         actions.showDelete = true,
         actions.showEdit = true;
   };
   dispatch({
-    type:'albums/setCurrentTree',
-    payload:currentTree,actions,currentEditTree
+    type:'albums/selectCurrentTree',
+    payload:{currentTree,actions,currentEditTree}
   })
 }
 export function editCurrentTree(id,dispatch){
@@ -77,6 +83,7 @@ export function addSubTree(id,tree,treeLength,dispatch){
       'subFolder':[],
       'id':currentTree,
       'picNum':num,
+      'actions_type':'1',
       'add':true, // 用来切换添加和保存按钮
       'open':false
     });
@@ -93,6 +100,8 @@ export function addSubTree(id,tree,treeLength,dispatch){
           'id':currentTree,
           'picNum':num,
           'add':true, // 用来切换添加和保存按钮
+          'placeholder':'请输入文件夹名称',
+          'actions_type':'2',
           'open':false
         })
       }
@@ -106,7 +115,7 @@ export function addSubTree(id,tree,treeLength,dispatch){
 
   dispatch({
     type:'albums/appendSubTree',
-    payload:tree,currentEditTree,currentTree,treeLength,actions
+    payload:{tree,currentEditTree,currentTree,treeLength,actions}
   })
 }
 export function saveSubTree(dispatch,currentTree,event){

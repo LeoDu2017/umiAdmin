@@ -62,7 +62,7 @@ const albums = ({display,treeLength,dispatch,currentTree,tree,total,openAll,acti
             <dl>
               <dt id="-1"
                   className={currentTree === '-1' ? styles.selected : ''}
-                  onClick={selectClassify.bind(null,'-1',dispatch)}>
+                  onClick={selectClassify.bind(null,'-1','-1',dispatch)}>
                 <span onClick={getSubTree.bind(null,'-1',dispatch)}>
                   <Svg className={styles.icon}
                        type={ openAll ? 'folder-open' : 'folder-close'}> </Svg>

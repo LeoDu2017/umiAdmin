@@ -11,7 +11,7 @@ const Randeritems = ({style,tree,subClass,treeLength,currentTree,dispatch,curren
             let dl =  <dl key={item.id} style={{'top':`${i/treeLength * 100}%`,
                                                 'zIndex':`${-i+100}`,
                                                 'height':item.id === currentTree && item.open ? `${(item.subFolder.length + 1)*28}px` : '28px'}}>
-              <dt onClick={selectClassify.bind(null,item.id,dispatch) }
+              <dt onClick={selectClassify.bind(null,item.id,item.actions_type,dispatch) }
                   className={currentTree === item.id ? `${styles.selected} ${subClass}` : subClass }
                   id={item.id}>
                   <span onClick={getSubTree.bind(null,item.id,dispatch)}>
@@ -26,19 +26,26 @@ const Randeritems = ({style,tree,subClass,treeLength,currentTree,dispatch,curren
                   {
                     item.id !=='0' &&
                     <Col className={styles.editBox}>
-                      <Input
-                        type="text"
-                        className={item.id === currentEditTree ? `${styles.ipt} ${styles.show}` : styles.ipt}
-                        name="rename"
-                        onClick={stop}
-                        defaultValue={item.name}/>
+                      {
+                        item.add ? <Input
+                          type="text"
+                          className={item.id === currentEditTree ? `${styles.ipt} ${styles.show}` : styles.ipt}
+                          name="rename"
+                          onClick={stop}
+                          placeholder={item.placeholder}/> : <Input
+                          type="text"
+                          className={item.id === currentEditTree ? `${styles.ipt} ${styles.show}` : styles.ipt}
+                          name="rename"
+                          onClick={stop}
+                          defaultValue={item.name}/>
+                      }
 
                       {
-                        item.add ? <Button
+                        item.add ? (<Button
                           onClick={saveSubTree.bind(this,dispatch,item.parent_id)}
                           className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
                           {intl.get("ADD")}
-                        </Button> : <Button
+                        </Button>) : <Button
                           onClick={saveEditTree.bind(this,dispatch,item.id)}
                           className={item.id === currentEditTree ? `${styles.btn} ${styles.show}` : styles.btn}>
                           {intl.get("SAVE")}

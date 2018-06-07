@@ -8,14 +8,16 @@ let albumsTreeData = Mock.mock({
   'data':{
     'total':'125',
     'tree':[
-      {'name':'\u672a\u5206\u7c7b','parent_id':'-1','subFolder':[],'id': '0','picNum': '0','open':false},
-      {'name':'\u9165\u68a8','parent_id':'-1','subFolder':[],'id':'2148384','picNum':'30','open':false},
-      {'name':'\u6cb9\u6843','parent_id':'-1','subFolder':[],'id':'2148407','picNum':'0','open':false},
-      {'name':'\u516c\u53f8\u4fe1\u606f','subFolder':[],'parent_id':'-1','id':'2148411','picNum':'95','open':false},
-      {name: "a", parent_id: "2148407", id: "820000197710314456", subFolder: [], picNum: 0, open: false},
-      {name: "b", parent_id: "2148407", id: "820000197710314", subFolder: [], picNum: 0, open: false},
-      {name: "c", parent_id: "2148407", id: "82000019771036", subFolder: [], picNum: 0, open: false},
-      {name: "d", parent_id: "2148407", id: "820000114456", subFolder: [], picNum: 0, open: false},
+      {'name':'\u672a\u5206\u7c7b','parent_id':'-1','subFolder':[],'id': '0','picNum': '0','open':false,'actions_type':'0'},
+
+      {'name':'\u9165\u68a8','parent_id':'-1','subFolder':[],'id':'2148384','picNum':'30','open':false,'actions_type':'1'},
+      {'name':'\u6cb9\u6843','parent_id':'-1','subFolder':[],'id':'2148407','picNum':'0','open':false,'actions_type':'1'},
+      {'name':'\u516c\u53f8\u4fe1\u606f','parent_id':'-1','subFolder':[],'id':'2148411','picNum':'95','open':false,'actions_type':'1'},
+
+      {'name': "a", 'parent_id': "2148407", 'subFolder': [], 'id': "820000197710314456", 'picNum': 0, 'open': false,'actions_type':'2'},
+      {'name': "b", 'parent_id': "2148407", 'subFolder': [], 'id': "820000197710314",  'picNum': 0, 'open': false,'actions_type':'2'},
+      {'name': "c", 'parent_id': "2148407", 'subFolder': [], 'id': "82000019771036",  'picNum': 0, 'open': false,'actions_type':'2'},
+      {'name': "d", 'parent_id': "2148407", 'subFolder': [], 'id': "820000114456",  'picNum': 0, 'open': false,'actions_type':'2'},
     ]
   }
 });
