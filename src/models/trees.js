@@ -1,23 +1,21 @@
-import intl from 'react-intl-universal';
 import {getTree,storeSubTree,updateTreeName,getSubTree} from 'services/albums';
 import { message } from 'antd';
 
 const albums = {
   namespace:'trees',
   state:{
-    currentTree: '-1',
-    currentEditTree:'-1',
-    tree:[],
-    total:'0',
-    refresh:0,
-    openAll:true,
-    open:'-1',
-    treeLength:0,
+    currentTree: '-1',    // 当前被选中的文件夹
+    currentEditTree:'-1', // 当前被编辑的文件夹
+    tree:[],              // 文件夹列表
+    total:'0',            // 图片总数
+    openAll:true,         // 是否全局折叠
+    open:'-1',            // 当前被打开的二级文件夹ID
+    treeLength:0,         // 文件夹显示数量
     actions:{
       showDelete:false,
       showEdit:false,
       showAdd:true
-    }
+    }         // 文件夹操作显隐控制
   },
   reducers:{
     saveTree(state,{payload:tree}){
@@ -41,9 +39,6 @@ const albums = {
     setCurrentEditTree(state,{payload:currentEditTree}){
       return { ...state,currentEditTree}
     },
-    setDisplay(state,{payload:display}){
-      return{ ...state,display}
-    },
     setTreeName(state,{payload}){
       const {parent_id,id,name} = payload;
       let tree = state.tree;
@@ -64,17 +59,7 @@ const albums = {
     },
     toggleOpen(state,{payload}){
       const id = payload;
-      if(id === '-1'){
-        return { ...state,openAll:!state.openAll}
-      }
-      const tree = state.tree;
-
-      tree.map(item => {
-        if(item.id === id){
-          return item.open = ! item.open
-        }
-      });
-      return { ...state,tree}
+      return { ...state,openAll:!state.openAll}
     }
   },
 
@@ -83,7 +68,9 @@ const albums = {
       const {data} = yield call(getTree);
       const {tree,total} = data;
       const treeLength = tree.length;
+
       const currentEditTree = -1;
+
       yield put({
         type:'saveTree',
         payload:tree
@@ -108,14 +95,19 @@ const albums = {
         type:'setOpen',
         payload:open
       });
+
       if(id !== '-1'){
         const {data} = yield call(getSubTree,payload);
-        const {open,tree,} = yield select(({albums}) => albums);
-        let treeLength = tree.length + data.length;
+        const {open,tree} = yield select(({trees}) => trees);
+        const treeLength = tree.length + data.length;
 
-        tree.forEach(i => {
+        tree.map(i => {
           if(i.id === open){
-            i.subFolder = data
+            i.open = true;
+            i.subFolder = data;
+          }else{
+            i.open = false;
+            i.subFolder = [];
           }
         });
 
@@ -128,11 +120,14 @@ const albums = {
           type:'saveTree',
           payload:tree
         });
+
+      }else{
+        yield put({
+          type:'toggleOpen',
+          payload:id
+        });
       }
-      yield put({
-        type:'toggleOpen',
-        payload:id
-      });
+
     },
     *updateTreeName({payload},{select,call,put}){
       const data = yield call(updateTreeName, payload);

@@ -1,8 +1,8 @@
 import {Col,Button,Input} from 'antd';
 import intl from 'react-intl-universal';
 import Svg from 'components/Svg';
-import {getSubTree,selectClassify,saveSubTree,saveEditTree} from 'actions/albums';
-const Randeritems = ({style,tree,subClass,treeLength,currentTree,dispatch,currentEditTree,styles,stop,}) =>
+import {getSubTree,selectClassify,saveSubTree,saveEditTree} from 'actions/trees';
+const Randeritems = ({style,tree,subClass,treeLength,currentTree,dispatch,currentEditTree,styles,stop,open}) =>
   {
     let i = 0;
     return <dd style={style}>
@@ -16,7 +16,7 @@ const Randeritems = ({style,tree,subClass,treeLength,currentTree,dispatch,curren
                   id={item.id}>
                   <span onClick={getSubTree.bind(null,item.id,dispatch)}>
                     <Svg className={styles.icon}
-                         type={ item.open ? 'folder-open' : 'folder-close'}>
+                         type={ item.id === open ? 'folder-open' : 'folder-close'}>
                     </Svg>
                   </span>
                   <span className={item.id === currentEditTree ? `${styles.title} ${styles.hide}` : styles.title}>

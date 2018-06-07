@@ -3,9 +3,15 @@ import {getTree,storeSubTree,updateTreeName,getSubTree} from 'services/albums';
 import { message } from 'antd';
 const albums = {
   namespace:'albums',
-  state:{},
-  reducers:{ },
+  state:{
+    display:false
+  },
+  reducers:{
+    setDisplay(state,{payload:display}){
+      return{ ...state,display}
+    }
+  },
   effects:{ },
-  subscriptions:{};
-
+  subscriptions:{}
+};
 export default albums;

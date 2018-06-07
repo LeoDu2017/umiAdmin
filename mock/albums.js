@@ -25,7 +25,7 @@ let albumsTreeData = Mock.mock({
 let database = albumsTreeData.data;
 
 module.exports = {
-  [`GET ${apiPrefix}/tree`] (req, res) {
+  [`GET ${apiPrefix}/albums/tree`] (req, res) {
 
     const {tree} = database;
     const t = tree.filter( i => i.parent_id === '-1');
@@ -34,7 +34,7 @@ module.exports = {
       msg:'OK'
     })
   },
-  [`GET ${apiPrefix}/tree/getSubTrees`] (req, res) {
+  [`GET ${apiPrefix}/albums/tree/getSubTrees`] (req, res) {
 
     const { parent_id } = req.query;
 
@@ -46,7 +46,7 @@ module.exports = {
       msg:'OK'
     })
   },
-  [`POST ${apiPrefix}/tree/storeSubTree`] (req, res) {
+  [`POST ${apiPrefix}/albums/tree/storeSubTree`] (req, res) {
     const { parent_id, name } = req.body;
     const new_tree = {
       name,
@@ -60,7 +60,7 @@ module.exports = {
 
     res.status(200).json({success:true,msg:'添加成功'})
   },
-  [`POST ${apiPrefix}/tree/update`] (req, res) {
+  [`POST ${apiPrefix}/albums/tree/update`] (req, res) {
     const { id, name } = req.body;
     const {tree} = database;
     // 将tree对象转化为数组

@@ -61,13 +61,6 @@ export function saveEditTree(dispatch,id,event){
   })
 
 }
-export function showAlbums(dispatch,boolenValue){
-  const dispaly = boolenValue;
-  dispatch({
-    type:'trees/setDisplay',
-    payload:dispaly
-  })
-}
 export function addSubTree(id,tree,treeLength,dispatch){
   const parentId = id;
   let num = Math.ceil(Math.random() * 100)*Math.ceil(Math.random() * 100);
