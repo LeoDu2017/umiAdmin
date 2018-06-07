@@ -63,7 +63,6 @@ const albums = {
     },
     toggleOpen(state,{payload}){
       const id = payload;
-      const currentTree = id;
       if(id === '-1'){
         return { ...state,openAll:!state.openAll}
       }
@@ -74,7 +73,7 @@ const albums = {
           return item.open = ! item.open
         }
       });
-      return { ...state,tree,currentTree}
+      return { ...state,tree}
     }
   },
 
@@ -101,6 +100,7 @@ const albums = {
         payload:currentEditTree
       });
     },
+
     *getSubTree({payload},{select,call,put}){
       const id = payload;
       const open = id;
