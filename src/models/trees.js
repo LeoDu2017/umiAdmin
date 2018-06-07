@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {getTree,storeSubTree,updateTreeName,getSubTree} from 'services/albums';
 import { message } from 'antd';
 
@@ -90,19 +91,17 @@ const albums = {
     },
     *getSubTree({payload},{select,call,put}){
       const id = payload;
-      const open = id;
       yield put({
         type:'setOpen',
-        payload:open
+        payload:id
       });
 
       if(id !== '-1'){
         const {data} = yield call(getSubTree,payload);
         const {open,tree} = yield select(({trees}) => trees);
-        const treeLength = tree.length + data.length;
 
         tree.map(i => {
-          if(i.id === open){
+          if(i.id === open && !i.open){
             i.open = true;
             i.subFolder = data;
           }else{
@@ -110,6 +109,10 @@ const albums = {
             i.subFolder = [];
           }
         });
+
+        const folder = _.find(tree,{'id':open});
+        const subFolder = folder.subFolder;
+        const treeLength = tree.length + subFolder.length;
 
         yield put({
           type:'setTreeLength',
