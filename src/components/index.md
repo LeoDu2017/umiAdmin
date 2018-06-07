@@ -113,3 +113,97 @@
         2）saveSubTree当输入完成点击保存后执行异步操作传递两个参数：
             （1）、当前选中树的ID（currentTree）作为父级ID传给服务端；
             （2）、当前输入名称；
+            
+            export function saveSubTree(dispatch,currentTree,event){
+              event.stopPropagation();
+              const parent_id = currentTree;
+              let btn = event.currentTarget;
+              let input = btn.previousElementSibling;
+              let name = input.value;
+              dispatch({
+                'type':'albums/storeSubTree',
+                'payload':{name,parent_id}
+              })
+            }
+        数据存储原理：
+        线下存储：将数据存储在本地Tree数组中当前条目的subFolder 数组中，
+        并在渲染中进行递归运算获取本级的subFolder渲染到当前<dl>标签下的<dd></dd>.
+        线上存储原理：将数据存入线上数据库的tree中并根据parent_id进行过滤本级的数据；
+        
+    2.获得下级文件树文件夹：
+    
+        本事件和当前文件夹的折叠事件是同时触发的，所以事件流程可以是这样的。
+        鼠标点击文件夹图标 ---> 触发同步action - toggleOpen 同时判断当前数据下的subFolder是否为空 
+        1).
+            ---> 为空
+            ---> 派发异步action - getSubTree
+            ---> 将请求的得到数据插入当前数据下的subFolder中
+            ---> 计算subFolder的长度，将长度设置的该数据对应的<dd>的height属性中
+        2).
+            ---> 不为空
+            ---> 进行折叠操作
+        
+        3). getSubTree Mock 数据实现
+        
+            ---> 根据传递过来的 parent_id 使用 filter 方法进行数据赛选
+            
+                [`GET ${apiPrefix}/getSubTree`] (req, res) {
+                    const { parent_id } = req.body;
+                    database.tree.filter( i => i.parent_id === parent_id);
+                    res.status(200).json({
+                      data: database,
+                      msg:'OK'
+                    })
+                 },
+                 
+            ---> 在 config/API 文件中注册 getSubTree URL
+            
+                getSubTrees:`${APIV1}/tree/getSubTree`,
+                
+            ---> 在 service 中定义接口
+            
+                export function getSubTree(data) {
+                  return request({
+                    'url': getSubTrees,
+                    'method': 'post',
+                    data
+                  })
+                }
+        
+            ---> 在 model 中设置异步 action 
+            
+                *getSubTree({payload},{select,call,put}){
+                  const id = payload;
+                  const open = id;
+                  yield put({
+                    'type':'setOpen',
+                    'payload':open
+                  });
+                  if(id !== '-1'){
+                    const {data} = yield call(getSubTree,payload);
+                    const {open,tree} = yield select(({albums}) => albums);
+                    let treeLength = tree.length + data.length;
+            
+                    tree.forEach(i => {
+                      if(i.id === open){
+                        i.subFolder = data
+                      }
+                    });
+            
+                    yield put({
+                      'type':'setTreeLength',
+                      'payload':treeLength
+                    });
+            
+                    yield put({
+                      'type':'saveTree',
+                      'payload':tree
+                    });
+                  }
+                  yield put({
+                    'type':'toggleOpen',
+                    'payload':id
+                  });
+                },
+        
+        
