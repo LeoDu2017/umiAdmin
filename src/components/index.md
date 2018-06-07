@@ -9,9 +9,69 @@
 
 ###### 一、操作
 
-    1. 添加下级树文件夹：
+    1. 选取文件树文件夹：
+       
+       本操作可以作为一个组合操作来处理也可以作为一个关联操作来处理。
+       
+       首先要整理出这个操作所要影响到的数据：currentTree,actions,currentEditTree
+       分别是：当前被选中的文件树的ID、本文件树相对应的操作、当前被编辑的文件树ID
+       
+       1). Action
+        --->
+            export function selectClassify(id,actions_type,dispatch,event){
+              event.stopPropagation();
+              const currentTree = id;
+              const actions={};
+              const currentEditTree = '-1';
+            
+              switch(actions_type){
+                case '-1':
+                    actions.showAdd = true,
+                    actions.showDelete = false,
+                    actions.showEdit = false;
+                    break;
+                case '0':
+                    actions.showAdd = false,
+                    actions.showDelete = false,
+                    actions.showEdit = false;
+                    break;
+                case '1':
+                    actions.showAdd = true,
+                    actions.showDelete = true,
+                    actions.showEdit = true;
+                    break;
+               default:
+                    actions.showAdd = false,
+                    actions.showDelete = true,
+                    actions.showEdit = true;
+              };
+              dispatch({
+                type:'albums/selectCurrentTree',
+                payload:{currentTree,actions,currentEditTree}
+              })
+            }
+            
+       2). Model
+        --->
+           *selectCurrentTree({payload},{select,call,put}){
+              const {currentTree,actions,currentEditTree} = payload;
+              yield put({
+                type:'setCurrentTree',
+                payload:currentTree
+              });
+              yield put({
+                type:'setActions',
+                payload:actions
+              });
+              yield put({
+                type:'setCurrentEditTree',
+                payload:currentEditTree
+              });
+            },
+
+    2. 添加下级树文件夹：
     
-        根据功能要求将这个动作解构为两个动作:
+       根据功能要求将这个动作解构为两个动作:
     
         1） addSubTree动态操控DOM在页面中动态插入一个空白文本输入框；
             构思Rect的架构思想的核心就是数据驱动，
@@ -130,7 +190,7 @@
         并在渲染中进行递归运算获取本级的subFolder渲染到当前<dl>标签下的<dd></dd>.
         线上存储原理：将数据存入线上数据库的tree中并根据parent_id进行过滤本级的数据；
         
-    2.获得下级文件树文件夹：
+    3.获得下级文件树文件夹：
     
         本事件和当前文件夹的折叠事件是同时触发的，所以事件流程可以是这样的。
         鼠标点击文件夹图标 ---> 触发同步action - toggleOpen 同时判断当前数据下的subFolder是否为空 
@@ -205,5 +265,10 @@
                     'payload':id
                   });
                 },
+                
+        4).二级目录的收缩
         
+            将当前条目的 open 取反
+            
+    
         
