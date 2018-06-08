@@ -7,6 +7,7 @@ const albums = {
   state:{
     currentTree: '-1',    // 当前被选中的文件夹
     currentEditTree:'-1', // 当前被编辑的文件夹
+    openFailsTree:'-1',   // 文件夹打开失败
     tree:[],              // 文件夹列表
     total:'0',            // 图片总数
     openAll:true,         // 是否全局折叠
@@ -16,7 +17,8 @@ const albums = {
       showDelete:false,
       showEdit:false,
       showAdd:true
-    }         // 文件夹操作显隐控制
+    },        // 文件夹操作显隐控制
+
   },
   reducers:{
     saveTree(state,{payload:tree}){
@@ -39,6 +41,9 @@ const albums = {
     },
     setCurrentEditTree(state,{payload:currentEditTree}){
       return { ...state,currentEditTree}
+    },
+    setOpenFailsTree(state,{payload:openFailsTree}){
+      return {...state,openFailsTree}
     },
     setTreeName(state,{payload}){
       const {parent_id,id,name} = payload;
@@ -100,19 +105,40 @@ const albums = {
         const {data} = yield call(getSubTree,payload);
         const {open,tree} = yield select(({trees}) => trees);
 
+        let openFailsTree;
+        if(data.length === 0){
+          message.info('该文件夹下无子文件夹');
+          openFailsTree = open
+        }else{
+          openFailsTree = '-1'
+        }
+
+        yield put({
+          type:'setOpenFailsTree',
+          payload:openFailsTree
+        });
+
         tree.map(i => {
-          if(i.id === open && !i.open){
-            i.open = true;
-            i.subFolder = data;
+          if(i.id === openFailsTree){
+            i.open =  false;
           }else{
-            i.open = false;
-            i.subFolder = [];
+            if(i.id === open && !i.open){
+              i.open = true;
+              i.subFolder = data;
+            }else{
+              i.open =  false;
+              i.subFolder = [];
+            }
           }
+
         });
 
         const folder = _.find(tree,{'id':open});
         const subFolder = folder.subFolder;
+
+
         const treeLength = tree.length + subFolder.length;
+
 
         yield put({
           type:'setTreeLength',

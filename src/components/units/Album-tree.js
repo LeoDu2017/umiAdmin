@@ -7,7 +7,7 @@ import Tree_actions from './Album-treeaction';
 import {Col} from 'antd';
 import Svg from 'components/Svg';
 
-const Tree = ({dispatch,currentTree,openAll,tree,treeLength,currentEditTree,total,actions,open}) => (
+const Tree = ({dispatch,currentTree,openAll,tree,treeLength,currentEditTree,total,actions,openFailsTree}) => (
     <Col className={styles.left}>
       <Tree_actions
         actions={actions}
@@ -36,7 +36,7 @@ const Tree = ({dispatch,currentTree,openAll,tree,treeLength,currentEditTree,tota
             currentEditTree={currentEditTree}
             styles={styles}
             stop={stop}
-            open={open}
+            openFailsTree={openFailsTree}
             currentTree={currentTree}
             style={openAll ? {'height':`${treeLength*28}px`}:{'height':"0"}}
           />
@@ -45,19 +45,19 @@ const Tree = ({dispatch,currentTree,openAll,tree,treeLength,currentEditTree,tota
     </Col>
 );
 function mapStateToProps(state){
-  const {display,tree,total,currentTree,refresh,openAll,actions,currentEditTree,treeLength,open} = state.trees;
+  const {display,tree,total,currentTree,openAll,actions,currentEditTree,treeLength,openFailsTree} = state.trees;
+  console.log(openFailsTree)
   return{
     loading:state.trees.loading,
     display,
     tree,
     total,
     currentTree,
-    refresh,
     openAll,
     actions,
     currentEditTree,
     treeLength,
-    open
+    openFailsTree
   }
 }
 export default connect(mapStateToProps)(Tree);
