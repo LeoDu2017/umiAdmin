@@ -18,6 +18,8 @@ module.exports = {
     updateTreeNames:`${APIV1}/albums/tree/update`,
     storeSubTrees:`${APIV1}/albums/tree/storeSubTree`,
     getSubTrees:`${APIV1}/albums/tree/getSubTrees`,
+    getPictures:`${APIV1}/albums/pictures`,
+
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV1}/userInfo`,
