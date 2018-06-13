@@ -2,7 +2,7 @@ import request from 'utils/request';
 import { api } from 'utils/config';
 
 
-const { getTrees,storeSubTrees,updateTreeNames,getSubTrees } = api;
+const { getTrees,storeSubTrees,updateTreeNames,getSubTrees,getPictures } = api;
 
 export function getTree () {
   return request({
@@ -33,5 +33,12 @@ export function getSubTree(parent_id) {
     url: getSubTrees,
     method: 'get',
     data
+  })
+}
+
+export function getPicture () {
+  return request({
+    url: getPictures,
+    method: 'get'
   })
 }
