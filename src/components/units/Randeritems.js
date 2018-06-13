@@ -10,6 +10,8 @@ const Randeritems = ({style,tree,subClass,treeLength,currentTree,dispatch,curren
         tree.map((item,index) => {
             let dl =  <dl key={item.id} style={{'top':`${i/treeLength * 100}%`,
                                                 'zIndex':`${-i+100}`,
+                                                'left': '10px',
+                                                'right':'10px',
                                                 'height':item.id === currentTree && item.open ? `${(item.subFolder.length + 1)*28}px` : '28px'}}>
               <dt onClick={selectClassify.bind(null,item.id,item.actions_type,dispatch) }
                   className={currentTree === item.id ? `${styles.selected} ${subClass}` : subClass }
