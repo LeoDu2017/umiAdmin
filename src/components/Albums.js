@@ -3,7 +3,7 @@ import {connect} from 'dva';
 import styles from 'styles/components.less';
 
 
-import {Header,Pictures,Pic_actions,Controls,Tree} from './units';
+import {Header,Pictures,Tree} from './units';
 
 const albums = ({display,treeLength,dispatch,currentTree,tree,total,openAll,actions,currentEditTree}) =>(
   <Modal
@@ -16,11 +16,7 @@ const albums = ({display,treeLength,dispatch,currentTree,tree,total,openAll,acti
     <Header dispatch={dispatch} />
     <Col className={styles.main}>
       <Tree/>
-      <Col className={styles.right}>
-        <Pic_actions/>
-        <Pictures/>
-        <Controls/>
-      </Col>
+      <Pictures/>
     </Col>
   </Modal>
 );
