@@ -1,8 +1,7 @@
 import _ from "lodash";
 import {getTree,storeSubTree,updateTreeName,getSubTree} from 'services/albums';
 import { message } from 'antd';
-
-const albums = {
+const trees = {
   namespace:'trees',
   state:{
     currentTree: '-1',    // 当前被选中的文件夹
@@ -72,6 +71,9 @@ const albums = {
   effects:{
     *getTree({ payload },{select,call, put}){
       const {data} = yield call(getTree);
+      yield put({
+        type:'pictures/getPictures'
+      });
       const {tree,total} = data;
       const treeLength = tree.length;
 
@@ -240,4 +242,4 @@ const albums = {
   }
 };
 
-export default albums;
+export default trees;
