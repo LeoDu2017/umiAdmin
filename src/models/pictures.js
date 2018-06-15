@@ -3,20 +3,26 @@ const pictures = {
   namespace:'pictures',
   state:{
     list:[],
-    page:[],
+    page:1,
+    total:0,
     selected:[],
   },
   reducers:{
-    save(state,{payload:list}){
-      return { ...state,list}
+    save(state,{payload:{list,page,total}}){
+      return { ...state,list,page,total}
     }
   },
   effects:{
-    *getPictures({ payload },{select,call, put}){
-      const {data} = yield call(getPicture);
+    *getPictures({ payload:{page=1}},{select,call, put}){
+      const {data,total} = yield call(getPicture,page);
+      debugger
       yield put({
         type:'save',
-        payload:data
+        payload:{
+          list:data,
+          total,
+          page
+        }
       })
     }
   }
