@@ -5,14 +5,14 @@ import Svg from 'components/Svg';
 import Pic_actions from './Album-actions';
 import Controls from './Album-controls';
 
-const Pictures = ({list}) =>(
+const Pictures = ({dispatch,list,page,total}) =>(
   <Col className={styles.right}>
     <Pic_actions/>
     <Col className={styles.imgs}>
       <ul>
         {
           list.map((item,index)=>(
-            <li>
+            <li key={item.id}>
               <img src={item.file}/>
               <Col className={styles.selected}><i></i></Col>
               <Col className={styles.edit}>
@@ -32,13 +32,15 @@ const Pictures = ({list}) =>(
         }
       </ul>
     </Col>
-    <Controls/>
+    <Controls current={page} total={total} dispatch={dispatch} />
   </Col>
 );
 function mapStateToProps(state){
-  const {list} = state.pictures;
+  const {list,page,total} = state.pictures;
   return {
-    list
+    list,
+    page,
+    total
   }
 };
 
