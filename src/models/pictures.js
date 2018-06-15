@@ -15,7 +15,6 @@ const pictures = {
   effects:{
     *getPictures({ payload:{page=1}},{select,call, put}){
       const {data,total} = yield call(getPicture,page);
-      debugger
       yield put({
         type:'save',
         payload:{
