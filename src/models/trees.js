@@ -17,7 +17,6 @@ const trees = {
       showEdit:false,
       showAdd:true
     },        // 文件夹操作显隐控制
-
   },
   reducers:{
     saveTree(state,{payload:tree}){
@@ -72,7 +71,8 @@ const trees = {
     *getTree({ payload },{select,call, put}){
       const {data} = yield call(getTree);
       yield put({
-        type:'pictures/getPictures'
+        type:'pictures/getPictures',
+        payload:1
       });
       const {tree,total} = data;
       const treeLength = tree.length;
