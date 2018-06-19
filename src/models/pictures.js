@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { getPicture } from 'services/albums';
 const pictures = {
   namespace:'pictures',
@@ -28,13 +29,14 @@ const pictures = {
         }
       })
     },
-    *setSelectImgs({ payload:{id,type}},{select,call, put}){
+    *setSelectImgs({ payload:{id,single}},{select,call, put}){
+      let imgs = yield select(({pictures}) => pictures.list);
       let selectedImgs = yield select(({pictures}) => pictures.selected);
-      if(type){
+      if(single){
         selectedImgs = [];
-        selectedImgs.push(id);
+        selectedImgs.push(imgs.filter(i => i.id === id)[0]);
       }else{
-        !selectedImgs.includes(id) && selectedImgs.push(id);
+        !_.find(selectedImgs, { id: id }) && selectedImgs.push(imgs.filter(i => i.id === id)[0]);
       }
       yield put({
         type:'saveSelected',
@@ -43,11 +45,15 @@ const pictures = {
     },
     *removeSelectImgs({payload:id},{select,call,put}){
       let data = yield select(({pictures}) => pictures.selected);
-      let selectedImgs = data.filter(item => Number(item) !== Number(id));
+      let selectedImgs = data.filter(item => Number(item.id) !== Number(id));
       yield put({
         type:'saveSelected',
         payload:selectedImgs
       })
+    },
+    *useSelected({payload},{select,call,put}){
+      let data = yield select(({pictures}) => pictures.selected);
+
     }
   }
 };

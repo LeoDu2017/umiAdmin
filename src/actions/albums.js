@@ -6,17 +6,4 @@ export function showAlbums(dispatch,boolenValue){
   })
 }
 
-export function selectImgs(dispatch,id,type){
-  dispatch({
-    type:'pictures/setSelectImgs',
-    payload:{id,type}
-  })
-}
 
-export function removeSelected(dispatch,id,event){
-  event.stopPropagation();
-  dispatch({
-    type:'pictures/removeSelectImgs',
-    payload:id
-  })
-}

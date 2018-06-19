@@ -78,3 +78,25 @@ html, body, :global(#root) {
 :global(.subitem){
   min-width: 100% !important;
 }
+:global(.ant-pagination-item-active){
+  background: #428bca !important;
+  border-color: #428bca !important;
+}
+:global(.ant-pagination-item){
+  border-radius: 0 !important;
+}
+:global(.ant-pagination-item-active a){
+  color: #fff !important;
+}
+:global(.ant-pagination-disabled){
+  background: #e6e6e6!important;
+}
+:global(.ant-pagination-disabled:hover){
+  background: #ccc!important;
+  border-color: #ccc !important;
+}
+:global(.ant-pagination-disabled a){
+  color: #bbb!important;
+}
+
+

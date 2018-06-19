@@ -4,6 +4,7 @@ import { Form, Input, Tooltip, Icon, Cascader,Upload, Select, Row, Col, Checkbox
 import Albums from 'components/Albums';
 import styles from 'styles/shop.less';
 import {showAlbums} from 'actions/albums';
+import {selectImgs} from 'actions/shop';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
@@ -19,7 +20,7 @@ const formItemLayout = {
   },
 };
 
-const infoForm = ({dispatch,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
+const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
   <Col span={24} className='g-t-wrap'>
     <Col span={24} className='g-t-main'>
       <header className='g-t-header'>
@@ -131,11 +132,13 @@ const infoForm = ({dispatch,form: {getFieldDecorator,validateFieldsAndScroll}}) 
               getValueFromEvent: this.normFile,
             })(
               <Col className={styles.upLogo}>
-                <img src={require('assets/timg.jpg')}/>
+                <img src={logo}/>
                 <span onClick={showAlbums.bind(null,dispatch,true)}>
                   {intl.get('REUPLOAD')}
                 </span>
+                <Input  type="hidden" value={logo}/>
               </Col>
+
             )}
           </FormItem>
 
@@ -166,15 +169,15 @@ const infoForm = ({dispatch,form: {getFieldDecorator,validateFieldsAndScroll}}) 
           </FormItem>
 
         </Form>
-        <Albums />
+        <Albums single={true} callBack={selectImgs} />
       </Col>
     </Col>
   </Col>
 );
 function mapStateToProps(state){
-  const {test} = state.shop;
+  const {logo} = state.shop;
   return{
-    test
+    logo
   }
 };
 const shopInfo = connect(mapStateToProps)(Form.create()(infoForm));
