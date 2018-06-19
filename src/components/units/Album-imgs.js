@@ -4,19 +4,19 @@ import styles from 'styles/components.less';
 import Svg from 'components/Svg';
 import Pic_actions from './Album-actions';
 import Controls from './Album-controls';
-
-const Pictures = ({dispatch,list,page,total}) =>(
+import {selectImgs,removeSelected} from 'actions/albums';
+import {remove} from "../../services/users";
+const Pictures = ({dispatch,list,page,total,selected,length}) =>(
   <Col className={styles.right}>
     <Pic_actions/>
     <Col className={styles.imgs}>
       <ul>
         {
           list.map((item,index)=>(
-            <li key={item.id}>
+            <li key={item.id} onClick={selectImgs.bind(null,dispatch,item.id,!0)}>
               <img src={item.file}/>
-              <Col className={styles.selected}><i></i></Col>
               <Col className={styles.edit}>
-                <span><Svg className={styles.icon} type="pencil"> </Svg></span>
+                <span><Svg className={styles.icon} type="pencil"></Svg></span>
                 <p>{item.name}</p>
                 <Col className={styles.nameEdit}>
                   <Input
@@ -27,20 +27,34 @@ const Pictures = ({dispatch,list,page,total}) =>(
                   <Button className={styles.renameImg}>确定</Button>
                 </Col>
               </Col>
+              {
+                selected.includes(item.id) &&
+                <Col className={styles.mask}>
+                  <span className={styles.selected}>
+                    <Svg type="correct"> </Svg>
+                  </span>
+                  <span className={styles.close} onClick={removeSelected.bind(null,dispatch,item.id)}>
+                    <Svg type="close"> </Svg>
+                  </span>
+                </Col>
+              }
             </li>
           ))
         }
       </ul>
     </Col>
-    <Controls current={page} total={total} dispatch={dispatch} />
+    <Controls current={page} total={total} dispatch={dispatch} length={length} />
   </Col>
 );
 function mapStateToProps(state){
-  const {list,page,total} = state.pictures;
+  const {list,page,total,selected} = state.pictures;
+  const length = selected.length;
   return {
     list,
     page,
-    total
+    total,
+    selected,
+    length
   }
 };
 
