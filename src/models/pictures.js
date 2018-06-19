@@ -6,10 +6,14 @@ const pictures = {
     page:1,
     total:0,
     selected:[],
+    single:true
   },
   reducers:{
     save(state,{payload:{list,page,total}}){
       return { ...state,list,page,total}
+    },
+    saveSelected(state,{payload:selected}){
+      return { ...state,selected }
     }
   },
   effects:{
@@ -22,6 +26,27 @@ const pictures = {
           total,
           page
         }
+      })
+    },
+    *setSelectImgs({ payload:{id,type}},{select,call, put}){
+      let selectedImgs = yield select(({pictures}) => pictures.selected);
+      if(type){
+        selectedImgs = [];
+        selectedImgs.push(id);
+      }else{
+        !selectedImgs.includes(id) && selectedImgs.push(id);
+      }
+      yield put({
+        type:'saveSelected',
+        payload:selectedImgs
+      })
+    },
+    *removeSelectImgs({payload:id},{select,call,put}){
+      let data = yield select(({pictures}) => pictures.selected);
+      let selectedImgs = data.filter(item => Number(item) !== Number(id));
+      yield put({
+        type:'saveSelected',
+        payload:selectedImgs
       })
     }
   }
