@@ -47,7 +47,6 @@ const Tree = ({dispatch,currentTree,openAll,tree,treeLength,currentEditTree,tota
 );
 function mapStateToProps(state){
   const {display,tree,total,currentTree,openAll,actions,currentEditTree,treeLength,openFailsTree} = state.trees;
-  console.log(openFailsTree)
   return{
     loading:state.trees.loading,
     display,
