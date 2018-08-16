@@ -20,6 +20,8 @@ module.exports = {
     getSubTrees:`${APIV1}/albums/tree/getSubTrees`,
     getPictures:`${APIV1}/albums/pictures`,
 
+    getShopInfoApi:`${APIV1}/shop/info`,
+
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV1}/userInfo`,

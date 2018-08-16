@@ -98,5 +98,15 @@ html, body, :global(#root) {
 :global(.ant-pagination-disabled a){
   color: #bbb!important;
 }
+:global(.ant-input[readonly=readonly]:focus){
+  border-color: #d9d9d9;
+  outline: 0;
+  box-shadow: none;
+}
+:global(.ant-input[readonly=readonly]:hover){
+  border-color: #d9d9d9;
+}
+
+
 
 

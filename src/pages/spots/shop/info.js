@@ -22,7 +22,7 @@ const formItemLayout = {
 // function hasErrors(fieldsError) {
 //   return Object.keys(fieldsError).some(field => fieldsError[field]);
 // }
-const infoForm = ({dispatch,logo,editable,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
+const infoForm = ({dispatch,logo,editable,shopInfo,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
   <Col span={24} className='g-t-wrap'>
     <Col span={24} className='g-t-main'>
       <header className='g-t-header'>
@@ -36,36 +36,25 @@ const infoForm = ({dispatch,logo,editable,form: {getFieldDecorator,validateField
 
       <Col className="g-t-form-wrap">
         <Form>
-          <FormItem
-            {...formItemLayout}
-            label={intl.get('COMPANYNAME')}
-            className="g-f-item"
-          >
+
+          {/*公司名称*/}
+          <FormItem {...formItemLayout} label={intl.get('COMPANYNAME')} className="g-f-item">
             {getFieldDecorator('company_name', {
-              initialValue:'sdsdsds',
+              initialValue:shopInfo.company_name,
               rules: [{required: true, message:intl.get('INPUTCOMPANYNAME')}],
-            })(
-              <Input disabled={editable} placeholder={intl.get('INPUTCOMPANYNAME')}/>
-            )}
+            })(<Input disabled={editable} placeholder={intl.get('INPUTCOMPANYNAME')}/>)}
           </FormItem>
 
-          <FormItem
-            {...formItemLayout}
-            label={intl.get('SHOPNAME')}
-            className="g-f-item"
-          >
+          {/*店铺名称*/}
+          <FormItem {...formItemLayout} label={intl.get('SHOPNAME')} className="g-f-item">
             {getFieldDecorator('shop_name', {
+              initialValue:shopInfo.shop_name,
               rules: [{required: true, message:intl.get('INPUTSHOPNAME')}],
-            })(
-              <Input disabled={editable} placeholder={intl.get('INPUTSHOPNAME')}/>
-            )}
+            })(<Input disabled={editable} placeholder={intl.get('INPUTSHOPNAME')}/>)}
           </FormItem>
 
-          <FormItem
-            {...formItemLayout}
-            label={intl.get('COMPANYTYPE')}
-            className="g-f-item"
-          >
+          {/*公司类型*/}
+          <FormItem {...formItemLayout} label={intl.get('COMPANYTYPE')} className="g-f-item">
             {getFieldDecorator('company_type', {
               rules: [{required: true, message:intl.get('SELECTCOMPANYTYPE')}],
             })(
@@ -83,11 +72,8 @@ const infoForm = ({dispatch,logo,editable,form: {getFieldDecorator,validateField
             )}
           </FormItem>
 
-          <FormItem
-            {...formItemLayout}
-            label={intl.get('SHOPPRODUCT')}
-            className="g-f-item"
-          >
+          {/*主营产品*/}
+          <FormItem {...formItemLayout} label={intl.get('SHOPPRODUCT')} className="g-f-item">
             {getFieldDecorator('shop_product', {
               rules: [{required: true, message:intl.get('SELECTSHOPPRODUCT')}],
             })(
@@ -102,101 +88,76 @@ const infoForm = ({dispatch,logo,editable,form: {getFieldDecorator,validateField
             )}
           </FormItem>
 
-          <FormItem
-            {...formItemLayout}
-            label={intl.get('ADMINNAME')}
-            className="g-f-item"
-          >
+          {/*联系人*/}
+          <FormItem {...formItemLayout} label={intl.get('ADMINNAME')} className="g-f-item">
             {getFieldDecorator('contact', {
+              initialValue:shopInfo.contact,
               rules: [{required: true, message:intl.get('INPUTADMINNAME')}],
-            })(
-              <Input disabled={editable} placeholder={intl.get('INPUTADMINNAME')}/>
-            )}
+            })(<Input disabled={editable} placeholder={intl.get('INPUTADMINNAME')}/>)}
           </FormItem>
 
-          <FormItem
-            {...formItemLayout}
-            label={intl.get('ADMINTITLE')}
-            className="g-f-item"
-          >
+          {/*职称*/}
+          <FormItem {...formItemLayout} label={intl.get('ADMINTITLE')} className="g-f-item">
             {getFieldDecorator('title', {
-
-            })(
-              <Input disabled={editable} placeholder={intl.get('INPUTADMINTITLE')}/>
-            )}
+              initialValue:shopInfo.title,
+            })(<Input disabled={editable} placeholder={intl.get('INPUTADMINTITLE')}/>)}
           </FormItem>
 
-          <FormItem
-            {...formItemLayout}
-            label={intl.get('SHOPLOGO')}
-            extra={intl.get('OPTIMUM')}
-            className="g-f-item"
-          >
+          {/*店铺LOGO*/}
+          <FormItem {...formItemLayout} label={intl.get('SHOPLOGO')} extra={intl.get('OPTIMUM')}
+            className="g-f-item">
             {getFieldDecorator('shop_logo', {
+              initialValue:shopInfo.shop_logo,
               rules: [{required: true, message:intl.get('SELECTCOMPANYTYPE')}],
               getValueFromEvent: this.normFile,
             })(
               <Col className={styles.upLogo}>
-                <img src={logo}/>
+                <img src={shopInfo.shop_logo}/>
                 <span onClick={showAlbums.bind(null,dispatch,true)}>
                   {intl.get('REUPLOAD')}
                 </span>
-                <Input  type="hidden" value={logo}/>
+                <Input name="shop_logo" type="hidden"/>
               </Col>
-
             )}
           </FormItem>
 
-          <FormItem
-            {...formItemLayout}
-            label={intl.get('CONTACTNUM')}
-            className="g-f-item"
-          >
+          {/*联系电话*/}
+          <FormItem {...formItemLayout} label={intl.get('CONTACTNUM')} className="g-f-item">
             {getFieldDecorator('mobile', {
+              initialValue:shopInfo.mobile,
               rules: [{required: true, message:intl.get('INPUTCONTACTNUM')}],
-            })(
-              <Input disabled={editable} placeholder={intl.get('INPUTCONTACTNUM')}/>
-            )}
+            })(<Input disabled={editable} placeholder={intl.get('INPUTCONTACTNUM')}/>)}
           </FormItem>
 
-          <FormItem
-            {...formItemLayout}
-            label= {intl.get('EMAIL')}
-            className="g-f-item"
-          >
+          {/*邮箱*/}
+          <FormItem {...formItemLayout} label= {intl.get('EMAIL')} className="g-f-item">
             {getFieldDecorator('email', {
-              rules: [{
-                type: 'email', message: intl.get('ERROREMAIL'),
+              initialValue:shopInfo.email,
+              rules: [{type: 'email', message: intl.get('ERROREMAIL'),
               }],
-            })(
-              <Input disabled={editable} placeholder={intl.get('INPUTEMAIL')}/>
-            )}
+            })(<Input disabled={editable} placeholder={intl.get('INPUTEMAIL')}/>)}
           </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label= ""
-            className="g-f-item"
-          >
-            <Button
-              type="primary"
-              htmlType="submit"
-              disabled={editable}
-            >
+
+          <FormItem {...formItemLayout} label= "" className="g-f-item">
+            <Button type="primary" htmlType="submit" disabled={editable}>
               {intl.get('SAVE')}
             </Button>
           </FormItem>
         </Form>
+
         <Albums single={true} callBack={selectImgs} />
       </Col>
     </Col>
   </Col>
 );
 function mapStateToProps(state){
-  const {logo,editable} = state.shop;
+  const {logo,editable,shopInfo} = state.shop;
   return{
     logo,
-    editable
+    editable,
+    shopInfo
   }
+
 };
 const shopInfo = connect(mapStateToProps)(Form.create()(infoForm));
 export default shopInfo
