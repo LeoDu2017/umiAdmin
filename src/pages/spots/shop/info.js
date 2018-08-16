@@ -19,7 +19,9 @@ const formItemLayout = {
     sm: { span: 20 },
   },
 };
-
+// function hasErrors(fieldsError) {
+//   return Object.keys(fieldsError).some(field => fieldsError[field]);
+// }
 const infoForm = ({dispatch,logo,editable,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
   <Col span={24} className='g-t-wrap'>
     <Col span={24} className='g-t-main'>
@@ -27,12 +29,11 @@ const infoForm = ({dispatch,logo,editable,form: {getFieldDecorator,validateField
           <span className='g-t-title'>
             {intl.get('SHOPINFO')}
           </span>
-
-
-        <Button type={editable ? 'primary' : 'danger'} onClick={toggleEditable.bind(null,dispatch)} size="small">
-          { editable ? intl.get('EDIT') : intl.get('CANCEL') }
-        </Button>
+          <Button type={editable ? 'primary' : 'danger'} onClick={toggleEditable.bind(null,dispatch)} size="small">
+            { editable ? intl.get('EDIT') : intl.get('CANCEL') }
+          </Button>
       </header>
+
       <Col className="g-t-form-wrap">
         <Form>
           <FormItem
@@ -171,7 +172,19 @@ const infoForm = ({dispatch,logo,editable,form: {getFieldDecorator,validateField
               <Input disabled={editable} placeholder={intl.get('INPUTEMAIL')}/>
             )}
           </FormItem>
-
+          <FormItem
+            {...formItemLayout}
+            label= ""
+            className="g-f-item"
+          >
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={editable}
+            >
+              {intl.get('SAVE')}
+            </Button>
+          </FormItem>
         </Form>
         <Albums single={true} callBack={selectImgs} />
       </Col>
