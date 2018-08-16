@@ -5,7 +5,7 @@ import styles from 'styles/components.less';
 import Svg from 'components/Svg';
 import Pic_actions from './Album-actions';
 import Controls from './Album-controls';
-import {selectImgs,removeSelected} from 'actions/pictures';
+import {selectImgs,removeSelected,viewImg} from 'actions/pictures';
 
 const Pictures = ({dispatch,list,page,total,selected,length,single,callBack}) =>(
   <Col className={styles.right}>
@@ -14,8 +14,17 @@ const Pictures = ({dispatch,list,page,total,selected,length,single,callBack}) =>
       <ul>
         {
           list.map((item,index)=>(
-            <li key={item.id} onClick={selectImgs.bind(null,dispatch,item.id,single)}>
-              <img src={item.file}/>
+            <li key={item.id}>
+              <Col className={styles.imgWrap}>
+                <span className={styles.eye} onClick={viewImg.bind(null,item.file)}>
+                  <Svg type="yanjing"></Svg>
+                </span>
+                <span className={styles.select} onClick={selectImgs.bind(null,dispatch,item.id,single)}>
+                  <Svg type="correct"></Svg>
+                </span>
+                <img src={item.file}/>
+              </Col>
+
               <Col className={styles.edit}>
                 <span><Svg className={styles.icon} type="pencil"></Svg></span>
                 <p>{item.name}</p>

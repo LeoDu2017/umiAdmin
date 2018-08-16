@@ -4,7 +4,7 @@ import { Form, Input, Tooltip, Icon, Cascader,Upload, Select, Row, Col, Checkbox
 import Albums from 'components/Albums';
 import styles from 'styles/shop.less';
 import {showAlbums} from 'actions/albums';
-import {selectImgs} from 'actions/shop';
+import {selectImgs,toggleEditable} from 'actions/shop';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
@@ -20,15 +20,17 @@ const formItemLayout = {
   },
 };
 
-const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
+const infoForm = ({dispatch,logo,editable,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
   <Col span={24} className='g-t-wrap'>
     <Col span={24} className='g-t-main'>
       <header className='g-t-header'>
           <span className='g-t-title'>
             {intl.get('SHOPINFO')}
           </span>
-        <Button type="primary" size="small">
-          {intl.get('EDIT')}
+
+
+        <Button type={editable ? 'primary' : 'danger'} onClick={toggleEditable.bind(null,dispatch)} size="small">
+          { editable ? intl.get('EDIT') : intl.get('CANCEL') }
         </Button>
       </header>
       <Col className="g-t-form-wrap">
@@ -39,9 +41,10 @@ const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScrol
             className="g-f-item"
           >
             {getFieldDecorator('company_name', {
+              initialValue:'sdsdsds',
               rules: [{required: true, message:intl.get('INPUTCOMPANYNAME')}],
             })(
-              <Input placeholder={intl.get('INPUTCOMPANYNAME')}/>
+              <Input disabled={editable} placeholder={intl.get('INPUTCOMPANYNAME')}/>
             )}
           </FormItem>
 
@@ -53,7 +56,7 @@ const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScrol
             {getFieldDecorator('shop_name', {
               rules: [{required: true, message:intl.get('INPUTSHOPNAME')}],
             })(
-              <Input placeholder={intl.get('INPUTSHOPNAME')}/>
+              <Input disabled={editable} placeholder={intl.get('INPUTSHOPNAME')}/>
             )}
           </FormItem>
 
@@ -66,6 +69,7 @@ const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScrol
               rules: [{required: true, message:intl.get('SELECTCOMPANYTYPE')}],
             })(
               <Select
+                disabled={editable}
                 placeholder={intl.get('SELECTCOMPANYTYPE')}
               >
                 <Select.Option value="-1" disabled>{intl.get('SELECTCOMPANYTYPE')}</Select.Option>
@@ -88,10 +92,10 @@ const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScrol
             })(
               <Checkbox.Group>
                 <Row>
-                  <Checkbox value="1">{intl.get('FURNITURE')}</Checkbox>
-                  <Checkbox value="2">{intl.get('MATERIAL')}</Checkbox>
-                  <Checkbox value="3">{intl.get('ORNAMENTS')}</Checkbox>
-                  <Checkbox value="4">{intl.get('SPOTS')}</Checkbox>
+                  <Checkbox disabled={editable} value="1">{intl.get('FURNITURE')}</Checkbox>
+                  <Checkbox disabled={editable} value="2">{intl.get('MATERIAL')}</Checkbox>
+                  <Checkbox disabled={editable} value="3">{intl.get('ORNAMENTS')}</Checkbox>
+                  <Checkbox disabled={editable} value="4">{intl.get('SPOTS')}</Checkbox>
                 </Row>
               </Checkbox.Group>,
             )}
@@ -105,7 +109,7 @@ const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScrol
             {getFieldDecorator('contact', {
               rules: [{required: true, message:intl.get('INPUTADMINNAME')}],
             })(
-              <Input placeholder={intl.get('INPUTADMINNAME')}/>
+              <Input disabled={editable} placeholder={intl.get('INPUTADMINNAME')}/>
             )}
           </FormItem>
 
@@ -117,7 +121,7 @@ const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScrol
             {getFieldDecorator('title', {
 
             })(
-              <Input placeholder={intl.get('INPUTADMINTITLE')}/>
+              <Input disabled={editable} placeholder={intl.get('INPUTADMINTITLE')}/>
             )}
           </FormItem>
 
@@ -150,7 +154,7 @@ const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScrol
             {getFieldDecorator('mobile', {
               rules: [{required: true, message:intl.get('INPUTCONTACTNUM')}],
             })(
-              <Input placeholder={intl.get('INPUTCONTACTNUM')}/>
+              <Input disabled={editable} placeholder={intl.get('INPUTCONTACTNUM')}/>
             )}
           </FormItem>
 
@@ -164,7 +168,7 @@ const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScrol
                 type: 'email', message: intl.get('ERROREMAIL'),
               }],
             })(
-              <Input placeholder={intl.get('INPUTEMAIL')}/>
+              <Input disabled={editable} placeholder={intl.get('INPUTEMAIL')}/>
             )}
           </FormItem>
 
@@ -175,9 +179,10 @@ const infoForm = ({dispatch,logo,form: {getFieldDecorator,validateFieldsAndScrol
   </Col>
 );
 function mapStateToProps(state){
-  const {logo} = state.shop;
+  const {logo,editable} = state.shop;
   return{
-    logo
+    logo,
+    editable
   }
 };
 const shopInfo = connect(mapStateToProps)(Form.create()(infoForm));

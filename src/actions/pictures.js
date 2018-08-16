@@ -25,3 +25,7 @@ export function useSelected(dispatch,selected){
     payload:selected
   })
 }
+
+export function viewImg(file){
+
+}

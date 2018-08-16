@@ -10,3 +10,8 @@ export function selectImgs(dispatch,selected){
     });
   })
 }
+export function toggleEditable(dispatch){
+  dispatch({
+    type:'shop/setEditable'
+  });
+}
