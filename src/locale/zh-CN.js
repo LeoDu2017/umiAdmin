@@ -79,5 +79,6 @@ export default {
     "SERCHHOLDER":"请输入图片名称",
     "SEARCH":"搜索",
     "USESELECTED":"使用选中的图片",
+    "PRODUCER":"生产商",
   }
 }

@@ -79,5 +79,6 @@ export default {
     "SERCHHOLDER":"Please enter the name of the picture",
     "SEARCH":"Search",
     "USESELECTED":"Using the selected picture",
+    "PRODUCER":"Producer",
   }
 }

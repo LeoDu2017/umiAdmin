@@ -22,7 +22,7 @@ const formItemLayout = {
 // function hasErrors(fieldsError) {
 //   return Object.keys(fieldsError).some(field => fieldsError[field]);
 // }
-const infoForm = ({dispatch,logo,editable,shopInfo,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
+const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
   <Col span={24} className='g-t-wrap'>
     <Col span={24} className='g-t-main'>
       <header className='g-t-header'>
@@ -56,12 +56,10 @@ const infoForm = ({dispatch,logo,editable,shopInfo,form: {getFieldDecorator,vali
           {/*公司类型*/}
           <FormItem {...formItemLayout} label={intl.get('COMPANYTYPE')} className="g-f-item">
             {getFieldDecorator('company_type', {
+              initialValue: conpany_types[shopInfo.company_type],
               rules: [{required: true, message:intl.get('SELECTCOMPANYTYPE')}],
             })(
-              <Select
-                disabled={editable}
-                placeholder={intl.get('SELECTCOMPANYTYPE')}
-              >
+              <Select disabled={editable} placeholder={intl.get('SELECTCOMPANYTYPE')}>
                 <Select.Option value="-1" disabled>{intl.get('SELECTCOMPANYTYPE')}</Select.Option>
                 <Select.Option value="0">生产商</Select.Option>
                 <Select.Option value="1">代理商</Select.Option>
@@ -145,19 +143,19 @@ const infoForm = ({dispatch,logo,editable,shopInfo,form: {getFieldDecorator,vali
           </FormItem>
         </Form>
 
-        <Albums single={true} callBack={selectImgs} />
+        <Albums single={true} callBack={selectImgs}/>
       </Col>
     </Col>
   </Col>
 );
 function mapStateToProps(state){
-  const {logo,editable,shopInfo} = state.shop;
+  const {logo,editable,shopInfo,conpany_types} = state.shop;
   return{
     logo,
     editable,
-    shopInfo
+    shopInfo,
+    conpany_types
   }
-
-};
+}
 const shopInfo = connect(mapStateToProps)(Form.create()(infoForm));
 export default shopInfo

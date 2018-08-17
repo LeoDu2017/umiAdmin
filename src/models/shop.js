@@ -1,3 +1,4 @@
+import intl from 'react-intl-universal';
 import { getShopInfoService } from 'services/shop';
 
 export default{
@@ -5,7 +6,8 @@ export default{
   state:{
     logo:require('assets/timg.jpg'),
     editable:true,
-    shopInfo:{}
+    shopInfo:{},
+    conpany_types:[ intl.get('PRODUCER'),'代理商','服务商','个人','其他']
   },
   reducers:{
     saveLogo(state,{payload:logo}){

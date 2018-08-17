@@ -79,5 +79,6 @@ export default{
     "SERCHHOLDER":"Inserisci il nome della Foto",
     "SEARCH":"Di Ricerca",
     "USESELECTED":"L'uso di alcune Foto",
+    "PRODUCER":"IL produttore",
   }
 }
