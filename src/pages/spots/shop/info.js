@@ -54,6 +54,11 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,form: {getField
           </FormItem>
 
           {/*公司类型*/}
+          {/*<Select.Option value="0">生产商</Select.Option>*/}
+          {/*<Select.Option value="1">代理商</Select.Option>*/}
+          {/*<Select.Option value="2">服务商</Select.Option>*/}
+          {/*<Select.Option value="3">个人</Select.Option>*/}
+          {/*<Select.Option value="4">其他</Select.Option>*/}
           <FormItem {...formItemLayout} label={intl.get('COMPANYTYPE')} className="g-f-item">
             {getFieldDecorator('company_type', {
               initialValue: conpany_types[shopInfo.company_type],
@@ -61,11 +66,9 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,form: {getField
             })(
               <Select disabled={editable} placeholder={intl.get('SELECTCOMPANYTYPE')}>
                 <Select.Option value="-1" disabled>{intl.get('SELECTCOMPANYTYPE')}</Select.Option>
-                <Select.Option value="0">生产商</Select.Option>
-                <Select.Option value="1">代理商</Select.Option>
-                <Select.Option value="2">服务商</Select.Option>
-                <Select.Option value="3">个人</Select.Option>
-                <Select.Option value="4">其他</Select.Option>
+                {conpany_types.map((item,index)=>
+                  <Select.Option key={index} value={index}>{item}</Select.Option>
+                )}
               </Select>
             )}
           </FormItem>
@@ -149,7 +152,8 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,form: {getField
   </Col>
 );
 function mapStateToProps(state){
-  const {logo,editable,shopInfo,conpany_types} = state.shop;
+  const {logo,editable,shopInfo} = state.shop;
+  const conpany_types = [intl.get("PRODUCER"),intl.get("AGENT"),intl.get("SERVER"),intl.get("PERSONAGE"),'其他'];
   return{
     logo,
     editable,

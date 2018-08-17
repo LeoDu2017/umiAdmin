@@ -80,5 +80,9 @@ export default {
     "SEARCH":"Search",
     "USESELECTED":"Using the selected picture",
     "PRODUCER":"Producer",
+    "AGENT":"Agent",
+    "SERVER":"Server",
+    "PERSONAGE":"Personage",
+    "OTHER":"Other",
   }
 }

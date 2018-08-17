@@ -80,5 +80,9 @@ export default{
     "SEARCH":"Di Ricerca",
     "USESELECTED":"L'uso di alcune Foto",
     "PRODUCER":"IL produttore",
+    "AGENT":"Gli agenti",
+    "SERVER":"Fornitori di Servizi",
+    "PERSONAGE":"Personale",
+    "OTHER":"Altri",
   }
 }

@@ -80,5 +80,9 @@ export default {
     "SEARCH":"搜索",
     "USESELECTED":"使用选中的图片",
     "PRODUCER":"生产商",
+    "AGENT":"代理商",
+    "SERVER":"服务商",
+    "PERSONAGE":"个人",
+    "OTHER":"其他",
   }
 }

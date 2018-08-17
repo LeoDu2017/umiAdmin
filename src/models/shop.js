@@ -6,8 +6,7 @@ export default{
   state:{
     logo:require('assets/timg.jpg'),
     editable:true,
-    shopInfo:{},
-    conpany_types:[ intl.get('PRODUCER'),'代理商','服务商','个人','其他']
+    shopInfo:{}
   },
   reducers:{
     saveLogo(state,{payload:logo}){
