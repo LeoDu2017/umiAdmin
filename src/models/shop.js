@@ -4,13 +4,13 @@ import { getShopInfoService } from 'services/shop';
 export default{
   namespace:'shop',
   state:{
-    logo:require('assets/timg.jpg'),
     editable:true,
     shopInfo:{}
   },
   reducers:{
-    saveLogo(state,{payload:logo}){
-      return {...state,logo}
+    saveLogo(state,{payload:shop_logo}){
+      let shopInfo = {...state.shopInfo,shop_logo}
+      return {...state,shopInfo}
     },
     setEditable(state){
       return{...state,editable:!state.editable}
