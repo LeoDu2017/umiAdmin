@@ -22,7 +22,7 @@ const formItemLayout = {
 // function hasErrors(fieldsError) {
 //   return Object.keys(fieldsError).some(field => fieldsError[field]);
 // }
-const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
+const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
   <Col span={24} className='g-t-wrap'>
     <Col span={24} className='g-t-main'>
       <header className='g-t-header'>
@@ -76,14 +76,14 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,form: {getField
           {/*主营产品*/}
           <FormItem {...formItemLayout} label={intl.get('SHOPPRODUCT')} className="g-f-item">
             {getFieldDecorator('shop_product', {
+              initialValue:shopInfo.category_id,
               rules: [{required: true, message:intl.get('SELECTSHOPPRODUCT')}],
             })(
               <Checkbox.Group>
                 <Row>
-                  <Checkbox disabled={editable} value="1">{intl.get('FURNITURE')}</Checkbox>
-                  <Checkbox disabled={editable} value="2">{intl.get('MATERIAL')}</Checkbox>
-                  <Checkbox disabled={editable} value="3">{intl.get('ORNAMENTS')}</Checkbox>
-                  <Checkbox disabled={editable} value="4">{intl.get('SPOTS')}</Checkbox>
+                  {shop_products.map((item,index)=>
+                    <Checkbox disabled={editable} value={index} key={index}>{item}</Checkbox>
+                  )}
                 </Row>
               </Checkbox.Group>,
             )}
@@ -153,12 +153,14 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,form: {getField
 );
 function mapStateToProps(state){
   const {logo,editable,shopInfo} = state.shop;
-  const conpany_types = [intl.get("PRODUCER"),intl.get("AGENT"),intl.get("SERVER"),intl.get("PERSONAGE"),'其他'];
+  const conpany_types = [intl.get("PRODUCER"),intl.get("AGENT"),intl.get("SERVER"),intl.get("PERSONAGE"),intl.get("OTHER")];
+  const shop_products = [intl.get('FURNITURE'),intl.get('MATERIAL'),intl.get('ORNAMENTS'),intl.get('SPOTS')];
   return{
     logo,
     editable,
     shopInfo,
-    conpany_types
+    conpany_types,
+    shop_products
   }
 }
 const shopInfo = connect(mapStateToProps)(Form.create()(infoForm));

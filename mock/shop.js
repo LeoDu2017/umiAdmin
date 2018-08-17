@@ -11,7 +11,7 @@ let shopInfoData =Mock.mock({
       shop_name:'欧居汇',
       company_type: 2,
       shop_logo:'https://www.oujuhui.com/static/home/pc/images/logo.png',
-      category_id:[1],
+      category_id:[1,2],
       country_id:'120',
       address:'上海市徐汇区文定路209号文定生活A座6层',
       contact:'吴海涛',
