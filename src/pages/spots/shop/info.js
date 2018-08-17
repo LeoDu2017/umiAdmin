@@ -54,11 +54,6 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,f
           </FormItem>
 
           {/*公司类型*/}
-          {/*<Select.Option value="0">生产商</Select.Option>*/}
-          {/*<Select.Option value="1">代理商</Select.Option>*/}
-          {/*<Select.Option value="2">服务商</Select.Option>*/}
-          {/*<Select.Option value="3">个人</Select.Option>*/}
-          {/*<Select.Option value="4">其他</Select.Option>*/}
           <FormItem {...formItemLayout} label={intl.get('COMPANYTYPE')} className="g-f-item">
             {getFieldDecorator('company_type', {
               initialValue: conpany_types[shopInfo.company_type],
@@ -114,9 +109,12 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,f
             })(
               <Col className={styles.upLogo}>
                 <img src={shopInfo.shop_logo}/>
-                <span onClick={showAlbums.bind(null,dispatch,true)}>
-                  {intl.get('REUPLOAD')}
-                </span>
+                {
+                  !editable &&
+                  <span onClick={showAlbums.bind(null,dispatch,true)}>
+                    {intl.get('REUPLOAD')}
+                  </span>
+                }
                 <Input name="shop_logo" type="hidden"/>
               </Col>
             )}
