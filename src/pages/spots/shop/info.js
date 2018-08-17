@@ -4,7 +4,7 @@ import { Form, Input, Tooltip, Icon, Cascader,Upload, Select, Row, Col, Checkbox
 import Albums from 'components/Albums';
 import styles from 'styles/shop.less';
 import {showAlbums} from 'actions/albums';
-import {selectImgs,toggleEditable} from 'actions/shop';
+import {selectImgs,toggleEditable,handleSubmit} from 'actions/shop';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
@@ -35,7 +35,7 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,f
       </header>
 
       <Col className="g-t-form-wrap">
-        <Form>
+        <Form onSubmit={handleSubmit.bind(this,dispatch,validateFieldsAndScroll)}>
 
           {/*公司名称*/}
           <FormItem {...formItemLayout} label={intl.get('COMPANYNAME')} className="g-f-item">
@@ -104,7 +104,7 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,f
             className="g-f-item">
             {getFieldDecorator('shop_logo', {
               initialValue:shopInfo.shop_logo,
-              rules: [{required: true, message:intl.get('SELECTCOMPANYTYPE')}],
+              rules: [{required: true, message:intl.get('UPLOADSHOPlOGO')}],
               getValueFromEvent: this.normFile,
             })(
               <Col className={styles.upLogo}>

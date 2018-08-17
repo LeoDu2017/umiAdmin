@@ -59,6 +59,7 @@ export default {
     "INPUTADMINNAME":"请填写您的联系人姓名",
     "SHOPPRODUCT":"主营产品",
     "SELECTSHOPPRODUCT":"请选择您的主营产品",
+    "UPLOADSHOPlOGO":"请上传您的店铺LOGO",
     "FURNITURE":"家具",
     "MATERIAL":"材料",
     "ORNAMENTS":"装饰品",

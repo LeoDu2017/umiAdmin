@@ -59,6 +59,7 @@ export default{
     "INPUTADMINNAME":"Per favore, metti il tuo nome del contatto",
     "SHOPPRODUCT":"I principali prodotti",
     "SELECTSHOPPRODUCT":"TI Prego, scegli il tuo prodotto principale",
+    "UPLOADSHOPlOGO":"Per favore, caricare il tuo negozio.",
     "FURNITURE":"Mobili",
     "MATERIAL":"Materiale",
     "ORNAMENTS":"Arredamento",

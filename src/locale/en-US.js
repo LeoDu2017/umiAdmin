@@ -59,6 +59,7 @@ export default {
     "INPUTADMINNAME":"Please fill in your contact name",
     "SHOPPRODUCT":"Main product",
     "SELECTSHOPPRODUCT":"Please choose your main product",
+    "UPLOADSHOPlOGO":"Please upload your store LOGO.",
     "FURNITURE":"Furniture",
     "MATERIAL":"Material",
     "ORNAMENTS":"Ornaments",
