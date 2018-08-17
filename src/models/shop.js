@@ -1,4 +1,4 @@
-import intl from 'react-intl-universal';
+import { message } from 'antd';
 import { getShopInfoService,updateShopInfoService } from 'services/shop';
 
 export default{
@@ -28,7 +28,13 @@ export default{
       });
     },
     *submitEdit({ payload },{select,call, put}){
-      const data = yield call(updateShopInfoService,payload)
+      const data = yield call(updateShopInfoService,payload);
+      if (data && data.success){
+        message.success(data.msg);
+        yield put({
+          type:'setEditable'
+        })
+      }
     }
   },
   subscriptions:{
