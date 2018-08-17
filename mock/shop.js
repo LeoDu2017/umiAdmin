@@ -42,5 +42,15 @@ module.exports = {
       data: {...info},
       msg:'OK'
     })
-  }
+  },
+  [`POST ${apiPrefix}/shop/info/update`] (req, res) {
+    const  info = req.body;
+    console.log(info)
+
+    database = {...database,info};
+    res.status(200).json({msg: '提交成功' })
+
+
+
+  },
 };

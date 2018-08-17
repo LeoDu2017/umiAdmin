@@ -21,6 +21,7 @@ module.exports = {
     getPictures:`${APIV1}/albums/pictures`,
 
     getShopInfoApi:`${APIV1}/shop/info`,
+    updateShopInfoApi:`${APIV1}/shop/info/update`,
 
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,

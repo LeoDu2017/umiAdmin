@@ -24,7 +24,6 @@ export function handleSubmit(dispatch,validateFieldsAndScroll,event){
     if (errors) {
       return
     }
-    dispatch({ type: 'login/login', payload: values })
-
+    dispatch({ type: 'shop/submitEdit', payload: values })
   })
 }

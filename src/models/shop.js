@@ -1,5 +1,5 @@
 import intl from 'react-intl-universal';
-import { getShopInfoService } from 'services/shop';
+import { getShopInfoService,updateShopInfoService } from 'services/shop';
 
 export default{
   namespace:'shop',
@@ -26,6 +26,9 @@ export default{
         type:'setInfo',
         payload:shopInfo.data
       });
+    },
+    *submitEdit({ payload },{select,call, put}){
+      const data = yield call(updateShopInfoService,payload)
     }
   },
   subscriptions:{
