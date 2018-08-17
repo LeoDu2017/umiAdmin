@@ -34,6 +34,8 @@ export default{
         yield put({
           type:'setEditable'
         })
+      }else{
+        message.error(data.msg);
       }
     }
   },
