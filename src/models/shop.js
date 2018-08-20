@@ -5,11 +5,12 @@ export default{
   namespace:'shop',
   state:{
     editable:true,
+    originInfo:{},
     shopInfo:{}
   },
   reducers:{
     saveLogo(state,{payload:shop_logo}){
-      let shopInfo = {...state.shopInfo,shop_logo}
+      let shopInfo = {...state.shopInfo,shop_logo,change:true};
       return {...state,shopInfo}
     },
     setEditable(state){
@@ -17,6 +18,16 @@ export default{
     },
     setInfo(state,{payload:shopInfo}){
       return{...state,shopInfo}
+    },
+    setOrigin(state,{payload:originInfo}){
+      return{...state,originInfo}
+    },
+    setChanged(state,{payload}){
+      let shopInfo = {...state.shopInfo,...payload};
+      return{...state,shopInfo}
+    },
+    setEditedNull(state){
+      return{...state,editedInfo:{}}
     }
   },
   effects:{
@@ -24,6 +35,10 @@ export default{
       const shopInfo = yield call(getShopInfoService, payload);
       yield put({
         type:'setInfo',
+        payload:shopInfo.data
+      });
+      yield put({
+        type:'setOrigin',
         payload:shopInfo.data
       });
     },
@@ -41,17 +56,10 @@ export default{
   },
   subscriptions:{
     setup({ dispatch,history}){
-      return history.listen(({ pathname, query }) => {
-
+      return history.listen(({ pathname}) => {
         let arr = pathname.split('/');
-        let linkType = arr[1] ? arr[1] : 'index';
-        let subLink = arr[2];
         let subChildLink = arr[3];
-
-
         if(subChildLink === 'info'){
-          // let link = subLink.toString();
-          // const linkIndex = left.state.linklist[linkType].indexOf(link);
           dispatch({
             type:'getShopInfoEffect'
           })

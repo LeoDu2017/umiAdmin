@@ -1,13 +1,13 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
-import { Form, Input, Tooltip, Icon, Cascader,Upload, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import { Form, Input, Select, Row, Col, Checkbox, Button} from 'antd';
 import Albums from 'components/Albums';
 import styles from 'styles/shop.less';
 import {showAlbums} from 'actions/albums';
-import {selectImgs,toggleEditable,handleSubmit} from 'actions/shop';
+import {selectImgs,toggleEditable,handleSubmit,FieldsChange} from 'actions/shop';
 const FormItem = Form.Item;
-const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
+// const Option = Select.Option;
+// const AutoCompleteOption = AutoComplete.Option;
 
 const formItemLayout = {
   labelCol: {
@@ -22,14 +22,14 @@ const formItemLayout = {
 // function hasErrors(fieldsError) {
 //   return Object.keys(fieldsError).some(field => fieldsError[field]);
 // }
-const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,form: {getFieldDecorator,validateFieldsAndScroll}}) => (
+const infoForm = ({dispatch,editable,shopInfo,originInfo,conpany_types,shop_products,form: {getFieldDecorator,validateFieldsAndScroll,resetFields}}) => (
   <Col span={24} className='g-t-wrap'>
     <Col span={24} className='g-t-main'>
       <header className='g-t-header'>
           <span className='g-t-title'>
             {intl.get('SHOPINFO')}
           </span>
-          <Button type={editable ? 'primary' : 'danger'} onClick={toggleEditable.bind(null,dispatch)} size="small">
+          <Button type={editable ? 'primary' : 'danger'} onClick={toggleEditable.bind(this,dispatch,shopInfo,originInfo,validateFieldsAndScroll,resetFields)} size="small">
             { editable ? intl.get('EDIT') : intl.get('CANCEL') }
           </Button>
       </header>
@@ -71,7 +71,7 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,f
           {/*主营产品*/}
           <FormItem {...formItemLayout} label={intl.get('SHOPPRODUCT')} className="g-f-item">
             {getFieldDecorator('shop_product', {
-              initialValue:shopInfo.category_id,
+              initialValue:shopInfo.shop_product,
               rules: [{required: true, message:intl.get('SELECTSHOPPRODUCT')}],
             })(
               <Checkbox.Group>
@@ -104,8 +104,7 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,f
             className="g-f-item">
             {getFieldDecorator('shop_logo', {
               initialValue:shopInfo.shop_logo,
-              rules: [{required: true, message:intl.get('UPLOADSHOPlOGO')}],
-              getValueFromEvent: this.normFile,
+              rules: [{required: true, message:intl.get('UPLOADSHOPlOGO')}]
             })(
               <Col className={styles.upLogo}>
                 <img src={shopInfo.shop_logo}/>
@@ -115,7 +114,7 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,f
                     {intl.get('REUPLOAD')}
                   </span>
                 }
-                <Input name="shop_logo" type="hidden"/>
+                <Input type="hidden"/>
               </Col>
             )}
           </FormItem>
@@ -150,16 +149,17 @@ const infoForm = ({dispatch,logo,editable,shopInfo,conpany_types,shop_products,f
   </Col>
 );
 function mapStateToProps(state){
-  const {logo,editable,shopInfo} = state.shop;
+  const {editable,shopInfo,originInfo} = state.shop;
   const conpany_types = [intl.get("PRODUCER"),intl.get("AGENT"),intl.get("SERVER"),intl.get("PERSONAGE"),intl.get("OTHER")];
   const shop_products = [intl.get('FURNITURE'),intl.get('MATERIAL'),intl.get('ORNAMENTS'),intl.get('SPOTS')];
   return{
-    logo,
     editable,
     shopInfo,
     conpany_types,
-    shop_products
+    shop_products,
+    originInfo
   }
 }
-const shopInfo = connect(mapStateToProps)(Form.create()(infoForm));
+//  {onFieldsChange:FieldsChange}
+const shopInfo = connect(mapStateToProps)(Form.create({onFieldsChange:FieldsChange})(infoForm));
 export default shopInfo
