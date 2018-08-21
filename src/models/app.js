@@ -13,7 +13,7 @@ const main = {
         yield put((routerRedux.push('/login')));
       }
     },
-    *setLocale({ payload:{ } }, { call, put,select }){
+    *setLocale({ payload }, { call, put,select }){
       const languages = yield select(({lang}) => lang.languages);
       let currentLocale = intl.determineLocale({
         urlLocaleKey: "lang",
@@ -21,7 +21,7 @@ const main = {
       });
       if (!_.find(languages, { value: currentLocale })) {
         currentLocale = "en-US";
-      };
+      }
       let data = require(`locale/${currentLocale}`);
 
       yield put({

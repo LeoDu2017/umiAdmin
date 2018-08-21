@@ -71,8 +71,8 @@ function mapStateToProps (state,props){
 
   const {currentIndex,min,list,linkType,subIndex,open} = state.left;
   let homeName = intl.get('HOME');
-
-  if(list.length === 0 || list[0].name !== homeName || type != linkType){
+  // type != linkType
+  if(list.length === 0 || list[0].name !== homeName || type !== linkType){
     let data = getList(type);
     list.length > 0 && void(data[currentIndex].sublength = list[currentIndex].sublength);
     state.left.list = data;

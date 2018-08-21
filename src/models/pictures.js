@@ -52,7 +52,7 @@ const pictures = {
       })
     },
     *useSelected({payload},{select,call,put}){
-      let data = yield select(({pictures}) => pictures.selected);
+      // let data = yield select(({pictures}) => pictures.selected);
 
     }
   }

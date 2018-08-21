@@ -1,4 +1,4 @@
-import { getList } from 'actions/layout';
+// import { getList } from 'actions/layout';
 
 const left = {
   namespace:'left',
@@ -85,9 +85,6 @@ const left = {
             payload:linkIndex
           })
         }
-
-
-
 
         // dispatch({
         //   type:'linkChange',

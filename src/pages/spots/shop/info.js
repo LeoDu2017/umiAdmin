@@ -54,7 +54,6 @@ const infoForm = ({dispatch,editable,shopInfo,originInfo,conpany_types,shop_prod
 
       <Col className="g-t-form-wrap">
         <Form onSubmit={handleSubmit.bind(this,dispatch,validateFieldsAndScroll)}>
-
           {/*公司名称*/}
           <FormItem {...formItemLayout} label={intl.get('COMPANYNAME')} className="g-f-item">
             {getFieldDecorator('company_name', {
@@ -94,7 +93,7 @@ const infoForm = ({dispatch,editable,shopInfo,originInfo,conpany_types,shop_prod
               rules: [{required: true, message:intl.get('UPLOADSHOPlOGO')}]
             })(
               <Col className={styles.upLogo}>
-                <img src={shopInfo.shop_logo ? shopInfo.shop_logo : 'https://api.vtrois.com/image/108x108/f5f5f5/C2C2C2?text=%20EUROOO%20'}/>
+                <img alt="LOGO" src={shopInfo.shop_logo ? shopInfo.shop_logo : 'https://api.vtrois.com/image/108x108/f5f5f5/C2C2C2?text=%20EUROOO%20'}/>
                 {
                   !editable &&
                   <span onClick={showAlbums.bind(null,dispatch,true)}>

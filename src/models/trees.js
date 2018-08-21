@@ -62,7 +62,6 @@ const trees = {
       return {...state,tree}
     },
     toggleOpen(state,{payload}){
-      const id = payload;
       return { ...state,openAll:!state.openAll}
     }
   },
@@ -125,14 +124,14 @@ const trees = {
             i.open =  false;
           }else{
             if(i.id === open && !i.open){
-              i.open = true;
-              i.subFolder = data;
+                i.open = true;
+                i.subFolder = data;
             }else{
               i.open =  false;
               i.subFolder = [];
             }
           }
-
+          return i;
         });
 
         const folder = _.find(tree,{'id':open});
