@@ -18,16 +18,16 @@ const Pictures = ({dispatch,list,page,total,selected,length,single,callBack}) =>
             <li key={item.id}>
               <Col className={styles.imgWrap}>
                 <span className={styles.eye} onClick={viewImg.bind(null,item.file)}>
-                  <Svg type="yanjing"></Svg>
+                  <Svg type="yanjing"/>
                 </span>
                 <span className={styles.select} onClick={selectImgs.bind(null,dispatch,item.id,single)}>
-                  <Svg type="correct"></Svg>
+                  <Svg type="correct"/>
                 </span>
                 <img alt="img" src={item.file}/>
               </Col>
 
               <Col className={styles.edit}>
-                <span><Svg className={styles.icon} type="pencil"></Svg></span>
+                <span><Svg className={styles.icon} type="pencil"/></span>
                 <p>{item.name}</p>
                 <Col className={styles.nameEdit}>
                   <Input
@@ -42,10 +42,10 @@ const Pictures = ({dispatch,list,page,total,selected,length,single,callBack}) =>
                 _.find(selected, {id:item.id}) &&
                 <Col className={styles.mask}>
                   <span className={styles.selected}>
-                    <Svg type="correct"> </Svg>
+                    <Svg type="correct"/>
                   </span>
                   <span className={styles.close} onClick={removeSelected.bind(null,dispatch,item.id)}>
-                    <Svg type="close"> </Svg>
+                    <Svg type="close"/>
                   </span>
                 </Col>
               }
