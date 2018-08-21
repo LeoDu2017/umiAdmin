@@ -17,24 +17,24 @@ export function selectClassify(id,actions_type,dispatch,event){
 
   switch(actions_type){
     case '-1':
-      actions.showAdd = true,
-        actions.showDelete = false,
-        actions.showEdit = false;
+      actions.showAdd = true;
+      actions.showDelete = false;
+      actions.showEdit = false;
       break;
     case '0':
-      actions.showAdd = false,
-        actions.showDelete = false,
-        actions.showEdit = false;
+      actions.showAdd = false;
+      actions.showDelete = false;
+      actions.showEdit = false;
       break;
     case '1':
-      actions.showAdd = true,
-        actions.showDelete = true,
-        actions.showEdit = true;
+      actions.showAdd = true;
+      actions.showDelete = true;
+      actions.showEdit = true;
       break;
     default:
-      actions.showAdd = false,
-        actions.showDelete = true,
-        actions.showEdit = true;
+      actions.showAdd = false;
+      actions.showDelete = true;
+      actions.showEdit = true;
   };
   dispatch({
     type:'trees/selectCurrentTree',
@@ -80,9 +80,9 @@ export function addSubTree(id,tree,treeLength,dispatch){
       'add':true, // 用来切换添加和保存按钮
       'open':false
     });
-    actions.showAdd = true,
-      actions.showDelete = true,
-      actions.showEdit = true;
+    actions.showAdd = true;
+    actions.showDelete = true;
+    actions.showEdit = true;
   }else{
     tree.forEach(i => {
       if(i.id === parentId){
@@ -100,9 +100,9 @@ export function addSubTree(id,tree,treeLength,dispatch){
       }
     });
     treeLength = treeLength+1;
-    actions.showAdd = false,
-      actions.showDelete = true,
-      actions.showEdit = true;
+    actions.showAdd = false;
+    actions.showDelete = true;
+    actions.showEdit = true;
   }
 
 

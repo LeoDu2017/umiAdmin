@@ -3,13 +3,14 @@ import {connect} from 'dva';
 import {Col,Button,Input} from 'antd';
 import styles from 'styles/components.less';
 import Svg from 'components/Svg';
-import Pic_actions from './Album-actions';
+import PicActions from './Album-actions';
 import Controls from './Album-controls';
+
 import {selectImgs,removeSelected,viewImg} from 'actions/pictures';
 
 const Pictures = ({dispatch,list,page,total,selected,length,single,callBack}) =>(
   <Col className={styles.right}>
-    <Pic_actions/>
+    <PicActions/>
     <Col className={styles.imgs}>
       <ul>
         {
@@ -22,7 +23,7 @@ const Pictures = ({dispatch,list,page,total,selected,length,single,callBack}) =>
                 <span className={styles.select} onClick={selectImgs.bind(null,dispatch,item.id,single)}>
                   <Svg type="correct"></Svg>
                 </span>
-                <img src={item.file}/>
+                <img alt="img" src={item.file}/>
               </Col>
 
               <Col className={styles.edit}>
@@ -67,6 +68,7 @@ function mapStateToProps(state){
     length
   }
 };
+
 
 
 export default connect(mapStateToProps)(Pictures)

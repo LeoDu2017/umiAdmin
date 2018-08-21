@@ -3,19 +3,19 @@ import intl from 'react-intl-universal';
 import {selectClassify,getSubTree,stop} from 'actions/trees';
 import styles from 'styles/components.less';
 import Randeritems from './Randeritems';
-import Tree_actions from './Album-treeaction';
+import TreeActions from './Album-treeaction';
 import {Col} from 'antd';
 import Svg from 'components/Svg';
 
 const Tree = ({dispatch,currentTree,openAll,tree,treeLength,currentEditTree,total,actions,openFailsTree}) => (
     <Col className={styles.left}>
-      <Tree_actions
+      <TreeActions
         actions={actions}
         currentTree={currentTree}
         tree={tree}
         treeLength={treeLength}
-        dispatch={dispatch}>
-      </Tree_actions>
+        dispatch={dispatch}/>
+
 
       <Col className={styles.tree}>
         <dl>
