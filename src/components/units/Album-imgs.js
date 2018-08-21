@@ -67,8 +67,6 @@ function mapStateToProps(state){
     selected,
     length
   }
-};
-
-
+}
 
 export default connect(mapStateToProps)(Pictures)
