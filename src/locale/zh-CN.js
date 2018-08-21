@@ -60,6 +60,8 @@ export default {
     "SHOPPRODUCT":"主营产品",
     "SELECTSHOPPRODUCT":"请选择您的主营产品",
     "UPLOADSHOPlOGO":"请上传您的店铺LOGO",
+    "SELECTCOMPANYCOUNTRY":"请选择公司的所在国家",
+    "INPUTCOMPANYADDRESS":"请填写公司的所在地址",
     "FURNITURE":"家具",
     "MATERIAL":"材料",
     "ORNAMENTS":"装饰品",
@@ -85,5 +87,11 @@ export default {
     "SERVER":"服务商",
     "PERSONAGE":"个人",
     "OTHER":"其他",
+    "ADDRESS":"地址",
+    "COUNTRY":"国家",
+    "BELGIUM":"比利时",
+    "FRANCE":"法国",
+    "GERMANY":"德国",
+    "ITALY":"意大利",
   }
 }

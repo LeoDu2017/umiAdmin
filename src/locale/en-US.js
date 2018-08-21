@@ -60,6 +60,8 @@ export default {
     "SHOPPRODUCT":"Main product",
     "SELECTSHOPPRODUCT":"Please choose your main product",
     "UPLOADSHOPlOGO":"Please upload your store LOGO.",
+    "SELECTCOMPANYCOUNTRY":"Please choose the country of the company",
+    "INPUTCOMPANYADDRESS":"Please fill in the address of the company",
     "FURNITURE":"Furniture",
     "MATERIAL":"Material",
     "ORNAMENTS":"Ornaments",
@@ -85,5 +87,11 @@ export default {
     "SERVER":"Server",
     "PERSONAGE":"Personage",
     "OTHER":"Other",
+    "ADDRESS":"Address",
+    "COUNTRY":"Country",
+    "BELGIUM":"Belgium",
+    "FRANCE":"France",
+    "GERMANY":"Germany",
+    "ITALY":"Italy",
   }
 }

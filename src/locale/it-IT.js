@@ -60,6 +60,8 @@ export default{
     "SHOPPRODUCT":"I principali prodotti",
     "SELECTSHOPPRODUCT":"TI Prego, scegli il tuo prodotto principale",
     "UPLOADSHOPlOGO":"Per favore, caricare il tuo negozio.",
+    "SELECTCOMPANYCOUNTRY":"Per favore, La scelta di un Paese",
+    "INPUTCOMPANYADDRESS":"Per favore, Dove l'indirizzo",
     "FURNITURE":"Mobili",
     "MATERIAL":"Materiale",
     "ORNAMENTS":"Arredamento",
@@ -85,5 +87,11 @@ export default{
     "SERVER":"Fornitori di Servizi",
     "PERSONAGE":"Personale",
     "OTHER":"Altri",
+    "ADDRESS":"Indirizzo",
+    "COUNTRY":"Paesi",
+    "BELGIUM":"Belgio",
+    "FRANCE":"La Francia",
+    "GERMANY":"La Germania",
+    "ITALY":"In Italia",
   }
 }

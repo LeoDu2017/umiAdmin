@@ -60,6 +60,8 @@ export default{
     "SHOPPRODUCT":"Principaux produits",
     "SELECTSHOPPRODUCT":"Veuillez choisir vos produits principaux",
     "UPLOADSHOPlOGO":"Veuillez envoyer votre logo de magasin",
+    "SELECTCOMPANYCOUNTRY":"Veuillez choisir le pays",
+    "INPUTCOMPANYADDRESS":"Veuillez remplir une société où",
     "FURNITURE":"Meuble",
     "MATERIAL":"Matériau",
     "ORNAMENTS":"Décorations",
@@ -85,5 +87,11 @@ export default{
     "SERVER":"Des fournisseurs de services",
     "PERSONAGE":"Personnel",
     "OTHER":"Autres",
+    "ADDRESS":"Adresse",
+    "COUNTRY":"Pays",
+    "BELGIUM":"Belgique",
+    "FRANCE":"France",
+    "GERMANY":"La Germania",
+    "ITALY":"Italie",
   }
 }

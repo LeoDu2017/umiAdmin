@@ -27,6 +27,9 @@ html, body, :global(#root) {
 :global(.g-f-item){
   padding:0 30px !important;
 }
+:global(.g-m-b-12){
+  margin-bottom: 12px !important;
+}
 
 :global(.ant-form-item-required:before){
   font-size:12px;
