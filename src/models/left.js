@@ -1,4 +1,5 @@
-// import { getList } from 'actions/layout';
+import _ from "lodash";
+import { getList } from 'actions/layout';
 
 const left = {
   namespace:'left',
@@ -25,6 +26,7 @@ const left = {
       return { ...state,list}
     },
     setLinkindex(state,{payload:linkIndex}){
+
       return {...state,linkIndex}
     },
     setOpen(state,{payload:open}){
@@ -36,6 +38,7 @@ const left = {
     select(state,{payload:currentIndex}){
       return { ...state,currentIndex}
     },
+    // 折叠展开二级菜单
     toggleSubMeanu(state,{payload:index}){
 
       if(index === -1){
@@ -47,8 +50,11 @@ const left = {
           return {...state,currentIndex:link,open:false}
         }
       }
+
       let currentlist = state.list;
+
       let sublist = currentlist[index].child;
+
       let sublength = sublist.length + 1;
 
       currentlist.forEach((value,i) => {
@@ -65,6 +71,7 @@ const left = {
       return { ...state,lang}
     },
     selectSubMeanu(state,{payload:subIndex}){
+      console.log(74,subIndex);
       return { ...state,subIndex}
     }
   },
@@ -75,26 +82,38 @@ const left = {
         let arr = pathname.split('/');
         let linkType = arr[1] ? arr[1] : 'index';
         let subLink = arr[2];
-
+        let list = getList(linkType);
+        dispatch({
+          type:'save',
+          payload:list
+        });
 
         if(subLink){
           let link = subLink.toString();
           const linkIndex = left.state.linklist[linkType].indexOf(link);
+          const subLinkList = list[linkIndex].child;
+          const subLinkItem = _.find(subLinkList,{link:pathname});
+          // const subLinkIndex = Array.indexOf(subLinkList,subLinkItem);
+          const subLinkIndex = subLinkItem.index;
+          console.log(97,subLinkIndex);
+          dispatch({
+            type:'selectSubMeanu',
+            payload:subLinkIndex
+          });
           dispatch({
             type:'setLinkindex',
             payload:linkIndex
-          })
+          });
+          dispatch({
+            type:'linkChange',
+            payload:linkType
+          });
+          dispatch({
+            type:'toggleSubMeanu',
+            payload:linkIndex
+          });
         }
 
-        // dispatch({
-        //   type:'linkChange',
-        //   payload:linkType
-        // });
-        // let list = getList(linkType);
-        // dispatch({
-        //   type:'save',
-        //   payload:list
-        // })
       });
     }
   }

@@ -186,7 +186,7 @@ export function getList(linkType){
 }
 
 // 展开二级菜单，如果有二级菜单则展开二级菜单反之进行跳转
-export function toggleSubMeanu(dispatch,index,link,location,search,childLength,currentIndex){
+export function toggleSubMeanu(dispatch,index,link,search,childLength,currentIndex){
 
   if(childLength === 0){
     router.push(`${link}${search}`)
@@ -206,9 +206,9 @@ export function toggleSubMeanu(dispatch,index,link,location,search,childLength,c
 }
 
 // 选中二级菜单
-export function selectSubMeanu(dispatch,index){
-  dispatch({
-    type:'left/selectSubMeanu',
-    payload:index
-  })
-}
+// export function selectSubMeanu(dispatch,index){
+//   dispatch({
+//     type:'left/selectSubMeanu',
+//     payload:index
+//   })
+// }

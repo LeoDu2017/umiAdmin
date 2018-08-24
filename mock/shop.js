@@ -31,7 +31,30 @@ let shopInfoData =Mock.mock({
       title:null,
       email:null,
       mobile:null
-    }
+    },
+    admins:[
+      // {id:'1',username:'Leo Du',name:'杜朝辉',title:'经理',contactNumber:'15824461949',userMode:'1',authorization:'1'},
+      // {id:'2',username:'Tom Wu',name:'吴海涛',title:'总经理',contactNumber:'13854268956',userMode:'1',authorization:'1'}
+      {
+        key: '1',
+        name: 'John Brown',
+        age: 32,
+        address: 'New York No. 1 Lake Park',
+        tags: ['nice', 'developer'],
+      }, {
+        key: '2',
+        name: 'Jim Green',
+        age: 42,
+        address: 'London No. 1 Lake Park',
+        tags: ['loser'],
+      }, {
+        key: '3',
+        name: 'Joe Black',
+        age: 32,
+        address: 'Sidney No. 1 Lake Park',
+        tags: ['cool', 'teacher'],
+      }
+    ]
   }
 });
 let database = shopInfoData.data;
@@ -47,5 +70,12 @@ module.exports = {
     const  info = req.body;
     database = {...database,info};
     res.status(200).json({msg: '提交成功' })
+  },
+  [`GET ${apiPrefix}/shop/admins`] (req, res) {
+    const {admins} = database;
+    res.status(200).json({
+      data: [...admins],
+      msg:'OK'
+    })
   },
 };

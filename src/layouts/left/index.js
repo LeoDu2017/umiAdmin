@@ -5,7 +5,7 @@ import Link from 'umi/link';
 import { Button, Col, Menu} from 'antd';
 import Logo from 'assets/login-logo_casaitaliana.png';
 import Svg from 'components/Svg';
-import {handleToggle,getList,toggleSubMeanu,selectSubMeanu} from 'actions/layout';
+import {handleToggle,getList,toggleSubMeanu} from 'actions/layout';
 
 const LeftSide = ({min,location,currentIndex,subIndex,dispatch,list,open}) =>(
   <Col className= { min ? `${left_side} ${styles.min}` : left_side }>
@@ -15,6 +15,7 @@ const LeftSide = ({min,location,currentIndex,subIndex,dispatch,list,open}) =>(
 
     <Col className={main}>
       <img src={Logo} className={logo} alt="Eurooo Logo"/>
+
       <Menu className={meanu} selectedKeys={[location.pathname]}>
         {
           list.length > 0 && list.map(item => (
@@ -23,7 +24,7 @@ const LeftSide = ({min,location,currentIndex,subIndex,dispatch,list,open}) =>(
               key={item.link}
               style={(currentIndex === item.index && !min && open) ? {height:`${(item.child.length+1)*40}px`}:{height:'40px'}}>
 
-              <Col className={styles.link} onClick={toggleSubMeanu.bind(this,dispatch,item.index,item.link,location,location.search,item.child.length,currentIndex)}>
+              <Col className={styles.link} onClick={toggleSubMeanu.bind(this,dispatch,item.index,item.link,location.search,item.child.length,currentIndex)}>
                 <Svg className={icon} type={item.type}> </Svg>
                 <span className={text}>
                   { item.name }
@@ -38,11 +39,12 @@ const LeftSide = ({min,location,currentIndex,subIndex,dispatch,list,open}) =>(
                 item.child.length > 0 &&
                 <Menu className={submeanu} onClick={toggleSubMeanu.bind(this,dispatch,item.index,item.link,location.search,item.child.length)}>
                   {
+
                     item.child.map(
                       i => (
                         <Menu.Item
                           className={subIndex === i.index ? `${subitem} ${active}` : subitem}
-                          onClick={selectSubMeanu.bind(this,dispatch,i.index)}
+                          // onClick={selectSubMeanu.bind(this,dispatch,i.index)}
                           key={i.link}>
                           <Link className={sublink} to={`${i.link}${location.search}`}>
                              <span className={subtext}>
@@ -78,6 +80,7 @@ function mapStateToProps (state,props){
     state.left.list = data;
     state.left.linkType = type;
   }
+  console.log(subIndex)
 
   return {
     loading:state.loading.models.left,
