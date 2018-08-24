@@ -1,4 +1,5 @@
-import {getShopAdminsService} from 'services/shop';
+import { message } from 'antd';
+import {getShopAdminsService,delShopAdminService} from 'services/shop';
 const admin = {
   namespace:'admin',
   state:{
@@ -17,6 +18,15 @@ const admin = {
         type:'setShopAdmins',
         payload:shopAdmins.data
       })
+    },
+    *deleteShopAdmin({payload},{select,call, put}){
+      const data = yield call(delShopAdminService, payload);
+      if(data.status === 1){
+        message.success(data.msg);
+        yield put({
+          type:'getShopAdmins'
+        })
+      }
     }
   },
   subscriptions:{

@@ -250,7 +250,6 @@ module.exports = {
       database = {...database,tree};
       res.status(200).json({msg: '提交成功' })
     }
-
   },
   [`GET ${apiPrefix}/albums/pictures`] (req, res) {
     const { query } = req;

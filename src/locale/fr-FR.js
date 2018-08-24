@@ -93,5 +93,18 @@ export default{
     "FRANCE":"France",
     "GERMANY":"La Germania",
     "ITALY":"Italie",
+    "USERNAME":"Nom d 'utilisateur",
+    "NAME":"Nom",
+    "TITLE":"Poste",
+    "CONTACT":"Numéro de téléphone",
+    "ACCOUNTSTATUS":"Etat des comptes",
+    "INUSE":"Lors de l'utilisation",
+    "CLOSE":"Fermer",
+    "AUTHORIZATION":"Permissions",
+    "ACTION":"Operating",
+    "INAUTH":"Droit d 'exploitation",
+    "OUTAUTH":"Non - Operating Rights",
+    "RESETPASSWORD":"Cryptographie",
+
   }
 }

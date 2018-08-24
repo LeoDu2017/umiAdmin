@@ -93,5 +93,18 @@ export default {
     "FRANCE":"法国",
     "GERMANY":"德国",
     "ITALY":"意大利",
+    "USERNAME":"用户名",
+    "NAME":"姓名",
+    "TITLE":"职位",
+    "CONTACT":"联系电话",
+    "ACCOUNTSTATUS":"账户状态",
+    "INUSE":"使用中",
+    "CLOSE":"关闭",
+    "AUTHORIZATION":"权限",
+    "ACTION":"操作",
+    "INAUTH":"有操作权限",
+    "OUTAUTH":"无操作权限",
+    "RESETPASSWORD":"重置密码",
+
   }
 }

@@ -58,3 +58,21 @@ export function handleSubmit(dispatch,validateFieldsAndScroll,event){
     dispatch({ type: 'shop/submitEdit', payload: values })
   })
 }
+// 保存
+export function deleteAdmin(dispatch,id,event){
+  event.preventDefault();
+  confirm({
+    title: '提示',
+    content: '您确定要删除此管理员吗？',
+    onOk() {
+      dispatch({
+        type:'admin/deleteShopAdmin',
+        payload:{id}
+      })
+    },
+    onCancel() {
+      console.log('close')
+    },
+  });
+
+}

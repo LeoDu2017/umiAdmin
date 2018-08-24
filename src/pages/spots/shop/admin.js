@@ -1,62 +1,76 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Table,Divider,Tag,Col } from 'antd';
+import { deleteAdmin } from 'actions/shop';
 // dataSource={shopAdmins}
-const adminTable = ({shopAdmins,columns}) => (
-  <Col span={24} className='g-t-wrap'>
-    <Col span={24} className='g-t-main'>
-      <header className='g-t-header'>
+const adminTable = ({dispatch,shopAdmins}) => {
+  const columns = [{
+    title: intl.get('USERNAME'),
+    dataIndex: 'username',
+    key: 'username',
+    render: text => <a href="javascript:;">{text}</a>,
+  }, {
+    title: intl.get('NAME'),
+    dataIndex: 'name',
+    key: 'name',
+  }, {
+    title: intl.get('TITLE'),
+    key: 'title',
+    dataIndex: 'title',
+    render: titles => (
+      <span>
+      {titles.map(title => <Tag color="blue" key={title}>{title}</Tag>)}
+    </span>
+    ),
+  },{
+    title: intl.get('CONTACT'),
+    dataIndex: 'contactNumber',
+    key: 'contactNumber',
+    render: number => number.replace(/(^\d{3}|\d{4}\B)/g,"$1-")
+  },{
+    title: intl.get('ACCOUNTSTATUS'),
+    dataIndex: 'userMode',
+    key: 'userMode',
+    render: model => model ? intl.get('INUSE') : intl.get('CLOSE')
+  },{
+    title: intl.get('AUTHORIZATION'),
+    dataIndex: 'authorization',
+    key: 'authorization',
+    render: auth => auth ? intl.get('INAUTH') : intl.get('OUTAUTH')
+  },{
+    title: intl.get('ACTION'),
+    key: 'action',
+    render: (text, record) => (
+      <span>
+      <a href="javascript:;">{intl.get('RESETPASSWORD')}</a>
+      <Divider type="vertical" />
+      <a href="javascript:;" onClick={deleteAdmin.bind(null,dispatch,record.id)}>{intl.get('DELETE')}</a>
+      <Divider type="vertical" />
+      <a href="javascript:;">{intl.get('EDIT')}</a>
+    </span>
+    ),
+  }];
+  return (
+    <Col span={24} className='g-t-wrap'>
+      <Col span={24} className='g-t-main'>
+        <header className='g-t-header'>
           <span className='g-t-title'>
             {intl.get('SHOPADMIN')}
           </span>
-      </header>
-      <Col className="g-t-form-wrap">
-        <Table dataSource={shopAdmins} columns={columns} />
+        </header>
+        <Col className="g-t-form-wrap">
+          <Table dataSource={shopAdmins} columns={columns} />
+        </Col>
       </Col>
     </Col>
-  </Col>
-);
+  )
+};
 
 function mapStateToProps(state){
   const {shopAdmins} = state.admin;
 
-  const columns = [{
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <a href="javascript:;">{text}</a>,
-  }, {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  }, {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  }, {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: tags => (
-      <span>
-      {tags.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-    </span>
-    ),
-  }, {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <span>
-      <a href="javascript:;">Invite {record.name}</a>
-      <Divider type="vertical" />
-      <a href="javascript:;">Delete</a>
-    </span>
-    ),
-  }];
-
   return{
-    shopAdmins,
-    columns
+    shopAdmins
   }
 }
 

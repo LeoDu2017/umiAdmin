@@ -23,6 +23,7 @@ module.exports = {
     getShopInfoApi:`${APIV1}/shop/info`,
     updateShopInfoApi:`${APIV1}/shop/info/update`,
     getShopAdminsApi:`${APIV1}/shop/admins`,
+    delShopAdminApi:`${APIV1}/shop/admin`,
 
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,

@@ -93,5 +93,18 @@ export default{
     "FRANCE":"La Francia",
     "GERMANY":"La Germania",
     "ITALY":"In Italia",
+    "USERNAME":"IL nome utente",
+    "NAME":"IL nome",
+    "TITLE":"Posti di lavoro",
+    "CONTACT":"IL Numero di telefono",
+    "ACCOUNTSTATUS":"Conti di Stato",
+    "INUSE":"In USO",
+    "CLOSE":"La chiusura di",
+    "AUTHORIZATION":"Permessi",
+    "ACTION":"Operazione",
+    "INAUTH":"Ha il permesso di operare",
+    "OUTAUTH":"Senza il permesso di operare",
+    "RESETPASSWORD":"Di reimpostare la Password",
+
   }
 }

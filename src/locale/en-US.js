@@ -93,5 +93,17 @@ export default {
     "FRANCE":"France",
     "GERMANY":"Germany",
     "ITALY":"Italy",
+    "USERNAME":"Username",
+    "NAME":"Name",
+    "TITLE":"Title",
+    "CONTACT":"Contact number",
+    "ACCOUNTSTATUS":"Account status",
+    "INUSE":"In use",
+    "CLOSE":"Close",
+    "AUTHORIZATION":"Authorization",
+    "ACTION":"Action",
+    "INAUTH":"Operating authority",
+    "OUTAUTH":"No operation permission",
+    "RESETPASSWORD":"Reset password",
   }
 }
