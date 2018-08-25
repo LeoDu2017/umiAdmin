@@ -24,13 +24,13 @@ let usersListData = Mock.mock({
 })
 
 
-let database = usersListData.data
+// let database = usersListData.data
 
 const EnumRoleType = {
   ADMIN: 'admin',
   DEFAULT: 'guest',
   DEVELOPER: 'developer',
-}
+};
 
 const userPermission = {
   DEFAULT: {
@@ -43,31 +43,85 @@ const userPermission = {
   DEVELOPER: {
     role: EnumRoleType.DEVELOPER,
   },
-}
-
+};
+const AccountState = {
+    ON:1,
+    OFF:0,
+};
 const adminUsers = [
   {
+    key:0,
     id: 0,
     username: 'admin',
     password: 'admin',
+    name:'吴敬琏',
+    title: ['总经理'],
+    contactNumber: '18512456323',
+    userMode:AccountState.ON,
     permissions: userPermission.ADMIN,
   }, {
+    key:1,
     id: 1,
     username: 'guest',
     password: 'guest',
+    name:'吴承恩',
+    title: ['副总经理'],
+    contactNumber: '17712345285',
+    userMode:AccountState.ON,
     permissions: userPermission.DEFAULT,
   }, {
+    key:2,
     id: 2,
-    username: '吴彦祖',
+    username: 'Yanzu-Wu',
     password: '123456',
+    name:'吴彦祖',
+    title: ['宣传委员'],
+    contactNumber: '13396562523',
+    userMode:AccountState.ON,
     permissions: userPermission.DEVELOPER,
   },{
+    key:3,
     id: 3,
     username: 'LeoDu',
     password: '123456',
+    name:'杜朝辉',
+    title: ['VIP会员'],
+    contactNumber: '15845632356',
+    userMode:AccountState.ON,
     permissions: userPermission.ADMIN,
-  },
-]
+  },{
+    key: 4,
+    id: 4,
+    username: 'John-Wu',
+    password: '123456',
+    name:'吴海涛',
+    title: ['懂事长', '化学代表'],
+    contactNumber: '15874124563',
+    userMode:AccountState.ON,
+    permissions: userPermission.ADMIN,
+  }, {
+    key: 5,
+    id: 5,
+    username: 'Jim-Wu',
+    password: '123456',
+    name:'吴奇隆',
+    title: ['总经理'],
+    contactNumber: '13958021234',
+    userMode:AccountState.OFF,
+    permissions: userPermission.DEVELOPER,
+
+  }, {
+    key: 6,
+    id: 6,
+    username: 'Joe-Wu',
+    password: '123456',
+    name:'吴亦凡',
+    title: ['销售总监', '总设计师'],
+    contactNumber: '13698526325',
+    userMode:AccountState.OFF,
+    permissions: userPermission.DEVELOPER,
+  }
+];
 
 const queryArray = (array, key, keyAlias = 'key') => {
   if (!(array instanceof Array)) {
@@ -92,9 +146,9 @@ const NOTFOUND = {
   message: 'Not Found',
   documentation_url: 'http://localhost:8000/request',
 }
-
+let database = adminUsers;
 module.exports = {
-
+  // 登录
   [`POST ${apiPrefix}/user/login`] (req, res) {
     const { username, password } = req.body
 
@@ -113,12 +167,12 @@ module.exports = {
       // res.status(400).end()
     }
   },
-
+  // 退出
   [`GET ${apiPrefix}/user/logout`] (req, res) {
     res.clearCookie('token')
     res.status(200).end()
   },
-
+  //
   [`GET ${apiPrefix}/user`] (req, res) {
     const cookie = req.headers.cookie || ''
     const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' })
@@ -143,7 +197,7 @@ module.exports = {
     response.user = user
     res.json(response)
   },
-
+  // 管理员列表
   [`GET ${apiPrefix}/users`] (req, res) {
     const { query } = req;
     let { pageSize, page, ...other } = query;

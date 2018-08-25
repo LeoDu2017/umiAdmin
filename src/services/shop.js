@@ -2,7 +2,7 @@ import request from 'utils/request';
 import { api } from 'utils/config';
 
 
-const { getShopInfoApi,updateShopInfoApi,getShopAdminsApi,delShopAdminApi } = api;
+const { getShopInfoApi,updateShopInfoApi,usersApi,delShopAdminApi } = api;
 
 export function getShopInfoService () {
   return request({
@@ -19,7 +19,7 @@ export function updateShopInfoService(data){
 }
 export function getShopAdminsService(){
   return request({
-    url: getShopAdminsApi,
+    url: usersApi,
     method: 'get'
   })
 }
