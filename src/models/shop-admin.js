@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import {getShopAdminsService,delShopAdminService} from 'services/shop';
+import {getShopAdminsService,delShopAdminService,createShopAdminService} from 'services/shop';
 const admin = {
   namespace:'admin',
   state:{
@@ -27,7 +27,12 @@ const admin = {
           type:'getShopAdmins'
         })
       }
-    }
+    },
+    *createShopAdmin({ payload: values }, { call, put, select }) {
+      yield call(createShopAdminService, values);
+      const page = yield select(state => state.users.page);
+      yield put({ type: 'fetch', payload: { page } });
+    },
   },
   subscriptions:{
     setup({ dispatch,history}){

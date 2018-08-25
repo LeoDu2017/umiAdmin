@@ -58,7 +58,7 @@ export function handleSubmit(dispatch,validateFieldsAndScroll,event){
     dispatch({ type: 'shop/submitEdit', payload: values })
   })
 }
-// 保存
+// 删除管理员
 export function deleteAdmin(dispatch,id,event){
   event.preventDefault();
   confirm({
@@ -75,4 +75,10 @@ export function deleteAdmin(dispatch,id,event){
     },
   });
 
+}
+export function createAdmin(dispatch,values,event){
+  dispatch({
+    type: 'users/createShopAdmin',
+    payload: values,
+  });
 }

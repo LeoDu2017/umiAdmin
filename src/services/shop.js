@@ -2,7 +2,7 @@ import request from 'utils/request';
 import { api } from 'utils/config';
 
 
-const { getShopInfoApi,updateShopInfoApi,usersApi,delShopAdminApi } = api;
+const { getShopInfoApi,updateShopInfoApi,usersApi,delShopAdminApi,createShopAdminApi } = api;
 
 export function getShopInfoService () {
   return request({
@@ -30,7 +30,13 @@ export function delShopAdminService(data){
     data,
   })
 }
-
+export function createShopAdminService(data){
+  return request({
+    url: createShopAdminApi,
+    method: 'post',
+    data,
+  })
+}
 // export function delShopAdminService(id) {
 //   return request(`/shop/admins/${id}`, {
 //     method: 'DELETE',

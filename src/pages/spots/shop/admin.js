@@ -1,7 +1,9 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
-import { Table,Divider,Tag,Col } from 'antd';
-import { deleteAdmin } from 'actions/shop';
+import { Table,Divider,Tag,Col,Button } from 'antd';
+import { deleteAdmin,createAdmin } from 'actions/shop';
+
+import UserModal from 'components/AdminWindow';
 // dataSource={shopAdmins}
 const adminTable = ({dispatch,shopAdmins}) => {
   const columns = [{
@@ -57,6 +59,11 @@ const adminTable = ({dispatch,shopAdmins}) => {
           <span className='g-t-title'>
             {intl.get('SHOPADMIN')}
           </span>
+          <UserModal record={{}} onOk={createAdmin.bind(null,dispatch)}>
+            <Button type='primary' size="small">
+              {intl.get('ADD')}
+            </Button>
+          </UserModal>
         </header>
         <Col className="g-t-form-wrap">
           <Table dataSource={shopAdmins} columns={columns} />

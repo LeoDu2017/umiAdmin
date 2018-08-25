@@ -233,6 +233,26 @@ module.exports = {
       total: newData.length,
     })
   },
+  // 删除管理员
+  [`POST ${apiPrefix}/user/del`] (req, res) {
+    const { id } = req.body;
+    // let { admins } = database;
+    const data = queryArray(database, id, 'id');
+    if (data) {
+      database = database.filter(item => item.id !== id);
+      // database = {...database,admins};
+      res.status(200).json({status:1,msg: '删除成功' })
+      // res.status(204).end()
+    } else {
+      res.status(404).json(NOTFOUND)
+    }
+  },
+  // 添加管理员
+  [`POST ${apiPrefix}/user/add`] (req, res) {
+    const newData = req.body;
+    database.push(newData);
+    res.status(200).json({status:1,msg: '添加成功' })
+  },
 
   [`DELETE ${apiPrefix}/users`] (req, res) {
     const { ids } = req.body
@@ -292,4 +312,5 @@ module.exports = {
       res.status(404).json(NOTFOUND)
     }
   },
+
 }

@@ -23,14 +23,16 @@ module.exports = {
     getShopInfoApi:`${APIV1}/shop/info`,
     updateShopInfoApi:`${APIV1}/shop/info/update`,
     getShopAdminsApi:`${APIV1}/shop/admins`,
-    // delShopAdminApi:`${APIV1}/shop/admin`,
+    delShopAdminApi:`${APIV1}/user/del`,
+    createShopAdminApi:`${APIV1}/user/add`,
+
 
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV1}/userInfo`,
     usersApi: `${APIV1}/users`,
     posts: `${APIV1}/posts`,
-    user: `${APIV1}/user/:id`,
+    // user: `${APIV1}/user/:id`,
     dashboard: `${APIV1}/dashboard`,
     menus: `${APIV1}/menus`,
     weather: `${APIV1}/weather`,
