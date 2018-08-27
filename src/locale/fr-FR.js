@@ -14,6 +14,7 @@ export default{
     "SHOP":"Management de boutique",
     "SHOPINFO":"A propos de boutique",
     "SHOPADMIN":"Le magasin de l'Administrateur",
+    "ADMIN":"Administrateur",
     "BRAND":"La gestion de marque",
     "BRANDLIST":"La liste des marques",
     "PRODUCT":"De gestion de marchandises",
@@ -105,6 +106,7 @@ export default{
     "INAUTH":"Droit d 'exploitation",
     "OUTAUTH":"Non - Operating Rights",
     "RESETPASSWORD":"Cryptographie",
+    "PASSWORD":"Mot de passe",
 
   }
 }

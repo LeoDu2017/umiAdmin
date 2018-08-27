@@ -80,8 +80,6 @@ function mapStateToProps (state,props){
     state.left.list = data;
     state.left.linkType = type;
   }
-  console.log(subIndex)
-
   return {
     loading:state.loading.models.left,
     currentIndex,

@@ -71,7 +71,6 @@ const left = {
       return { ...state,lang}
     },
     selectSubMeanu(state,{payload:subIndex}){
-      console.log(74,subIndex);
       return { ...state,subIndex}
     }
   },
@@ -95,7 +94,6 @@ const left = {
           const subLinkItem = _.find(subLinkList,{link:pathname});
           // const subLinkIndex = Array.indexOf(subLinkList,subLinkItem);
           const subLinkIndex = subLinkItem.index;
-          console.log(97,subLinkIndex);
           dispatch({
             type:'selectSubMeanu',
             payload:subLinkIndex

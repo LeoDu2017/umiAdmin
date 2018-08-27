@@ -1,96 +1,128 @@
-import { Component } from 'react';
-import { Modal, Form, Input } from 'antd';
+import intl from 'react-intl-universal';
+import { Modal, Form, Input,Radio } from 'antd';
+import { connect } from 'dva';
+import { showModelHandler,hideModelHandler,okHandler } from 'actions/common-modal';
 
 const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
 
-class UserEditModal extends Component {
+const formItemLayout = {
+  labelCol: { span: 6 },
+  wrapperCol: { span: 14 },
+};
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
-  }
-
-  showModelHandler = (e) => {
-    if (e) e.stopPropagation();
-    this.setState({
-      visible: true,
-    });
-  };
-
-  hideModelHandler = () => {
-    this.setState({
-      visible: false,
-    });
-  };
-
-  okHandler = () => {
-    const { onOk } = this.props;
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        onOk(values);
-        this.hideModelHandler();
-      }
-    });
-  };
-
-  render() {
-    const { children } = this.props;
-    const { getFieldDecorator } = this.props.form;
-    const { name, email, website } = this.props.record;
-    const formItemLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 14 },
-    };
-
-    return (
-      <span>
-        <span onClick={this.showModelHandler}>
-          { children }
-        </span>
-        <Modal
-          title="Edit User"
-          visible={this.state.visible}
-          onOk={this.okHandler}
-          onCancel={this.hideModelHandler}
-        >
-          <Form horizontal="true" onSubmit={this.okHandler}>
-            <FormItem
-              {...formItemLayout}
-              label="Name"
-            >
-              {
-                getFieldDecorator('name', {
-                  initialValue: name,
-                })(<Input />)
-              }
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label="Email"
-            >
-              {
-                getFieldDecorator('email', {
-                  initialValue: email,
-                })(<Input />)
-              }
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label="Website"
-            >
-              {
-                getFieldDecorator('website', {
-                  initialValue: website,
-                })(<Input />)
-              }
-            </FormItem>
-          </Form>
-        </Modal>
+const UserEditModal = ({dispatch,children,visible,add,onOk,record,form:{getFieldDecorator,validateFields,resetFields}})=> {
+  return (
+    <span>
+      <span onClick={showModelHandler.bind(null,dispatch)}>
+        { children }
       </span>
-    );
+      <Modal
+        title= {add ? `${intl.get('ADD')}${intl.get('ADMIN')}` : `${intl.get('EDIT')}${intl.get('ADMIN')}`}
+        visible={visible}
+        onOk={okHandler.bind(null,dispatch,validateFields,onOk)}
+        onCancel={hideModelHandler.bind(null,dispatch)}
+      >
+        <Form horizontal="true" onSubmit={okHandler.bind(null,dispatch,validateFields,onOk)}>
+          <FormItem
+            {...formItemLayout}
+            label={intl.get('USERNAME')}
+          >
+            {
+              getFieldDecorator('username', {
+                initialValue:record.username,
+              })(<Input />)
+            }
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={intl.get('PASSWORD')}
+          >
+            {
+              getFieldDecorator('password', {
+                initialValue:record.password,
+              })(<Input />)
+            }
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={intl.get('NAME')}
+          >
+            {
+              getFieldDecorator('name', {
+                initialValue:record.name,
+              })(<Input />)
+            }
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={intl.get('TITLE')}
+          >
+            {
+              getFieldDecorator('title', {
+                initialValue:record.title,
+              })(<Input />)
+            }
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={intl.get('CONTACT')}
+          >
+            {
+              getFieldDecorator('contactNumber', {
+                initialValue:record.contactNumber,
+              })(<Input />)
+            }
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={intl.get('ACCOUNTSTATUS')}
+          >
+            {
+              getFieldDecorator('userMode', {
+                initialValue:record.userMode,
+              })(
+                <RadioGroup>
+                  <Radio value={1}>{intl.get('INUSE')}</Radio>
+                  <Radio value={0}>{intl.get('CLOSE')}</Radio>
+                </RadioGroup>
+              )
+            }
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={intl.get('AUTHORIZATION')}
+          >
+            {
+              getFieldDecorator('authorization', {
+                initialValue:record.authorization,
+              })(
+                <RadioGroup>
+                  <Radio value={1}>{intl.get('INAUTH')}</Radio>
+                  <Radio value={0}>{intl.get('OUTAUTH')}</Radio>
+                </RadioGroup>
+              )
+            }
+          </FormItem>
+
+
+
+        </Form>
+      </Modal>
+    </span>
+  )
+};
+
+function mapStateToProps(state){
+  const {visible} = state.commonModal;
+  return{
+    visible
   }
 }
 
-export default Form.create()(UserEditModal);
+
+
+//  Form.create()(UserEditModal); {onFieldsChange:FieldsChange}
+
+export default connect(mapStateToProps)(Form.create()(UserEditModal));
+

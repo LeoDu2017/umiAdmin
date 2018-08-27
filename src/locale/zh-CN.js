@@ -7,6 +7,7 @@ export default {
     "SURE":"确定",
     "LANG":"语言",
     "EDIT":"编辑",
+
     "PWD":"修改密码",
     "INO":"修改账户资料",
     "OUT":"退出",
@@ -14,6 +15,7 @@ export default {
     "SHOP":"店铺管理",
     "SHOPINFO":"店铺信息",
     "SHOPADMIN":"店铺管理员",
+    "ADMIN":"管理员",
     "BRAND":"品牌管理",
     "BRANDLIST":"品牌列表",
     "PRODUCT":"商品管理",
@@ -105,6 +107,6 @@ export default {
     "INAUTH":"有操作权限",
     "OUTAUTH":"无操作权限",
     "RESETPASSWORD":"重置密码",
-
+    "PASSWORD":"密码",
   }
 }

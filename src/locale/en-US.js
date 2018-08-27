@@ -14,6 +14,7 @@ export default {
     "SHOP":"Shop management",
     "SHOPINFO":"About spots",
     "SHOPADMIN":"Store keeper",
+    "ADMIN":"Keeper",
     "BRAND":"Brand management",
     "BRANDLIST":"Brand list",
     "PRODUCT":"Commodity management",
@@ -105,5 +106,6 @@ export default {
     "INAUTH":"Operating authority",
     "OUTAUTH":"No operation permission",
     "RESETPASSWORD":"Reset password",
+    "PASSWORD":"Password",
   }
 }

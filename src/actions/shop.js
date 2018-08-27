@@ -77,6 +77,7 @@ export function deleteAdmin(dispatch,id,event){
 
 }
 export function createAdmin(dispatch,values,event){
+  console.log('OK')
   dispatch({
     type: 'users/createShopAdmin',
     payload: values,

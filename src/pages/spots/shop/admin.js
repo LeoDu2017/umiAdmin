@@ -59,7 +59,7 @@ const adminTable = ({dispatch,shopAdmins}) => {
           <span className='g-t-title'>
             {intl.get('SHOPADMIN')}
           </span>
-          <UserModal record={{}} onOk={createAdmin.bind(null,dispatch)}>
+          <UserModal record={{}} add={false} onOk={createAdmin.bind(null,dispatch)}>
             <Button type='primary' size="small">
               {intl.get('ADD')}
             </Button>

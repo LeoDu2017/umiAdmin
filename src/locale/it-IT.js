@@ -14,6 +14,7 @@ export default{
     "SHOP":"Gestione del negozio",
     "SHOPINFO":"A propos de boutique",
     "SHOPADMIN":"Il negozio di amministratore",
+    "ADMIN":"Amministratore",
     "BRAND":"La gestione del marchio",
     "BRANDLIST":"Lista delle Marche",
     "PRODUCT":"La gestione delle Materie Prime",
@@ -104,7 +105,7 @@ export default{
     "ACTION":"Operazione",
     "INAUTH":"Ha il permesso di operare",
     "OUTAUTH":"Senza il permesso di operare",
-    "RESETPASSWORD":"Di reimpostare la Password",
+    "PASSWORD":"Password",
 
   }
 }
