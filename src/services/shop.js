@@ -2,7 +2,7 @@ import request from 'utils/request';
 import { api } from 'utils/config';
 
 
-const { getShopInfoApi,updateShopInfoApi,usersApi,delShopAdminApi,createShopAdminApi } = api;
+const { getShopInfoApi,updateShopInfoApi,usersApi,delShopAdminApi,createShopAdminApi,resetPasswordApi } = api;
 
 export function getShopInfoService () {
   return request({
@@ -41,6 +41,14 @@ export function updateShopAdminService(id, values){
   const data = {...values,id};
   return request({
     url: createShopAdminApi,
+    method: 'post',
+    data,
+  })
+}
+export function resetPasswordService(id){
+  const data = {id};
+  return request({
+    url: resetPasswordApi,
     method: 'post',
     data,
   })

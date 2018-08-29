@@ -4,7 +4,7 @@ import { Table,Divider,Tag,Col,Button } from 'antd';
 import { deleteAdmin,createAdmin,editHandler,resetPassword } from 'actions/shop';
 
 import UserModal from 'components/AdminWindow';
-// dataSource={shopAdmins}
+
 const adminTable = ({dispatch,shopAdmins}) => {
   const columns = [{
     title: intl.get('USERNAME'),
@@ -44,7 +44,7 @@ const adminTable = ({dispatch,shopAdmins}) => {
     key: 'action',
     render: (text, record) => (
       <span>
-      <a href="javascript:;" onClick={resetPassword.bind(null,dispatch)}>{intl.get('RESETPASSWORD')}</a>
+      <a href="javascript:;" onClick={resetPassword.bind(null,dispatch,record.id)}>{intl.get('RESETPASSWORD')}</a>
       <Divider type="vertical" />
       <a href="javascript:;" onClick={deleteAdmin.bind(null,dispatch,record.id)}>{intl.get('DELETE')}</a>
       <Divider type="vertical" />

@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import {getShopAdminsService,delShopAdminService,createShopAdminService,updateShopAdminService} from 'services/shop';
+import {getShopAdminsService,delShopAdminService,createShopAdminService,updateShopAdminService,resetPasswordService} from 'services/shop';
 const admin = {
   namespace:'admin',
   state:{
@@ -47,9 +47,8 @@ const admin = {
       // const page = yield select(state => state.users.page);
       // yield put({ type: 'fetch', payload: { page } });
     },
-    *resetPassWord({ payload }, { call, put, select }) {
-
-      const data = yield call(updateShopAdminService);
+    *resetPassword({ payload:id }, { call, put, select }) {
+      const data = yield call(resetPasswordService,id);
       if(data.status === 1) {
         message.success('重置成功');
       }

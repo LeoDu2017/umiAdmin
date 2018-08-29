@@ -277,6 +277,20 @@ module.exports = {
     }
     res.status(200).json({status:1,msg: '添加成功' })
   },
+  // 重置管理员密码
+  [`POST ${apiPrefix}/user/reset`] (req, res) {
+    const {id} = req.body;
+    console.log(id);
+    database = database.map((item) => {
+      if (item.id === id) {
+        let password = '123456';
+        return Object.assign({},item,{password})
+      }
+      return item
+    });
+    console.log(database);
+    res.status(200).json({status:1,msg: '重置成功' })
+  },
 
   [`DELETE ${apiPrefix}/users`] (req, res) {
     const { ids } = req.body

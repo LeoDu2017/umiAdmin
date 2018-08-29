@@ -25,6 +25,7 @@ module.exports = {
     getShopAdminsApi:`${APIV1}/shop/admins`,
     delShopAdminApi:`${APIV1}/user/del`,
     createShopAdminApi:`${APIV1}/user/add`,
+    resetPasswordApi:`${APIV1}/user/reset`,
 
 
     userLogin: `${APIV1}/user/login`,

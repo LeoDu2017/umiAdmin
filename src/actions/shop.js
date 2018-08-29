@@ -1,4 +1,4 @@
-import { Modal } from 'antd';
+import { Modal,Message } from 'antd';
 const confirm = Modal.confirm;
 export function selectImgs(dispatch,selected){
   dispatch({
@@ -47,7 +47,6 @@ export function FieldsChange({dispatch,...props}, fields){
     payload:{[field.name]:field.value}
   });
 }
-
 // 保存
 export function handleSubmit(dispatch,validateFieldsAndScroll,event){
   event.preventDefault();
@@ -76,15 +75,30 @@ export function deleteAdmin(dispatch,id,event){
   });
 
 }
+// 新增管理员
 export function createAdmin(dispatch,values,event){
   dispatch({
     type: 'admin/createShopAdmin',
     payload: values,
   });
 }
+// 编辑管理员
 export function editHandler(dispatch,id, values) {
   dispatch({
     type: 'admin/editShopAdmin',
     payload: { id,values },
+  });
+}
+// 重置管理员密码
+export function resetPassword(dispatch,id){
+  confirm({
+    title: '是否要重置该管理员的密码?',
+    content: '重置后的原始密码为：123456',
+    onOk() {
+      dispatch({ type: 'admin/resetPassword', payload:id });
+    },
+    onCancel() {
+
+    },
   });
 }
