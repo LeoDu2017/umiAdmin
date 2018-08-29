@@ -37,6 +37,14 @@ export function createShopAdminService(data){
     data,
   })
 }
+export function updateShopAdminService(id, values){
+  const data = {...values,id};
+  return request({
+    url: createShopAdminApi,
+    method: 'post',
+    data,
+  })
+}
 // export function delShopAdminService(id) {
 //   return request(`/shop/admins/${id}`, {
 //     method: 'DELETE',

@@ -1,7 +1,7 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Table,Divider,Tag,Col,Button } from 'antd';
-import { deleteAdmin,createAdmin } from 'actions/shop';
+import { deleteAdmin,createAdmin,editHandler,resetPassword } from 'actions/shop';
 
 import UserModal from 'components/AdminWindow';
 // dataSource={shopAdmins}
@@ -21,8 +21,8 @@ const adminTable = ({dispatch,shopAdmins}) => {
     dataIndex: 'title',
     render: titles => (
       <span>
-      {titles.map(title => <Tag color="blue" key={title}>{title}</Tag>)}
-    </span>
+        {titles.split(',').map(title => <Tag color="blue" key={title}>{title}</Tag>)}
+      </span>
     ),
   },{
     title: intl.get('CONTACT'),
@@ -36,19 +36,23 @@ const adminTable = ({dispatch,shopAdmins}) => {
     render: model => model ? intl.get('INUSE') : intl.get('CLOSE')
   },{
     title: intl.get('AUTHORIZATION'),
-    dataIndex: 'authorization',
-    key: 'authorization',
+    dataIndex: 'permissions',
+    key: 'permissions',
     render: auth => auth ? intl.get('INAUTH') : intl.get('OUTAUTH')
   },{
     title: intl.get('ACTION'),
     key: 'action',
     render: (text, record) => (
       <span>
-      <a href="javascript:;">{intl.get('RESETPASSWORD')}</a>
+      <a href="javascript:;" onClick={resetPassword.bind(null,dispatch)}>{intl.get('RESETPASSWORD')}</a>
       <Divider type="vertical" />
       <a href="javascript:;" onClick={deleteAdmin.bind(null,dispatch,record.id)}>{intl.get('DELETE')}</a>
       <Divider type="vertical" />
-      <a href="javascript:;">{intl.get('EDIT')}</a>
+      <UserModal record={record} add={false} id={record.id} onOk={editHandler.bind(null,dispatch,record.id)}>
+        <a href="javascript:;">
+          {intl.get('EDIT')}
+        </a>
+      </UserModal>
     </span>
     ),
   }];
@@ -59,7 +63,7 @@ const adminTable = ({dispatch,shopAdmins}) => {
           <span className='g-t-title'>
             {intl.get('SHOPADMIN')}
           </span>
-          <UserModal record={{}} add={false} onOk={createAdmin.bind(null,dispatch)}>
+          <UserModal record={{}} id={-1} add={true} onOk={createAdmin.bind(null,dispatch)}>
             <Button type='primary' size="small">
               {intl.get('ADD')}
             </Button>

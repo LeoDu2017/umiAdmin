@@ -1,24 +1,27 @@
-export function showModelHandler(dispatch,event){
+export function showModelHandler(dispatch,id,event){
   if (event) event.stopPropagation();
+
   dispatch({
     type:'commonModal/setVisible',
-    payload:true
+    payload:{[id]:true}
   })
 }
-export function hideModelHandler(dispatch,event){
+export function hideModelHandler(dispatch,resetFields,id,event){
+  resetFields();
   dispatch({
     type:'commonModal/setVisible',
-    payload:false
+    payload:{[id]:false}
   })
 }
-export function okHandler(dispatch,validateFields,callBack){
+export function okHandler(dispatch,validateFields,callBack,id){
+
   validateFields((err, values) => {
     if (!err) {
-      callBack(values);
       dispatch({
         type:'commonModal/setVisible',
-        payload:false
-      })
+        payload:{[id]:false}
+      });
+      callBack(values);
     }
   });
 }

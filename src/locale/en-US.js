@@ -107,5 +107,10 @@ export default {
     "OUTAUTH":"No operation permission",
     "RESETPASSWORD":"Reset password",
     "PASSWORD":"Password",
+    "INPUTUSERNAME":"Please input user name",
+    "INPUTUPASSWORD":"Please input password",
+    "INPUTNAME":"Please input name",
+    "INPUTCONTACT":"Please input the telephone number.",
+    "SELECTAUTHORIZATION":"Please select operation privileges.",
   }
 }

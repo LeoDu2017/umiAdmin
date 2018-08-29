@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import {getShopAdminsService,delShopAdminService,createShopAdminService} from 'services/shop';
+import {getShopAdminsService,delShopAdminService,createShopAdminService,updateShopAdminService} from 'services/shop';
 const admin = {
   namespace:'admin',
   state:{
@@ -29,9 +29,33 @@ const admin = {
       }
     },
     *createShopAdmin({ payload: values }, { call, put, select }) {
-      yield call(createShopAdminService, values);
-      const page = yield select(state => state.users.page);
-      yield put({ type: 'fetch', payload: { page } });
+      const data = yield call(createShopAdminService, values);
+      // const page = yield select(state => state.users.page);
+      if(data.status === 1) {
+        message.success(data.msg);
+        yield put({type: 'getShopAdmins', payload: {}});
+      }
+    },
+    *editShopAdmin({ payload }, { call, put, select }) {
+      const {id,values} = payload;
+      const data = yield call(updateShopAdminService, id, values);
+      if(data.status === 1) {
+        message.success('编辑成功');
+        yield put({type: 'getShopAdmins', payload: {}});
+      }
+
+      // const page = yield select(state => state.users.page);
+      // yield put({ type: 'fetch', payload: { page } });
+    },
+    *resetPassWord({ payload }, { call, put, select }) {
+
+      const data = yield call(updateShopAdminService);
+      if(data.status === 1) {
+        message.success('重置成功');
+      }
+
+      // const page = yield select(state => state.users.page);
+      // yield put({ type: 'fetch', payload: { page } });
     },
   },
   subscriptions:{

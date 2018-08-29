@@ -108,5 +108,10 @@ export default {
     "OUTAUTH":"无操作权限",
     "RESETPASSWORD":"重置密码",
     "PASSWORD":"密码",
+    "INPUTUSERNAME":"请输入用户名称",
+    "INPUTUPASSWORD":"请输入密码",
+    "INPUTNAME":"请输入姓名",
+    "INPUTCONTACT":"请输入联系电话",
+    "SELECTAUTHORIZATION":"请选择操作权限",
   }
 }

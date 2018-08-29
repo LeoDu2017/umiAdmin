@@ -11,37 +11,43 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-const UserEditModal = ({dispatch,children,visible,add,onOk,record,form:{getFieldDecorator,validateFields,resetFields}})=> {
+
+
+const UserEditModal = ({dispatch,children,visible,id,add,onOk,record,form:{getFieldDecorator,validateFields,resetFields}})=> {
   return (
     <span>
-      <span onClick={showModelHandler.bind(null,dispatch)}>
+      <span onClick={showModelHandler.bind(null,dispatch,id)}>
         { children }
       </span>
       <Modal
         title= {add ? `${intl.get('ADD')}${intl.get('ADMIN')}` : `${intl.get('EDIT')}${intl.get('ADMIN')}`}
-        visible={visible}
-        onOk={okHandler.bind(null,dispatch,validateFields,onOk)}
-        onCancel={hideModelHandler.bind(null,dispatch)}
+        visible={visible[id]}
+        onOk={okHandler.bind(null,dispatch,validateFields,onOk,id)}
+        onCancel={hideModelHandler.bind(null,dispatch,resetFields,id)}
       >
         <Form horizontal="true" onSubmit={okHandler.bind(null,dispatch,validateFields,onOk)}>
           <FormItem
             {...formItemLayout}
             label={intl.get('USERNAME')}
+            style={add ? {display:'block'} : {display:'none'}}
           >
             {
               getFieldDecorator('username', {
                 initialValue:record.username,
-              })(<Input />)
+                rules: [{required: true, message:intl.get('INPUTUSERNAME')}],
+              })(<Input placeholder={intl.get('INPUTUSERNAME')} />)
             }
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={intl.get('PASSWORD')}
+            style={add ? {display:'block'} : {display:'none'}}
           >
             {
               getFieldDecorator('password', {
                 initialValue:record.password,
-              })(<Input />)
+                rules: [{required: true, message:intl.get('INPUTUPASSWORD')}],
+              })(<Input placeholder={intl.get('INPUTUPASSWORD')} />)
             }
           </FormItem>
           <FormItem
@@ -51,7 +57,8 @@ const UserEditModal = ({dispatch,children,visible,add,onOk,record,form:{getField
             {
               getFieldDecorator('name', {
                 initialValue:record.name,
-              })(<Input />)
+                rules: [{required: true, message:intl.get('INPUTNAME')}],
+              })(<Input placeholder={intl.get('INPUTNAME')} />)
             }
           </FormItem>
           <FormItem
@@ -61,7 +68,7 @@ const UserEditModal = ({dispatch,children,visible,add,onOk,record,form:{getField
             {
               getFieldDecorator('title', {
                 initialValue:record.title,
-              })(<Input />)
+              })(<Input placeholder={intl.get('INPUTADMINTITLE')} />)
             }
           </FormItem>
           <FormItem
@@ -71,7 +78,8 @@ const UserEditModal = ({dispatch,children,visible,add,onOk,record,form:{getField
             {
               getFieldDecorator('contactNumber', {
                 initialValue:record.contactNumber,
-              })(<Input />)
+                rules: [{required: true, message:intl.get('INPUTCONTACT')}],
+              })(<Input placeholder={intl.get('INPUTCONTACT')}/>)
             }
           </FormItem>
           <FormItem
@@ -94,8 +102,9 @@ const UserEditModal = ({dispatch,children,visible,add,onOk,record,form:{getField
             label={intl.get('AUTHORIZATION')}
           >
             {
-              getFieldDecorator('authorization', {
-                initialValue:record.authorization,
+              getFieldDecorator('permissions', {
+                initialValue:record.permissions,
+                rules: [{required: true, message:intl.get('SELECTAUTHORIZATION')}],
               })(
                 <RadioGroup>
                   <Radio value={1}>{intl.get('INAUTH')}</Radio>
@@ -104,17 +113,15 @@ const UserEditModal = ({dispatch,children,visible,add,onOk,record,form:{getField
               )
             }
           </FormItem>
-
-
-
         </Form>
       </Modal>
     </span>
   )
 };
 
-function mapStateToProps(state){
+function mapStateToProps(state,props){
   const {visible} = state.commonModal;
+  const {id} = props;
   return{
     visible
   }

@@ -26,10 +26,15 @@ let usersListData = Mock.mock({
 
 // let database = usersListData.data
 
+// const EnumRoleType = {
+//   ADMIN: 'admin',
+//   DEFAULT: 'guest',
+//   DEVELOPER: 'developer',
+// };
 const EnumRoleType = {
-  ADMIN: 'admin',
-  DEFAULT: 'guest',
-  DEVELOPER: 'developer',
+  ADMIN: 1,
+  DEFAULT: 0,
+  DEVELOPER: 1,
 };
 
 const userPermission = {
@@ -55,7 +60,7 @@ const adminUsers = [
     username: 'admin',
     password: 'admin',
     name:'吴敬琏',
-    title: ['总经理'],
+    title: '总经理',
     contactNumber: '18512456323',
     userMode:AccountState.ON,
     permissions: userPermission.ADMIN,
@@ -65,50 +70,50 @@ const adminUsers = [
     username: 'guest',
     password: 'guest',
     name:'吴承恩',
-    title: ['副总经理'],
+    title: '副总经理',
     contactNumber: '17712345285',
     userMode:AccountState.ON,
-    permissions: userPermission.DEFAULT,
+    permissions: EnumRoleType.DEFAULT,
   }, {
     key:2,
     id: 2,
     username: 'Yanzu-Wu',
     password: '123456',
     name:'吴彦祖',
-    title: ['宣传委员'],
+    title: '宣传委员',
     contactNumber: '13396562523',
     userMode:AccountState.ON,
-    permissions: userPermission.DEVELOPER,
+    permissions: EnumRoleType.DEVELOPER,
   },{
     key:3,
     id: 3,
     username: 'LeoDu',
     password: '123456',
     name:'杜朝辉',
-    title: ['VIP会员'],
+    title: 'VIP会员',
     contactNumber: '15845632356',
     userMode:AccountState.ON,
-    permissions: userPermission.ADMIN,
+    permissions: EnumRoleType.ADMIN,
   },{
     key: 4,
     id: 4,
     username: 'John-Wu',
     password: '123456',
     name:'吴海涛',
-    title: ['懂事长', '化学代表'],
+    title: '懂事长,化学代表',
     contactNumber: '15874124563',
     userMode:AccountState.ON,
-    permissions: userPermission.ADMIN,
+    permissions: EnumRoleType.ADMIN,
   }, {
     key: 5,
     id: 5,
     username: 'Jim-Wu',
     password: '123456',
     name:'吴奇隆',
-    title: ['总经理'],
+    title: '总经理',
     contactNumber: '13958021234',
     userMode:AccountState.OFF,
-    permissions: userPermission.DEVELOPER,
+    permissions: EnumRoleType.DEVELOPER,
 
   }, {
     key: 6,
@@ -116,10 +121,10 @@ const adminUsers = [
     username: 'Joe-Wu',
     password: '123456',
     name:'吴亦凡',
-    title: ['销售总监', '总设计师'],
+    title: '销售总监,总设计师',
     contactNumber: '13698526325',
     userMode:AccountState.OFF,
-    permissions: userPermission.DEVELOPER,
+    permissions: EnumRoleType.DEVELOPER,
   }
 ];
 
@@ -204,10 +209,14 @@ module.exports = {
     pageSize = pageSize || 10;
     page = page || 1;
 
-    let newData = database
+    let newData = database;
+
     for (let key in other) {
       if ({}.hasOwnProperty.call(other, key)) {
+
         newData = newData.filter((item) => {
+          const {password,...rest} = item;
+          console.log(item);
           if ({}.hasOwnProperty.call(item, key)) {
             if (key === 'address') {
               return other[key].every(iitem => item[key].indexOf(iitem) > -1)
@@ -227,7 +236,10 @@ module.exports = {
         })
       }
     }
-
+    newData = newData.map(item => {
+      const {password,...reset} = item;
+      return reset
+    });
     res.status(200).json({
       data: newData.slice((page - 1) * pageSize, page * pageSize),
       total: newData.length,
@@ -250,7 +262,19 @@ module.exports = {
   // 添加管理员
   [`POST ${apiPrefix}/user/add`] (req, res) {
     const newData = req.body;
-    database.push(newData);
+    const len = database.length;
+    if(newData.hasOwnProperty('id')){
+      database = database.map((item) => {
+        if (item.id === newData.id) {
+          return Object.assign({}, item, newData)
+        }
+        return item
+      });
+    }else{
+      newData.id = len;
+      newData.key = len;
+      database.push(newData);
+    }
     res.status(200).json({status:1,msg: '添加成功' })
   },
 
@@ -265,6 +289,7 @@ module.exports = {
     const newData = req.body
     newData.createTime = Mock.mock('@now')
     newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
+
     newData.id = Mock.mock('@id')
 
     database.unshift(newData)

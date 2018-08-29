@@ -77,9 +77,14 @@ export function deleteAdmin(dispatch,id,event){
 
 }
 export function createAdmin(dispatch,values,event){
-  console.log('OK')
   dispatch({
-    type: 'users/createShopAdmin',
+    type: 'admin/createShopAdmin',
     payload: values,
+  });
+}
+export function editHandler(dispatch,id, values) {
+  dispatch({
+    type: 'admin/editShopAdmin',
+    payload: { id,values },
   });
 }

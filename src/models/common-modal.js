@@ -1,11 +1,18 @@
 export default{
   namespace:'commonModal',
   state:{
-    visible:false
+    visible:{}
   },
   reducers:{
-    setVisible(state,{payload:visible}){
+    setVisible(state,{payload}){
+      let visible = state.visible;
+      visible = {...visible,...payload};
       return { ...state,visible}
+    }
+  },
+  subscriptions:{
+    setup({ dispatch,history}){
+
     }
   }
 }

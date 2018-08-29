@@ -106,6 +106,10 @@ export default{
     "INAUTH":"Ha il permesso di operare",
     "OUTAUTH":"Senza il permesso di operare",
     "PASSWORD":"Password",
-
+    "INPUTUSERNAME":"Inserisci un nome utente",
+    "INPUTUPASSWORD":"Inserisci la Password",
+    "INPUTNAME":"Inserisci il nome",
+    "INPUTCONTACT":"Inserisci il telefono.",
+    "SELECTAUTHORIZATION":"Per favore, La scelta dell'Autorità di gestione",
   }
 }

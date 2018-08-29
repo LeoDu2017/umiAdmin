@@ -107,6 +107,10 @@ export default{
     "OUTAUTH":"Non - Operating Rights",
     "RESETPASSWORD":"Cryptographie",
     "PASSWORD":"Mot de passe",
-
+    "INPUTUSERNAME":"Nom de l 'utilisateur",
+    "INPUTUPASSWORD":"Veuillez saisir le mot de passe",
+    "INPUTNAME":"Veuillez entrer un nom",
+    "INPUTCONTACT":"Veuillez saisir le téléphone.",
+    "SELECTAUTHORIZATION":"Option d 'exploitation",
   }
 }
