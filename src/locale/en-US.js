@@ -112,5 +112,7 @@ export default {
     "INPUTNAME":"Please input name",
     "INPUTCONTACT":"Please input the telephone number.",
     "SELECTAUTHORIZATION":"Please select operation privileges.",
+    "AVATAR":"Avatar",
+
   }
 }

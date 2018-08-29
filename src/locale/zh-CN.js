@@ -113,5 +113,7 @@ export default {
     "INPUTNAME":"请输入姓名",
     "INPUTCONTACT":"请输入联系电话",
     "SELECTAUTHORIZATION":"请选择操作权限",
+    "AVATAR":"头像",
+
   }
 }

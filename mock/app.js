@@ -64,6 +64,7 @@ const adminUsers = [
     contactNumber: '18512456323',
     userMode:AccountState.ON,
     permissions: userPermission.ADMIN,
+    avatar: Mock.Random.image('100x100', Mock.Random.color(), '#fff', 'png','A')
   }, {
     key:1,
     id: 1,
@@ -74,6 +75,7 @@ const adminUsers = [
     contactNumber: '17712345285',
     userMode:AccountState.ON,
     permissions: EnumRoleType.DEFAULT,
+    avatar: Mock.Random.image('100x100', Mock.Random.color(), '#fff', 'png','G')
   }, {
     key:2,
     id: 2,
@@ -84,6 +86,7 @@ const adminUsers = [
     contactNumber: '13396562523',
     userMode:AccountState.ON,
     permissions: EnumRoleType.DEVELOPER,
+    avatar: Mock.Random.image('100x100', Mock.Random.color(), '#fff', 'png','Y')
   },{
     key:3,
     id: 3,
@@ -94,6 +97,7 @@ const adminUsers = [
     contactNumber: '15845632356',
     userMode:AccountState.ON,
     permissions: EnumRoleType.ADMIN,
+    avatar: Mock.Random.image('100x100', Mock.Random.color(), '#fff', 'png','L')
   },{
     key: 4,
     id: 4,
@@ -104,6 +108,7 @@ const adminUsers = [
     contactNumber: '15874124563',
     userMode:AccountState.ON,
     permissions: EnumRoleType.ADMIN,
+    avatar: Mock.Random.image('100x100', Mock.Random.color(), '#fff', 'png','J')
   }, {
     key: 5,
     id: 5,
@@ -114,6 +119,7 @@ const adminUsers = [
     contactNumber: '13958021234',
     userMode:AccountState.OFF,
     permissions: EnumRoleType.DEVELOPER,
+    avatar: Mock.Random.image('100x100', Mock.Random.color(), '#fff', 'png','J')
 
   }, {
     key: 6,
@@ -125,6 +131,7 @@ const adminUsers = [
     contactNumber: '13698526325',
     userMode:AccountState.OFF,
     permissions: EnumRoleType.DEVELOPER,
+    avatar: Mock.Random.image('100x100', Mock.Random.color(), '#fff', 'png','J')
   }
 ];
 
@@ -274,13 +281,14 @@ module.exports = {
       newData.id = len;
       newData.key = len;
       database.push(newData);
+      newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#fff', 'png', newData.username.substr(0, 1))
+
     }
     res.status(200).json({status:1,msg: '添加成功' })
   },
   // 重置管理员密码
   [`POST ${apiPrefix}/user/reset`] (req, res) {
     const {id} = req.body;
-    console.log(id);
     database = database.map((item) => {
       if (item.id === id) {
         let password = '123456';
@@ -288,7 +296,6 @@ module.exports = {
       }
       return item
     });
-    console.log(database);
     res.status(200).json({status:1,msg: '重置成功' })
   },
 

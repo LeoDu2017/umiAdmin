@@ -7,6 +7,11 @@ import UserModal from 'components/AdminWindow';
 
 const adminTable = ({dispatch,shopAdmins}) => {
   const columns = [{
+    title: intl.get('AVATAR'),
+    dataIndex: 'avatar',
+    key: 'avatar',
+    render: (data,record) =><img width={26} src={data} alt={record.username}/>,
+  },{
     title: intl.get('USERNAME'),
     dataIndex: 'username',
     key: 'username',

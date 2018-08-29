@@ -112,5 +112,6 @@ export default{
     "INPUTNAME":"Veuillez entrer un nom",
     "INPUTCONTACT":"Veuillez saisir le téléphone.",
     "SELECTAUTHORIZATION":"Option d 'exploitation",
+    "AVATAR":"Avatar",
   }
 }

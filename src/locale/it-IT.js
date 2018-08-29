@@ -111,5 +111,6 @@ export default{
     "INPUTNAME":"Inserisci il nome",
     "INPUTCONTACT":"Inserisci il telefono.",
     "SELECTAUTHORIZATION":"Per favore, La scelta dell'Autorità di gestione",
+    "AVATAR":"Avatar",
   }
 }
