@@ -38,18 +38,20 @@ const UserEditModal = ({dispatch,children,visible,id,add,onOk,record,form:{getFi
               })(<Input placeholder={intl.get('INPUTUSERNAME')} />)
             }
           </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label={intl.get('PASSWORD')}
-            style={add ? {display:'block'} : {display:'none'}}
-          >
-            {
-              getFieldDecorator('password', {
-                initialValue:record.password,
-                rules: [{required: true, message:intl.get('INPUTUPASSWORD')}],
-              })(<Input placeholder={intl.get('INPUTUPASSWORD')} />)
-            }
-          </FormItem>
+          {
+            add && <FormItem
+              {...formItemLayout}
+              label={intl.get('PASSWORD')}
+              style={add ? {display:'block'} : {display:'none'}}
+            >
+              {
+                getFieldDecorator('password', {
+                  initialValue:record.password,
+                  rules: [{required: true, message:intl.get('INPUTUPASSWORD')}],
+                })(<Input placeholder={intl.get('INPUTUPASSWORD')} />)
+              }
+            </FormItem>
+          }
           <FormItem
             {...formItemLayout}
             label={intl.get('NAME')}
