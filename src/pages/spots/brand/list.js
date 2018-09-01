@@ -44,12 +44,14 @@ const brandList = ({dispatch,brands}) => {
             我的品牌
           </span>
           <span>
-            <Button type='primary' size="small">
-              选择品牌
-            </Button>
-            <Button type='primary' size="small">
-              创建品牌
-            </Button>
+            <Button.Group size="small">
+              <Button type='primary'>
+                选择品牌
+              </Button>
+              <Button type='primary'>
+                创建品牌
+              </Button>
+            </Button.Group>
           </span>
 
 
