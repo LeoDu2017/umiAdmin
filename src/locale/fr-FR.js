@@ -7,6 +7,8 @@ export default{
     "SURE":"Déterminer",
     "LANG":"Langue",
     "EDIT":"Édition",
+    "SELECT":"Sélection",
+    "CREATE":"Créer",
     "PWD":"Modifier le mot de passe",
     "INO":"Modifier l’information de votre compte",
     "OUT":"Se déconnecter",

@@ -46,15 +46,13 @@ const brandList = ({dispatch,brands}) => {
           <span>
             <Button.Group size="small">
               <Button type='primary'>
-                <Icon type="check" />选择
+                <Icon type="check" />{intl.get('SELECT')}
               </Button>
               <Button type='primary'>
-                <Icon type="plus" />创建
+                <Icon type="plus" />{intl.get('CREATE')}
               </Button>
             </Button.Group>
           </span>
-
-
         </header>
         <Col className="g-t-form-wrap">
           <Table dataSource={brands} columns={columns}>

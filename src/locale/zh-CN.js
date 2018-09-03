@@ -7,7 +7,8 @@ export default {
     "SURE":"确定",
     "LANG":"语言",
     "EDIT":"编辑",
-
+    "SELECT":"选择",
+    "CREATE":"创建",
     "PWD":"修改密码",
     "INO":"修改账户资料",
     "OUT":"退出",

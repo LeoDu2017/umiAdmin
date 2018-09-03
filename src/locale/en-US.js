@@ -7,6 +7,8 @@ export default {
     "SURE":"Confirm",
     "LANG":"Language",
     "EDIT":"Edit",
+    "SELECT":"Select",
+    "CREATE":"Create",
     "PWD":"Modify password",
     "INO":"Rectify the account information",
     "OUT":"Sign out",
