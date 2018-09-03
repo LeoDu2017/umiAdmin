@@ -40,4 +40,8 @@ module.exports = {
     v1test: `${APIV1}/test`,
     v2test: `${APIV2}/test`,
   },
-}
+  NOTFOUND:{
+    message: 'Not Found',
+    documentation_url: 'http://localhost:8000/request',
+  }
+};

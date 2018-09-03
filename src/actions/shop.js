@@ -1,4 +1,4 @@
-import { Modal,Message } from 'antd';
+import { Modal } from 'antd';
 const confirm = Modal.confirm;
 export function selectImgs(dispatch,selected){
   dispatch({

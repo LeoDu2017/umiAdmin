@@ -2,7 +2,9 @@ const qs = require('qs');
 const Mock = require('mockjs');
 const config = require('../src/utils/config');
 
-const { apiPrefix } = config;
+const { apiPrefix,NOTFOUND } = config;
+const process = require('../src/utils/dataProcessing');
+const { queryArray } = process;
 
 let usersListData = Mock.mock({
   'data|80-100': [
@@ -21,7 +23,8 @@ let usersListData = Mock.mock({
       },
     },
   ],
-})
+});
+
 
 
 // let database = usersListData.data
@@ -135,29 +138,7 @@ const adminUsers = [
   }
 ];
 
-const queryArray = (array, key, keyAlias = 'key') => {
-  if (!(array instanceof Array)) {
-    return null
-  }
-  let data
 
-  for (let item of array) {
-    if (item[keyAlias] === key) {
-      data = item
-      break
-    }
-  }
-
-  if (data) {
-    return data
-  }
-  return null
-}
-
-const NOTFOUND = {
-  message: 'Not Found',
-  documentation_url: 'http://localhost:8000/request',
-}
 let database = adminUsers;
 module.exports = {
   // 登录
