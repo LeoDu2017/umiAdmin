@@ -1,55 +1,55 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
-import { Table,Tag,Col,Button } from 'antd';
+import { Table,Tag,Col,Button,Icon } from 'antd';
 const brandList = ({dispatch,brands}) => {
   const columns = [
     {
-      title:'品牌编号',
+      title: intl.get('BRANDSERIAL'),
       dataIndex:'serial',
       key:'serial',
       render: text => text
     },{
-      title:'品牌图标',
+      title:intl.get('BRANDLOGO'),
       dataIndex:'logo',
       key:'logo',
       render:(data,record) => <img alt={record.title} src={data}/>
     },{
-      title:'品牌名称',
+      title:intl.get('BRANDTITLE'),
       dataIndex:'title',
       key:'title',
       render: text => <a href="javascript:;">text</a>
     },{
-      title:'现货数量',
+      title:intl.get('GOOGSMOUNT'),
       dataIndex:'amount',
       key:'amount',
       render:text => text
     },{
-      title:'不可以销售地区',
+      title:intl.get('NOTALLOWAREA'),
       dataIndex:'area',
       key:'area',
       render: areas => {areas.split(',').map(area => <Tag color="red" key={area}>{area}</Tag>)}
     },{
-      title:'品牌类别',
+      title:intl.get('BRANDTYPE'),
       dataIndex:'type',
       key:'type',
       render: text => text
     },{
-      title:'',
+      title:intl.get('ACTION'),
     }];
   return (
     <Col span={24} className='g-t-wrap'>
       <Col span={24} className='g-t-main'>
         <header className='g-t-header'>
           <span className='g-t-title'>
-            我的品牌
+            {intl.get('MYBRANS')}
           </span>
           <span>
             <Button.Group size="small">
               <Button type='primary'>
-                选择品牌
+                <Icon type="check" />选择
               </Button>
               <Button type='primary'>
-                创建品牌
+                <Icon type="plus" />创建
               </Button>
             </Button.Group>
           </span>

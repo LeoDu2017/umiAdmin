@@ -112,5 +112,12 @@ export default{
     "INPUTCONTACT":"Inserisci il telefono.",
     "SELECTAUTHORIZATION":"Per favore, La scelta dell'Autorità di gestione",
     "AVATAR":"Avatar",
+    "BRANDSERIAL":"Numero di Marca",
+    "BRANDLOGO":"IL marchio ICONA",
+    "BRANDTITLE":"IL nome del marchio",
+    "GOOGSMOUNT":"IL Numero di Spot",
+    "NOTALLOWAREA":"Non possono vendere le aree",
+    "BRANDTYPE":"IL marchio di categoria",
+    "MYBRANS":"La Mia Marca",
   }
 }

@@ -1,6 +1,6 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
-import { Table,Divider,Tag,Col,Button } from 'antd';
+import { Table,Divider,Tag,Col,Button,Icon } from 'antd';
 import { deleteAdmin,createAdmin,editHandler,resetPassword } from 'actions/shop';
 
 import UserModal from 'components/AdminWindow';
@@ -70,6 +70,7 @@ const adminTable = ({dispatch,shopAdmins}) => {
           </span>
           <UserModal record={{}} id={-1} add={true} onOk={createAdmin.bind(null,dispatch)}>
             <Button type='primary' size="small">
+              <Icon type="user-add" />
               {intl.get('ADD')}
             </Button>
           </UserModal>

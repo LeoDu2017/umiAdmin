@@ -113,5 +113,12 @@ export default{
     "INPUTCONTACT":"Veuillez saisir le téléphone.",
     "SELECTAUTHORIZATION":"Option d 'exploitation",
     "AVATAR":"Avatar",
+    "BRANDSERIAL":"Numéro de marque",
+    "BRANDLOGO":"Icons de marque",
+    "BRANDTITLE":"Nom de la marque",
+    "GOOGSMOUNT":"Quantité en stock",
+    "NOTALLOWAREA":"On ne peut pas vendre la zone",
+    "BRANDTYPE":"Catégories de marques",
+    "MYBRANS":"Je marque",
   }
 }

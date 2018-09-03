@@ -114,6 +114,13 @@ export default {
     "INPUTCONTACT":"请输入联系电话",
     "SELECTAUTHORIZATION":"请选择操作权限",
     "AVATAR":"头像",
+    "BRANDSERIAL":"品牌编号",
+    "BRANDLOGO":"品牌图标",
+    "BRANDTITLE":"品牌名称",
+    "GOOGSMOUNT":"现货数量",
+    "NOTALLOWAREA":"不可以销售地区",
+    "BRANDTYPE":"品牌类别",
+    "MYBRANS":"我的品牌",
 
   }
 }

@@ -113,6 +113,12 @@ export default {
     "INPUTCONTACT":"Please input the telephone number.",
     "SELECTAUTHORIZATION":"Please select operation privileges.",
     "AVATAR":"Avatar",
-
+    "BRANDSERIAL":"Brand serial",
+    "BRANDLOGO":"Brand logo",
+    "BRANDTITLE":"Brand title",
+    "GOOGSMOUNT":"Goods amount",
+    "NOTALLOWAREA":"Not allow area",
+    "BRANDTYPE":"Brand type",
+    "MYBRANS":"My brand",
   }
 }

@@ -1,6 +1,6 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
-import { Form, Input, Select, Row, Col, Checkbox, Button} from 'antd';
+import { Form,Input,Select,Row,Col,Checkbox,Button,Icon } from 'antd';
 import Albums from 'components/Albums';
 import styles from 'styles/shop.less';
 import {showAlbums} from 'actions/albums';
@@ -48,6 +48,7 @@ const infoForm = ({dispatch,editable,shopInfo,originInfo,conpany_types,shop_prod
             {intl.get('SHOPINFO')}
           </span>
           <Button type={editable ? 'primary' : 'danger'} onClick={toggleEditable.bind(this,dispatch,shopInfo,originInfo,validateFieldsAndScroll,resetFields)} size="small">
+            <Icon type={editable ? 'edit' : 'rollback'} />
             { editable ? intl.get('EDIT') : intl.get('CANCEL') }
           </Button>
       </header>
