@@ -17,7 +17,7 @@ const brandList = ({dispatch,brands}) => {
       title:intl.get('BRANDTITLE'),
       dataIndex:'title',
       key:'title',
-      render: text => <a href="javascript:;">text</a>
+      render: text => <a href="javascript:;">{text}</a>
     },{
       title:intl.get('GOOGSMOUNT'),
       dataIndex:'amount',
@@ -27,14 +27,20 @@ const brandList = ({dispatch,brands}) => {
       title:intl.get('NOTALLOWAREA'),
       dataIndex:'area',
       key:'area',
-      render: areas => {areas.split(',').map(area => <Tag color="red" key={area}>{area}</Tag>)}
+      render: areas => (
+        <span>
+          {areas.split(',').map(area => <Tag color="blue" key={area}>{area}</Tag>)}
+        </span>
+      )
     },{
       title:intl.get('BRANDTYPE'),
       dataIndex:'type',
       key:'type',
-      render: text => text
+      render: boolean => boolean ? '系统' : '商家自增'
     },{
       title:intl.get('ACTION'),
+      key: 'action',
+
     }];
   return (
     <Col span={24} className='g-t-wrap'>
