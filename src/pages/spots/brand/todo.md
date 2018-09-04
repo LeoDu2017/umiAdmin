@@ -49,3 +49,11 @@
         }
       });
     }
+
+2018-09-04
+一、使用Lodash利用ID查找对应的国家名称进行渲染：
+    1、引入Lodash
+    import _ from "lodash"
+    2、使用Lodash进行查找
+    _.find(notAllowCountries, { 'id': id }) && notAllowCountries[_.findIndex(notAllowCountries, { 'id': id })].name
+

@@ -3,7 +3,7 @@ import router from 'umi/router';
 
 
 // 打开选项的下拉框
-export function handletoggleOpen(dispatch,i,n){
+export function handleToggleOpen(dispatch,i,n){
   let currentIndex = n === i ? -1 : i;
   dispatch({
     type: 'header/select',

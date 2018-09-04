@@ -28,7 +28,7 @@ module.exports =
       logo:'http://italyclassico.casacdn.com/image/brand/ALBODOOR/502814.jpg',
       title:'ALBODOOR',
       amount:'2',
-      area:'0',
+      area:'69',
       type:'0'
     },
     {
@@ -68,7 +68,7 @@ module.exports =
       logo:'http://italyclassico.casacdn.com/image/brand/PETRACER`S/317521.jpg',
       title:'PETRACER`S',
       amount:'0',
-      area:'21,68,69,75,99,166,192,197,198,199,200,201,202,203,215,216',
+      area:'21,68,69,75,99,166,192,197,198,199,200,201,203,215,216',
       type:'0'
     },
   ];

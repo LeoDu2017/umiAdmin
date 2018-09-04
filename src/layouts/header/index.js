@@ -1,30 +1,30 @@
 import { connect } from 'dva';
 import {header,open,toggleBtn,avatar} from '../../styles/layouts.less';
 import intl from 'react-intl-universal';
-import { handletoggleOpen,handleMouseLeave} from 'actions/layout';
+import { handleToggleOpen,handleMouseLeave} from 'actions/layout';
 import DropdownMeanu from 'components/Dropdown';
 
 
 const Header = ({dispatch,currentIndex,languages,options}) => (
       <ul className={header}>
-        <li onClick={handletoggleOpen.bind(null,dispatch,1, currentIndex)} className= {currentIndex === 1 ? open : ''}>
+        <li onClick={handleToggleOpen.bind(null,dispatch,1, currentIndex)} className= {currentIndex === 1 ? open : ''}>
           <a className={toggleBtn}>
             { intl.get('LANG') }
           </a>
           <DropdownMeanu
             list={languages}
-            toggle={currentIndex === 1 ? true : false}
+            toggle={ currentIndex === 1 }
             onMouseLeave={handleMouseLeave.bind(null,dispatch)}>
           </DropdownMeanu>
         </li>
-        <li onClick={handletoggleOpen.bind(null,dispatch,2, currentIndex)} className= {currentIndex === 2 ? open : ''}>
+        <li onClick={handleToggleOpen.bind(null,dispatch,2, currentIndex)} className= {currentIndex === 2 ? open : ''}>
           <a className={toggleBtn}>
             <img className={avatar} src={require('../../assets/user-avatar.png')} alt="" />
             Username
           </a>
           <DropdownMeanu
             list={options}
-            toggle={currentIndex === 2 ? true : false}
+            toggle={ currentIndex === 2 }
             onMouseLeave={handleMouseLeave.bind(null,dispatch)}>
           </DropdownMeanu>
         </li>
