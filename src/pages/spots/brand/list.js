@@ -1,6 +1,27 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Table,Tag,Col,Button,Icon } from 'antd';
+
+const notAllowCountries = [
+  {id: '21',name: intl.get('BELGIUM')},
+  {id: '68',name: intl.get('FRANCE')},
+  {id: '69',name: 'Franch Metropolitan'},
+  {id: '75',name: intl.get('GERMANY')},
+  {id: '99',name: intl.get('ITALY')},
+  {id: '166',name: intl.get('PORTUGAL')},
+  {id: '192',name: intl.get('SPAIN')},
+  {id: '197',name: intl.get('SWEDEN')},
+  {id: '198',name: intl.get('SWITZERLAND')},
+  {id: '199',name: intl.get('SYRIA')},
+  {id: '200',name: intl.get('TAJIKISTAN')},
+  {id: '201',name: 'Tanzania'},
+  {id: '203',name: 'Thailand'},
+  {id: '215',name: 'United Arab Emirates'},
+  {id: '216',name: 'United Kingdom'}
+];
+
+
+
 const brandList = ({dispatch,brands}) => {
   const columns = [
     {
@@ -29,7 +50,7 @@ const brandList = ({dispatch,brands}) => {
       key:'area',
       render: areas => (
         <span>
-          {areas.split(',').map(area => <Tag color="blue" key={area}>{area}</Tag>)}
+          {areas.split(',').map(area => <Tag color="red" key={area}>{area}</Tag>)}
         </span>
       )
     },{

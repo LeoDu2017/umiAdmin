@@ -36,4 +36,16 @@
       })
     }
     4、定义subscriptions:
-    
+    setup({ dispatch,history}){
+      return history.listen(({ pathname}) => {
+        let arr = pathname.split('/');
+        let childLink = arr[2];
+        let subChildLink = arr[3];
+
+        if(childLink === 'brand' && subChildLink === 'list'){
+          dispatch({
+            type:'fetchBrands'
+          })
+        }
+      });
+    }
