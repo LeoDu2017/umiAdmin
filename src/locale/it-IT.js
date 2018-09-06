@@ -106,6 +106,45 @@ export default{
     "THAILAND":"La Thailandia",
     "UAE":"Emirati Arabi Uniti",
     "UK":"Regno unito",
+    "BELGIUM":"Belgio",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     "USERNAME":"IL nome utente",
     "NAME":"IL nome",
     "TITLE":"Posti di lavoro",

@@ -28,6 +28,8 @@ module.exports = {
     resetPasswordApi:`${APIV1}/user/reset`,
 
     getBrandsListApi:`${APIV1}/brand/list`,
+    getCountryApi:`${APIV1}/country`,
+
 
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,

@@ -56,6 +56,48 @@
     import _ from "lodash"
     2、使用Lodash进行查找
     _.find(notAllowCountries, { 'id': id }) && notAllowCountries[_.findIndex(notAllowCountries, { 'id': id })].name
-2018-09-05
-
+2018-09-06
+一、定义一条公共的函数将国家ID转化成国家名称
+    1、在public文件夹定义getCountry函数：
+       (1)、在services文件夹新建country.js 定义接口；
+            export function getBrandsListService(data){
+              return request({
+                url: getCountryApi,
+                data,
+                method: 'get'
+              })
+            }
+       (2)、在config.js文件定义接口路径：
+            getCountryApi:`${APIV1}/country/:id`,
+       (3)、在Mock文件夹新建Country.js Mock文件；
+           const Mock = require('mockjs');
+           const config = require('../src/utils/config');
+           const process = require('../src/utils/dataProcessing');
+           const countriesData = require('./json/countries');
+           
+           const { apiPrefix,NOTFOUND } = config;
+           const { queryArray } = process;
+           
+           const countriesListData = Mock.mock({
+             data:countriesData
+           });
+           let database = countriesListData.data;
+       (4)、定义获取国家名称接口：
+            [`GET ${apiPrefix}/country/:id`] (req, res) {
+                const { id } = req.params;
+                const data = queryArray(database, id, 'id');
+                if (data) {
+                  res.status(200).json(data)
+                } else {
+                  res.status(404).json(NOTFOUND)
+                }
+            }
+       (5)、在公共函数中引入接口；
+       
+    2、引用并绑定：
+    import {getCountry} from "public/country/country";
+    （1）错误绑定：
+    <Input disabled={true} value={getCountry.bind(null,content.country_id)}/>
+    （2）正确绑定：
+    <Input disabled={true} value={getCountry(content.country_id)}/>
 

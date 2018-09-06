@@ -1,6 +1,8 @@
 import { Form,Modal,Row,Input } from 'antd';
 import { connect } from 'dva';
 import { showModelHandler,hideModelHandler,okHandler } from 'actions/common-modal';
+import {getCountry} from "public/country/country";
+
 const FormItem = Form.Item;
 const formItemLayout = {
   labelCol: {
@@ -12,7 +14,7 @@ const formItemLayout = {
     sm: { span: 20 },
   },
 };
-const ShowBrandModal = ({dispatch,children,id,visible,content}) => (<span>
+const ShowBrandModal = ({dispatch,children,id,visible,content,country}) => (<span>
       <span onClick={showModelHandler.bind(null,dispatch,id)}>
         { children }
       </span>
@@ -33,7 +35,7 @@ const ShowBrandModal = ({dispatch,children,id,visible,content}) => (<span>
             <Input disabled={true} value={content.title}/>
           </FormItem>
           <FormItem {...formItemLayout} label='品牌国家' className="g-f-item">
-            <Input disabled={true} value={content.title}/>
+            <Input disabled={true} value={country}/>
           </FormItem>
         </Form>
       </Modal>

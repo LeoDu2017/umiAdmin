@@ -20,5 +20,6 @@ export default{
     services:path.resolve(__dirname, 'src/services/'),
     assets:path.resolve(__dirname, 'src/assets/'),
     styles:path.resolve(__dirname, 'src/styles/'),
+    public:path.resolve(__dirname, 'src/public/'),
   }
 }

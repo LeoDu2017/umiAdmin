@@ -106,6 +106,42 @@ export default {
     "THAILAND":"Thailand",
     "UAE":"United Arab Emirates",
     "UK":"United Kingdom",
+    "BELGIUM":"Belgium",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     "USERNAME":"Username",
     "NAME":"Name",
     "TITLE":"Title",
