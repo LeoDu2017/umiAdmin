@@ -30,6 +30,7 @@ module.exports = {
     getBrandsListApi:`${APIV1}/brand/list`,
     delBrandApi:`${APIV1}/brand/del`,
     getBannedApi:`${APIV1}/brand/banned`,
+    udateBannedApi:`${APIV1}/brand/:id`,
     getCountryApi:`${APIV1}/country`,
 
 

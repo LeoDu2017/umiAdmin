@@ -13,8 +13,7 @@ export function hideModelHandler(dispatch,resetFields,id,event){
     payload:{[id]:false}
   })
 }
-export function okHandler(dispatch,validateFields,callBack,id){
-
+export function okHandler(dispatch,validateFields,callBack,id,noForm){
   validateFields ? validateFields((err, values) => {
     if (!err) {
       dispatch({
@@ -23,5 +22,6 @@ export function okHandler(dispatch,validateFields,callBack,id){
       });
       callBack(values);
     }
-  }) :  dispatch({type:'commonModal/setVisible',payload:{[id]:false}})
+  }) :  dispatch({type:'commonModal/setVisible',payload:{[id]:false}});
+  noForm && callBack(id)
 }

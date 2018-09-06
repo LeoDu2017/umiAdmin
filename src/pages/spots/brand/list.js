@@ -2,7 +2,7 @@ import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Table,Tag,Col,Button,Icon,Divider } from 'antd';
 import BrandDetailModal from 'components/modal/ShowBrandModal';
-import { getCountry,removeBrand } from 'actions/brand';
+import { getCountry,removeBrand,saveBanned } from 'actions/brand';
 
 const brandList = ({dispatch,brands,countries,banneds}) => {
   const columns = [
@@ -68,6 +68,7 @@ const brandList = ({dispatch,brands,countries,banneds}) => {
             banneds={banneds}
             countries={countries}
             areas={record.area.split(',')}
+            onOk={saveBanned.bind(null,dispatch)}
             id={record.id + '-country'}>
             <a href="javascript:;"> 编辑禁销国家 </a>
           </BrandDetailModal>
@@ -340,7 +341,7 @@ function mapStateToProps(state){
   let banneds = banned.map(item => {
     const value = item;
     const country = countries.find(i => {
-      return Number(i.id) === Number(item)
+      return i.id === item
     });
     const label = country.name;
     return {value,label}

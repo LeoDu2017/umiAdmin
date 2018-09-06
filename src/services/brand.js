@@ -1,7 +1,7 @@
 import request from 'utils/request';
 import { api } from 'utils/config';
 
-const { getBrandsListApi,delBrandApi,getBannedApi } = api;
+const { getBrandsListApi,delBrandApi,getBannedApi,udateBannedApi } = api;
 
 export function getBrandsListService(){
   return request({
@@ -20,5 +20,12 @@ export function getBannedService(data){
   return request({
     url: getBannedApi,
     method: 'get'
+  })
+}
+export function saveBannedService(data){
+  return request({
+    url: udateBannedApi,
+    data,
+    method: 'post'
   })
 }

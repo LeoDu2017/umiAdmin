@@ -1,4 +1,4 @@
-import { getBrandsListService,delBrandService,getBannedService } from 'services/brand';
+import { getBrandsListService,delBrandService,getBannedService,saveBannedService } from 'services/brand';
 
 const brand = {
   namespace:'brand',
@@ -12,7 +12,20 @@ const brand = {
     },
     setBanned(state,{payload:banned}){
       return {...state,banned}
-    }
+    },
+    saveChanged(state,{payload}){
+      let {brands} = state;
+      let {id,area} = payload;
+      area = area.join(',');
+      brands = brands.map(item =>{
+        if(item.id === id){
+          return item = {...item,area}
+        }else{
+          return item
+        }
+      });
+      return {...state,brands}
+    },
   },
   effects:{
     *fetchBrands({payload},{select,call, put}){
@@ -31,6 +44,19 @@ const brand = {
     },
     *removeBrand({payload:data},{select,call,put}){
       const result = yield call(delBrandService,data);
+      if(result.success){
+        yield put({
+          type:'fetchBrands'
+        })
+      }
+    },
+    *saveBanned({payload:id},{select,call,put}){
+      const brands = yield select(state => state.brand.brands);
+      const changed = brands.filter(item => {
+        return item.id === id
+      });
+      const area = changed[0].area;
+      const result = yield call(saveBannedService,{area,id});
       if(result.success){
         yield put({
           type:'fetchBrands'

@@ -170,18 +170,36 @@
       })
     },
     6、设置禁销编辑栏：
-    {
-      banned && (
-        <FormItem {...formItemLayout} label='品牌禁销国家' className="g-f-item">
-          <Checkbox.Group>
-              { banned.map((id,index)=>{
-                  const country = countries.find(item => {
-                    return Number(item.id) === Number(id)
-                  });
-                  return (<Checkbox value={id} key={index}>{country.name}</Checkbox>);
-                }
-              )}
-          </Checkbox.Group>
-        </FormItem>
-      )
+    <Checkbox.Group options={banneds} defaultValue={areas}/>
+四、保存编辑结果：
+    1、在 action/brand.js 中添加保存操作 saveBanned:
+    export function saveBanned(dispatch,banned){
+      dispatch({
+        type:'brand/saveBanned',
+        payload:banned
+      })
     }
+    2、在 model/brand.js 中添加数据处理 saveBanned:
+    *saveBanned({payload:data},{select,call,put}){
+      const result = yield call(saveBannedService,data);
+      if(result.success){
+        yield put({
+          type:'fetchBrands'
+        })
+      }
+    }
+    3、在 services/brand.js 中添加数据请求程序 saveBannedService：
+    export function saveBannedService(data){
+      return request({
+        url: udateBannedApi,
+        data,
+        method: 'post'
+      })
+    }
+    4、在 config 中定义接口路径 udateBannedApi：
+    udateBannedApi:`${APIV1}/brand/:id`
+    5、在 mock/brand.js 定义接口API:
+    
+    
+    
+    

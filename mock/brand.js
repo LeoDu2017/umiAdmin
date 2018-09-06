@@ -72,5 +72,22 @@ module.exports = {
     } else {
       res.status(404).json(NOTFOUND)
     }
+  },
+  [`POST ${apiPrefix}/brand/:id`] (req, res) {
+    const { area } = req.body;
+    const { id } = req.params;
+
+    let mybrands = database.mybrands;
+
+
+    mybrands = mybrands.map(item => {
+      if(item.id === id){
+        return item = {...item,area}
+      }else{
+        return item
+      }
+    });
+    database = {...database,mybrands}
+    res.status(200).json({status:1,msg: '修改成功' })
   }
 };

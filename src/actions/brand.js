@@ -24,3 +24,16 @@ export function removeBrand(dispatch,id,event){
 
 
 }
+export function saveBanned(dispatch,id){
+  id = id.split('-')[0];
+  dispatch({
+    type:'brand/saveBanned',
+    payload:id
+  })
+}
+export function onChange(dispatch,id,area){
+  dispatch({
+    type:'brand/saveChanged',
+    payload:{area,id}
+  })
+}

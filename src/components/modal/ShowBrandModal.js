@@ -2,7 +2,8 @@ import _ from "lodash";
 import { Form,Modal,Checkbox,Input } from 'antd';
 import { connect } from 'dva';
 import { showModelHandler,hideModelHandler,okHandler } from 'actions/common-modal';
-import {getCountry} from "public/country/country";
+import { onChange } from 'actions/brand';
+import { getCountry } from "public/country/country";
 
 const FormItem = Form.Item;
 const formItemLayout = {
@@ -15,14 +16,15 @@ const formItemLayout = {
     sm: { span: 18 },
   },
 };
-const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,banneds,countries,areas}) => (<span>
+
+const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,banneds,countries,areas,onOk}) => (<span>
       <span onClick={showModelHandler.bind(null,dispatch,id)}>
         { children }
       </span>
       <Modal
         title={title}
         visible={visible[id]}
-        onOk={okHandler.bind(null,dispatch,null,null,id)}
+        onOk={onOk ? okHandler.bind(null,dispatch,null,onOk,id) : okHandler.bind(null,dispatch,null,null,id,true)}
         onCancel={hideModelHandler.bind(null,dispatch,null,id)}
       >
         <Form>
@@ -49,7 +51,7 @@ const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,bann
           {
             banneds && (
               <FormItem {...formItemLayout} label='品牌禁销国家' className="g-f-item">
-                <Checkbox.Group options={banneds} defaultValue={areas}/>
+                <Checkbox.Group options={banneds} defaultValue={areas} onChange={onChange.bind(null,dispatch,content.id)}/>
               </FormItem>
             )
           }
