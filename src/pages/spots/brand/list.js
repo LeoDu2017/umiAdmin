@@ -4,7 +4,7 @@ import { Table,Tag,Col,Button,Icon,Divider } from 'antd';
 import BrandDetailModal from 'components/modal/ShowBrandModal';
 import { getCountry,removeBrand } from 'actions/brand';
 
-const brandList = ({dispatch,brands,countries,banned}) => {
+const brandList = ({dispatch,brands,countries,banneds}) => {
   const columns = [
     {
       title: intl.get('BRANDSERIAL'),
@@ -65,8 +65,9 @@ const brandList = ({dispatch,brands,countries,banned}) => {
           <BrandDetailModal
             content={record}
             title="编辑禁销国家"
-            banned={banned}
+            banneds={banneds}
             countries={countries}
+            areas={record.area.split(',')}
             id={record.id + '-country'}>
             <a href="javascript:;"> 编辑禁销国家 </a>
           </BrandDetailModal>
@@ -336,7 +337,15 @@ function mapStateToProps(state){
     {'id':'230','name':'Europe'},
     {'id':'231','name':'Other'}
   ];
-  return {brands,countries,banned}
+  let banneds = banned.map(item => {
+    const value = item;
+    const country = countries.find(i => {
+      return Number(i.id) === Number(item)
+    });
+    const label = country.name;
+    return {value,label}
+  });
+  return {brands,countries,banneds}
 }
 
 export default connect(mapStateToProps)(brandList);

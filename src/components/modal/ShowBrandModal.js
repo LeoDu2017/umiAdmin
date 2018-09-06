@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { Form,Modal,Checkbox,Input } from 'antd';
 import { connect } from 'dva';
 import { showModelHandler,hideModelHandler,okHandler } from 'actions/common-modal';
@@ -7,14 +8,14 @@ const FormItem = Form.Item;
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 4 },
+    sm: { span: 6 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 20 },
+    sm: { span: 18 },
   },
 };
-const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,banned,countries}) => (<span>
+const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,banneds,countries,areas}) => (<span>
       <span onClick={showModelHandler.bind(null,dispatch,id)}>
         { children }
       </span>
@@ -46,17 +47,9 @@ const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,bann
             )
           }
           {
-            banned && (
+            banneds && (
               <FormItem {...formItemLayout} label='品牌禁销国家' className="g-f-item">
-                <Checkbox.Group>
-                    { banned.map((id,index)=>{
-                        const country = countries.find(item => {
-                          return Number(item.id) === Number(id)
-                        });
-                        return (<Checkbox value={id} key={index}>{country.name}</Checkbox>);
-                      }
-                    )}
-                </Checkbox.Group>
+                <Checkbox.Group options={banneds} defaultValue={areas}/>
               </FormItem>
             )
           }
