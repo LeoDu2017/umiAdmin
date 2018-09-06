@@ -135,3 +135,53 @@
     }
     6、在页面中绑定删除操作：
     <a href="javascript:;" onClick={removeBrand.bind(null,record.id)}> 删除 </a>
+三、编辑禁销国家功能：
+    1、编辑窗口设置
+    <BrandDetailModal
+      content={record}
+      title="编辑禁销国家"
+      banned={banned}
+      id={record.id + '-country'}>
+      <a href="javascript:;"> 编辑禁销国家 </a>
+    </BrandDetailModal>
+    
+    2、在model\brand.js 数据请求程序 fetchBanned：
+    *fetchBanned({payload},{select,call, put}){
+      const banned = yield call(getBannedService, payload);
+      yield put({
+        type:'setBanned',
+        payload:banned.data
+      })
+    },
+    3、在services\brand.js 中注册 getBannedService：
+    export function getBannedService(data){
+      return request({
+        url: getBannedApi,    
+        method: 'get'
+      })
+    }
+    4、在config API中注册接口 getBannedApi：
+    getBannedApi:`${APIV1}/brand/banned`,
+    5、在Mock/brand 定义数据获取接口：
+    [`GET ${apiPrefix}/brand/banned`] (req, res) {
+      let newData = database.banned;
+      res.status(200).json({
+        data: newData
+      })
+    },
+    6、设置禁销编辑栏：
+    {
+      banned && (
+        <FormItem {...formItemLayout} label='品牌禁销国家' className="g-f-item">
+          <Checkbox.Group>
+              { banned.map((id,index)=>{
+                  const country = countries.find(item => {
+                    return Number(item.id) === Number(id)
+                  });
+                  return (<Checkbox value={id} key={index}>{country.name}</Checkbox>);
+                }
+              )}
+          </Checkbox.Group>
+        </FormItem>
+      )
+    }

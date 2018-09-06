@@ -7,18 +7,27 @@ const { apiPrefix,NOTFOUND } = config;
 const { queryArray } = process;
 // Mock.mock('@id')
 const brandsListData = Mock.mock({
-  data:brandsData
+  data:{
+    mybrands:brandsData,
+    banned:[21,68,69,75,99,166,192,197,198,199,200,201,203,215,216]
+  }
 });
 let database = brandsListData.data;
 
 module.exports = {
+  [`GET ${apiPrefix}/brand/banned`] (req, res) {
+    let newData = database.banned;
+    res.status(200).json({
+      data: newData
+    })
+  },
   [`GET ${apiPrefix}/brand/list`] (req, res) {
     const { query } = req;
     let { pageSize, page, ...other } = query;
     pageSize = pageSize || 10;
     page = page || 1;
 
-    let newData = database;
+    let newData = database.mybrands;
 
     // for (let key in other) {
     //   if ({}.hasOwnProperty.call(other, key)) {
@@ -48,7 +57,6 @@ module.exports = {
     //   const {password,...reset} = item;
     //   return reset
     // });
-
     res.status(200).json({
       data: newData.slice((page - 1) * pageSize, page * pageSize),
       total: newData.length,
@@ -56,9 +64,10 @@ module.exports = {
   },
   [`POST ${apiPrefix}/brand/del`] (req, res) {
     const { id } = req.body;
-    const data = queryArray(database, id, 'id');
+    let mybrands = database.mybrands;
+    const data = queryArray(mybrands, id, 'id');
     if (data) {
-      database = database.filter(item => item.id !== id);
+      mybrands = mybrands.filter(item => item.id !== id);
       res.status(200).json({status:1,msg: '删除成功' })
     } else {
       res.status(404).json(NOTFOUND)

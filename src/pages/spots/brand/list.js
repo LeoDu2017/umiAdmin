@@ -1,10 +1,10 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Table,Tag,Col,Button,Icon,Divider } from 'antd';
-import BrandModal from 'components/modal/ShowBrandModal';
+import BrandDetailModal from 'components/modal/ShowBrandModal';
 import { getCountry,removeBrand } from 'actions/brand';
 
-const brandList = ({dispatch,brands,countries}) => {
+const brandList = ({dispatch,brands,countries,banned}) => {
   const columns = [
     {
       title: intl.get('BRANDSERIAL'),
@@ -52,13 +52,24 @@ const brandList = ({dispatch,brands,countries}) => {
       align:'center',
       render:(text,record) => (
         <span>
-          <BrandModal content={record} country={getCountry(record.country_id,countries)} id={record.id}>
-          <a href="javascript:;"> 查看 </a>
-          </BrandModal>
+          <BrandDetailModal
+            content={record}
+            country={getCountry(record.country_id,countries)}
+            title='查看品牌'
+            id={record.id}>
+            <a href="javascript:;"> 查看 </a>
+          </BrandDetailModal>
           <Divider type="vertical"/>
           <a href="javascript:;" onClick={removeBrand.bind(null,dispatch,record.id)}> 删除 </a>
           <Divider type="vertical"/>
-          <a href="javascript:;"> 编辑禁销国家 </a>
+          <BrandDetailModal
+            content={record}
+            title="编辑禁销国家"
+            banned={banned}
+            countries={countries}
+            id={record.id + '-country'}>
+            <a href="javascript:;"> 编辑禁销国家 </a>
+          </BrandDetailModal>
         </span>
       )
     }];
@@ -91,7 +102,7 @@ const brandList = ({dispatch,brands,countries}) => {
 };
 
 function mapStateToProps(state){
-  const { brands } = state.brand;
+  const { brands,banned } = state.brand;
   const countries = [
     {'id':'1','name':'Afghanistan'},
     {'id':'2','name':'Aland Islands'},
@@ -325,7 +336,7 @@ function mapStateToProps(state){
     {'id':'230','name':'Europe'},
     {'id':'231','name':'Other'}
   ];
-  return {brands,countries}
+  return {brands,countries,banned}
 }
 
 export default connect(mapStateToProps)(brandList);

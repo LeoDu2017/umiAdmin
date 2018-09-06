@@ -1,4 +1,4 @@
-import { Form,Modal,Row,Input } from 'antd';
+import { Form,Modal,Checkbox,Input } from 'antd';
 import { connect } from 'dva';
 import { showModelHandler,hideModelHandler,okHandler } from 'actions/common-modal';
 import {getCountry} from "public/country/country";
@@ -14,12 +14,12 @@ const formItemLayout = {
     sm: { span: 20 },
   },
 };
-const ShowBrandModal = ({dispatch,children,id,visible,content,country}) => (<span>
+const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,banned,countries}) => (<span>
       <span onClick={showModelHandler.bind(null,dispatch,id)}>
         { children }
       </span>
       <Modal
-        title="查看品牌"
+        title={title}
         visible={visible[id]}
         onOk={okHandler.bind(null,dispatch,null,null,id)}
         onCancel={hideModelHandler.bind(null,dispatch,null,id)}
@@ -31,12 +31,37 @@ const ShowBrandModal = ({dispatch,children,id,visible,content,country}) => (<spa
           <FormItem {...formItemLayout} label='品牌logo' className="g-f-item">
             <img src={content.logo}/>
           </FormItem>
-          <FormItem {...formItemLayout} label='品牌状态' className="g-f-item">
-            <Input disabled={true} value={content.title}/>
-          </FormItem>
-          <FormItem {...formItemLayout} label='品牌国家' className="g-f-item">
-            <Input disabled={true} value={country}/>
-          </FormItem>
+          {
+            country && (
+              <FormItem {...formItemLayout} label='品牌状态' className="g-f-item">
+                <Input disabled={true} value={content.title}/>
+              </FormItem>
+            )
+          }
+          {
+            country && (
+              <FormItem {...formItemLayout} label='品牌国家' className="g-f-item">
+                <Input disabled={true} value={country}/>
+              </FormItem>
+            )
+          }
+          {
+            banned && (
+              <FormItem {...formItemLayout} label='品牌禁销国家' className="g-f-item">
+                <Checkbox.Group>
+                    { banned.map((id,index)=>{
+                        const country = countries.find(item => {
+                          return Number(item.id) === Number(id)
+                        });
+                        return (<Checkbox value={id} key={index}>{country.name}</Checkbox>);
+                      }
+                    )}
+                </Checkbox.Group>
+              </FormItem>
+            )
+          }
+
+
         </Form>
       </Modal>
 </span>);

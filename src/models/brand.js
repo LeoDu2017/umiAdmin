@@ -1,13 +1,17 @@
-import { getBrandsListService,delBrandService } from 'services/brand';
+import { getBrandsListService,delBrandService,getBannedService } from 'services/brand';
 
 const brand = {
   namespace:'brand',
   state:{
-    brands:[]
+    brands:[],
+    banned:[]
   },
   reducers:{
     setBrands(state,{payload:brands}){
       return {...state,brands}
+    },
+    setBanned(state,{payload:banned}){
+      return {...state,banned}
     }
   },
   effects:{
@@ -16,6 +20,13 @@ const brand = {
       yield put({
         type:'setBrands',
         payload:brads.data
+      })
+    },
+    *fetchBanned({payload},{select,call, put}){
+      const banned = yield call(getBannedService, payload);
+      yield put({
+        type:'setBanned',
+        payload:banned.data
       })
     },
     *removeBrand({payload:data},{select,call,put}){
@@ -37,6 +48,9 @@ const brand = {
         if(childLink === 'brand' && subChildLink === 'list'){
           dispatch({
             type:'fetchBrands'
+          });
+          dispatch({
+            type:'fetchBanned'
           })
         }
       });
