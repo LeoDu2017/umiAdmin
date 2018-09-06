@@ -1,4 +1,5 @@
-import { getBrandsListService } from 'services/brand';
+import { getBrandsListService,delBrandService } from 'services/brand';
+
 const brand = {
   namespace:'brand',
   state:{
@@ -16,6 +17,14 @@ const brand = {
         type:'setBrands',
         payload:brads.data
       })
+    },
+    *removeBrand({payload:data},{select,call,put}){
+      const result = yield call(delBrandService,data);
+      if(result.success){
+        yield put({
+          type:'fetchBrands'
+        })
+      }
     }
   },
   subscriptions:{

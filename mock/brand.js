@@ -48,9 +48,20 @@ module.exports = {
     //   const {password,...reset} = item;
     //   return reset
     // });
+
     res.status(200).json({
       data: newData.slice((page - 1) * pageSize, page * pageSize),
       total: newData.length,
     })
   },
+  [`POST ${apiPrefix}/brand/del`] (req, res) {
+    const { id } = req.body;
+    const data = queryArray(database, id, 'id');
+    if (data) {
+      database = database.filter(item => item.id !== id);
+      res.status(200).json({status:1,msg: '删除成功' })
+    } else {
+      res.status(404).json(NOTFOUND)
+    }
+  }
 };

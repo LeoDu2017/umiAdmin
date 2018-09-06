@@ -100,4 +100,38 @@
     <Input disabled={true} value={getCountry.bind(null,content.country_id)}/>
     （2）正确绑定：
     <Input disabled={true} value={getCountry(content.country_id)}/>
-
+二、删除功能实现：
+    1、在Mock/brand 定义删除接口：
+    [`POST ${apiPrefix}/brand/del`] (req, res) {
+        const { id } = req.body;
+        const data = queryArray(database, id, 'id');
+        if (data) {
+          database = database.filter(item => item.id !== id);      
+          res.status(200).json({status:1,msg: '删除成功' })      
+        } else {
+          res.status(404).json(NOTFOUND)
+        }    
+    }
+    2、在config API中注册接口 delBrandApi：
+    delBrandApi:`${APIV1}/brand/del`,
+    3、在services\brand.js 中注册 delBrandService：
+    export function delBrandService(data){
+      return request({
+        url: delBrandApi,
+        data,
+        method: 'psot'
+      })
+    }
+    4、在model\brand.js 中定义删除数据处理程序 removeBrand:
+    *removeBrand({payload},{select,call,put}){
+      const data = yield call(delBrandService,payload);      
+    }
+    5、在actions\brands 中定义删除操作 removeBrand:
+    export function removeBrand(dispatch,id){
+      dispatch({
+        type:'brand/removeBrand',
+        payload:{id}
+      })
+    }
+    6、在页面中绑定删除操作：
+    <a href="javascript:;" onClick={removeBrand.bind(null,record.id)}> 删除 </a>

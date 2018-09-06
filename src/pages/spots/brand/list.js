@@ -1,16 +1,10 @@
-import _ from "lodash"
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Table,Tag,Col,Button,Icon,Divider } from 'antd';
 import BrandModal from 'components/modal/ShowBrandModal';
+import { getCountry,removeBrand } from 'actions/brand';
 
-function getCountry(id,countries){
-  const country = _.find(countries, { 'id': id }) && countries[_.findIndex(countries, { 'id': id })].name;
-  return country
-}
-
-
-const brandList = ({dispatch,brands,notAllowCountries,countries}) => {
+const brandList = ({dispatch,brands,countries}) => {
   const columns = [
     {
       title: intl.get('BRANDSERIAL'),
@@ -62,7 +56,7 @@ const brandList = ({dispatch,brands,notAllowCountries,countries}) => {
           <a href="javascript:;"> 查看 </a>
           </BrandModal>
           <Divider type="vertical"/>
-          <a href="javascript:;"> 删除 </a>
+          <a href="javascript:;" onClick={removeBrand.bind(null,dispatch,record.id)}> 删除 </a>
           <Divider type="vertical"/>
           <a href="javascript:;"> 编辑禁销国家 </a>
         </span>
@@ -331,7 +325,6 @@ function mapStateToProps(state){
     {'id':'230','name':'Europe'},
     {'id':'231','name':'Other'}
   ];
-
   return {brands,countries}
 }
 
