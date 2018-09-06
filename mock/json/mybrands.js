@@ -1,3 +1,6 @@
+/*
+* status:0 待审核、1 通过、2 拒绝;
+* */
 module.exports =
 
   [
@@ -9,7 +12,9 @@ module.exports =
       title:' 海尔',
       amount:'0',
       area:'216',
-      type:'1'
+      type:'1',
+      status:'0',
+      country_id:'21'
     },
     {
       id:'1262',
@@ -19,7 +24,9 @@ module.exports =
       title:'Koket',
       amount:'0',
       area:'21',
-      type:'0'
+      type:'0',
+      status:'1',
+      country_id:'51'
     },
     {
       id:'1238',
@@ -29,7 +36,9 @@ module.exports =
       title:'ALBODOOR',
       amount:'2',
       area:'69',
-      type:'0'
+      type:'0',
+      status:'1',
+      country_id:'71'
     },
     {
       id:'82',
@@ -39,7 +48,9 @@ module.exports =
       title:'FORMITALIA',
       amount:'0',
       area:'69,201',
-      type:'0'
+      type:'0',
+      status:'1',
+      country_id:'88'
     },
     {
       id:'71',
@@ -49,7 +60,8 @@ module.exports =
       title:'ZANABONI',
       amount:'0',
       area:'21,201',
-      type:'0'
+      type:'0',
+      status:'1',
     },
     {
       id:'65',
@@ -59,7 +71,9 @@ module.exports =
       title:'SILIK',
       amount:'0',
       area:'21,199',
-      type:'0'
+      type:'0',
+      status:'1',
+      country_id:'92'
     },
     {
       id:'56',
@@ -69,7 +83,9 @@ module.exports =
       title:'PETRACER`S',
       amount:'0',
       area:'21,68,69,75,99,166,192,197,198,199,200,201,203,215,216',
-      type:'0'
+      type:'0',
+      status:'1',
+      country_id:'104'
     },
   ];
 

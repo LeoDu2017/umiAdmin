@@ -13,8 +13,7 @@ const formItemLayout = {
 
 
 
-const UserEditModal = ({dispatch,children,visible,id,add,onOk,record,form:{getFieldDecorator,validateFields,resetFields}})=> {
-  return (
+const UserEditModal = ({dispatch,children,visible,id,add,onOk,record,form:{getFieldDecorator,validateFields,resetFields}})=> (
     <span>
       <span onClick={showModelHandler.bind(null,dispatch,id)}>
         { children }
@@ -118,8 +117,7 @@ const UserEditModal = ({dispatch,children,visible,id,add,onOk,record,form:{getFi
         </Form>
       </Modal>
     </span>
-  )
-};
+  );
 
 function mapStateToProps(state,props){
   const {visible} = state.commonModal;

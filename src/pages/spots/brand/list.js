@@ -2,7 +2,7 @@ import _ from "lodash"
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Table,Tag,Col,Button,Icon,Divider } from 'antd';
-
+import BrandModal from 'components/modal/ShowBrandModal';
 
 
 
@@ -58,7 +58,9 @@ const brandList = ({dispatch,brands,notAllowCountries}) => {
       align:'center',
       render:(text,record) => (
         <span>
+          <BrandModal content={record} id={record.id}>
           <a href="javascript:;"> 查看 </a>
+          </BrandModal>
           <Divider type="vertical"/>
           <a href="javascript:;"> 删除 </a>
           <Divider type="vertical"/>

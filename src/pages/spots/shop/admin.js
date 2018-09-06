@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Table,Divider,Tag,Col,Button,Icon } from 'antd';
 import { deleteAdmin,createAdmin,editHandler,resetPassword } from 'actions/shop';
 
-import UserModal from 'components/AdminWindow';
+import UserModal from 'components/modal/AdminModal';
 
 const adminTable = ({dispatch,shopAdmins}) => {
   const columns = [{

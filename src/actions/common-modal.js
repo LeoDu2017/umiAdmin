@@ -7,7 +7,7 @@ export function showModelHandler(dispatch,id,event){
   })
 }
 export function hideModelHandler(dispatch,resetFields,id,event){
-  resetFields();
+  resetFields && resetFields();
   dispatch({
     type:'commonModal/setVisible',
     payload:{[id]:false}
@@ -15,7 +15,7 @@ export function hideModelHandler(dispatch,resetFields,id,event){
 }
 export function okHandler(dispatch,validateFields,callBack,id){
 
-  validateFields((err, values) => {
+  validateFields ? validateFields((err, values) => {
     if (!err) {
       dispatch({
         type:'commonModal/setVisible',
@@ -23,5 +23,5 @@ export function okHandler(dispatch,validateFields,callBack,id){
       });
       callBack(values);
     }
-  });
+  }) :  dispatch({type:'commonModal/setVisible',payload:{[id]:false}})
 }
