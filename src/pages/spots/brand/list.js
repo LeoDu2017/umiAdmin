@@ -1,7 +1,8 @@
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
-import { Table,Tag,Col,Button,Icon,Divider } from 'antd';
+import { Table,Tag,Col,Button,Divider } from 'antd';
 import BrandDetailModal from 'components/modal/ShowBrandModal';
+import SelecteBrandsModal from 'components/modal/SelecteBrandsModal';
 
 import { getCountry,removeBrand,saveBanned } from 'actions/brand';
 
@@ -80,21 +81,16 @@ const brandList = ({dispatch,brands,countries,banneds}) => {
     <Col span={24} className='g-t-wrap'>
       <Col span={24} className='g-t-main'>
         <header className='g-t-header'>
-          <span className='g-t-title'>
-            {intl.get('MYBRANS')}
-          </span>
+          <span className='g-t-title'>{intl.get('MYBRANS')}</span>
           <span>
             <Button.Group size="small">
+              <SelecteBrandsModal
+                title="选择我的品牌"
+              >
+                <Button type='primary' size="small" icon="check">{intl.get('SELECT')}</Button>
+              </SelecteBrandsModal>
 
-              <Button type='primary'>
-                <Icon type="check" />{intl.get('SELECT')}
-              </Button>
-
-
-
-              <Button type='primary'>
-                <Icon type="plus" />{intl.get('CREATE')}
-              </Button>
+              <Button type='primary' icon="plus">{intl.get('CREATE')}</Button>
             </Button.Group>
           </span>
         </header>

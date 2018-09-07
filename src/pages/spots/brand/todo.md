@@ -199,7 +199,52 @@
     4、在 config 中定义接口路径 udateBannedApi：
     udateBannedApi:`${APIV1}/brand/:id`
     5、在 mock/brand.js 定义接口API:
+    [`POST ${apiPrefix}/brand/:id`] (req, res) {
+      const { area } = req.body;
+      const { id } = req.params;
+  
+      let mybrands = database.mybrands;
+  
+      mybrands = mybrands.map(item => {
+        if(item.id === id){
+          return item = {...item,area}
+        }else{
+          return item
+        }
+      });
+      database = {...database,mybrands}
+      res.status(200).json({status:1,msg: '修改成功' })
+    }
+
+2018-09-07
+一、从品牌库选择已有品牌操作：
+    1、设置弹窗编辑内容 在 components\modal 文件夹新建 SelecteBrands.js并设置基础内容:
+    import { Modal } from 'antd';
+    import { connect } from 'dva';
+    import { showModelHandler,okHandler,hideModelHandler } from 'actions/common-modal';
     
+    const selectBrandsModal = ({dispatch,children,id,title,visible,onOk}) => (
+      <span>
+        <span onClick={showModelHandler.bind(null,dispatch,id)}>{children}</span>
+        <Modal
+          title={title}
+          visible={visible[id]}
+          width="700px"
+          onOk={onOk ? okHandler.bind(null,dispatch,null,onOk,id) : okHandler.bind(null,dispatch,null,null,id,true)}
+          onCancel={hideModelHandler.bind(null,dispatch,null,id)}
+        >
+          品牌库
+        </Modal>
+      </span>
+    );
+    function mapStateToProps(state,props){
+      const { visible } = state.commonModal;
+      const { content } = props;
     
+      return{
+        visible
+      }
+    }
+    export default connect(mapStateToProps)(selectBrandsModal);    
     
     
