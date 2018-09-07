@@ -7,9 +7,9 @@ const { apiPrefix,NOTFOUND } = config;
 const { queryArray } = process;
 // Mock.mock('@id')
 const brandsListData = Mock.mock({
-  data:{
-    mybrands:brandsData,
-    banned:['21','68','69','75','99','166','192','197','198','199','200','201','203','215','216']
+    mybrands:brandsData,  data:{
+
+      banned:['21','68','69','75','99','166','192','197','198','199','200','201','203','215','216']
   }
 });
 let database = brandsListData.data;
