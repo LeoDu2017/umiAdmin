@@ -2,6 +2,7 @@ import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import { Table,Tag,Col,Button,Icon,Divider } from 'antd';
 import BrandDetailModal from 'components/modal/ShowBrandModal';
+
 import { getCountry,removeBrand,saveBanned } from 'actions/brand';
 
 const brandList = ({dispatch,brands,countries,banneds}) => {
@@ -45,7 +46,7 @@ const brandList = ({dispatch,brands,countries,banneds}) => {
       dataIndex:'type',
       key:'type',
       align:'center',
-      render: boolean => boolean ? intl.get('SYSTEM') : '商家自增'
+      render: boolean => Number(boolean) ? intl.get('MERCHANTADD') : intl.get('SYSTEM')
     },{
       title:intl.get('ACTION'),
       key: 'action',
@@ -55,22 +56,22 @@ const brandList = ({dispatch,brands,countries,banneds}) => {
           <BrandDetailModal
             content={record}
             country={getCountry(record.country_id,countries)}
-            title='查看品牌'
+            title= {intl.get('BRANDVIEW')}
             id={record.id}>
-            <a href="javascript:;"> 查看 </a>
+            <a href="javascript:;"> {intl.get('VIEW')}</a>
           </BrandDetailModal>
           <Divider type="vertical"/>
-          <a href="javascript:;" onClick={removeBrand.bind(null,dispatch,record.id)}> 删除 </a>
+          <a href="javascript:;" onClick={removeBrand.bind(null,dispatch,record.id)}>{intl.get('DELETE')}</a>
           <Divider type="vertical"/>
           <BrandDetailModal
             content={record}
-            title="编辑禁销国家"
+            title= {intl.get('EDITBANNED')}
             banneds={banneds}
             countries={countries}
             areas={record.area.split(',')}
             onOk={saveBanned.bind(null,dispatch)}
             id={record.id + '-country'}>
-            <a href="javascript:;"> 编辑禁销国家 </a>
+            <a href="javascript:;"> {intl.get('EDITBANNED')} </a>
           </BrandDetailModal>
         </span>
       )
@@ -84,9 +85,13 @@ const brandList = ({dispatch,brands,countries,banneds}) => {
           </span>
           <span>
             <Button.Group size="small">
+
               <Button type='primary'>
                 <Icon type="check" />{intl.get('SELECT')}
               </Button>
+
+
+
               <Button type='primary'>
                 <Icon type="plus" />{intl.get('CREATE')}
               </Button>

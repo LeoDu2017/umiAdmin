@@ -107,7 +107,7 @@ export default{
     "THAILAND":"Thaïlande",
     "UAE":"Émirats arabes unis",
     "UK":"Royaume - uni",
-    "BELGIUM":"Belgique",
+
 
 
 
@@ -164,5 +164,8 @@ export default{
     "NOTALLOWAREA":"On ne peut pas vendre la zone",
     "BRANDTYPE":"Catégories de marques",
     "MYBRANS":"Je marque",
+    "MERCHANTADD":"Les commerçants à ajouter",
+    "VIEW":"Voir",
+    "EDITBANNED":"Édition de la broche de pays interdit",
   }
 }

@@ -107,7 +107,7 @@ export default {
     "THAILAND":"Thailand",
     "UAE":"United Arab Emirates",
     "UK":"United Kingdom",
-    "BELGIUM":"Belgium",
+
 
 
 
@@ -169,5 +169,9 @@ export default {
     "NOTALLOWAREA":"Not allow area",
     "BRANDTYPE":"Brand type",
     "MYBRANS":"My brand",
+    "MERCHANTADD":"Merchant add",
+    "BRANDVIEW":"Brand view",
+    "VIEW":"View",
+    "EDITBANNED":"Edit banned",
   }
 }

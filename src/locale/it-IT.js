@@ -107,7 +107,7 @@ export default{
     "THAILAND":"La Thailandia",
     "UAE":"Emirati Arabi Uniti",
     "UK":"Regno unito",
-    "BELGIUM":"Belgio",
+
 
 
 
@@ -171,5 +171,8 @@ export default{
     "NOTALLOWAREA":"Non possono vendere le aree",
     "BRANDTYPE":"IL marchio di categoria",
     "MYBRANS":"La Mia Marca",
+    "MERCHANTADD":"IL Mercante di aggiungere",
+    "VIEW":"Vista",
+    "EDITBANNED":"Nazionale di divieto di Pin Editore",
   }
 }

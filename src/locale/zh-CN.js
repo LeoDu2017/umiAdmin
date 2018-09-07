@@ -107,7 +107,7 @@ export default {
     "THAILAND":"泰国",
     "UAE":"阿拉伯联合酋长国",
     "UK":"英国",
-    "BELGIUM":"比利时",
+
 
 
 
@@ -155,6 +155,10 @@ export default {
     "NOTALLOWAREA":"不可以销售地区",
     "BRANDTYPE":"品牌类别",
     "MYBRANS":"我的品牌",
+    "MERCHANTADD":"商家自增",
+    "BRANDVIEW":"查看品牌",
+    "VIEW":"查看",
+    "EDITBANNED":"编辑禁销国家",
 
   }
 }
