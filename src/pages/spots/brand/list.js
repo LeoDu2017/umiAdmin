@@ -45,7 +45,7 @@ const brandList = ({dispatch,brands,countries,banneds}) => {
       dataIndex:'type',
       key:'type',
       align:'center',
-      render: boolean => boolean ? '系统' : '商家自增'
+      render: boolean => boolean ? intl.get('SYSTEM') : '商家自增'
     },{
       title:intl.get('ACTION'),
       key: 'action',
