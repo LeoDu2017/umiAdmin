@@ -126,6 +126,15 @@ html, body, :global(#root) {
 :global(.ant-table-tbody tr:hover td){
   background: #fafafa !important;
 }
+/*:global(.ant-card-body){*/
+  /*padding: 5px !important;*/
+/*}*/
+/*:global(.ant-card-head){*/
+  /*min-height: 30px !important;*/
+/*}*/
+/*:global(.ant-card-head-title){*/
+  /*padding:5px 0 !important;*/
+/*}*/
 
 
 

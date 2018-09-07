@@ -2,6 +2,7 @@ const Mock = require('mockjs');
 const config = require('../src/utils/config');
 const process = require('../src/utils/dataProcessing');
 const brandsData = require('./json/mybrands');
+const allBrandsData = require('./json/brands');
 
 const { apiPrefix,NOTFOUND } = config;
 const { queryArray } = process;
@@ -9,12 +10,25 @@ const { queryArray } = process;
 const brandsListData = Mock.mock({
   data:{
     mybrands:brandsData,
+    allbrands:allBrandsData,
     banned:['21','68','69','75','99','166','192','197','198','199','200','201','203','215','216']
   }
 });
 let database = brandsListData.data;
 
 module.exports = {
+  [`GET ${apiPrefix}/brand/all`] (req, res) {
+    const { query } = req;
+    let { pageSize, page, ...other } = query;
+    pageSize = pageSize || 12;
+    page = page || 1;
+
+    let newData = database.allbrands;
+
+    res.status(200).json({
+      data: newData.slice((page - 1) * pageSize, page * pageSize)
+    })
+  },
   [`GET ${apiPrefix}/brand/banned`] (req, res) {
     let newData = database.banned;
     res.status(200).json({

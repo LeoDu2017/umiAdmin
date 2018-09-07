@@ -1,6 +1,7 @@
 import { Modal } from 'antd';
 import { connect } from 'dva';
 import { showModelHandler,okHandler,hideModelHandler } from 'actions/common-modal';
+import Brands from '../units/Brands-list';
 
 const selectBrandsModal = ({dispatch,children,id,title,visible,onOk}) => (
   <span>
@@ -8,11 +9,11 @@ const selectBrandsModal = ({dispatch,children,id,title,visible,onOk}) => (
     <Modal
       title={title}
       visible={visible[id]}
-      width="700px"
+      width="1000px"
       onOk={onOk ? okHandler.bind(null,dispatch,null,onOk,id) : okHandler.bind(null,dispatch,null,null,id,true)}
       onCancel={hideModelHandler.bind(null,dispatch,null,id)}
     >
-      品牌库
+      <Brands/>
     </Modal>
   </span>
 );
