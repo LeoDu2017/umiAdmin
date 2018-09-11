@@ -145,7 +145,8 @@ export function getList(linkType){
       ]
     }],
 
-    futures:[{
+    futures:[
+      {
       name:intl.get('HOME'),
       link:'/',
       type:'home',
@@ -180,6 +181,11 @@ export function getList(linkType){
       index:4,
       sublength:1,
       child:[],
+    }],
+    test:[{
+      name:'refs',
+      link:'/test/refs',
+      type:'refs'
     }]
   };
   return list.hasOwnProperty(linkType) ? list[linkType] : list.index

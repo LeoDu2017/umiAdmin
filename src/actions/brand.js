@@ -37,3 +37,9 @@ export function onChange(dispatch,id,area){
     payload:{area,id}
   })
 }
+export function onCollection(dispatch,resetFields,changedValue){
+  dispatch({
+    type:'brands/saveCollection',
+    payload:{changedValue,resetFields}
+  })
+}

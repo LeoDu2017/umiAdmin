@@ -2,12 +2,18 @@ import { getAllBrandsService } from 'services/brand';
 const brands ={
   namespace:'brands',
   state:{
-    list:[]
+    list:[],
+    changedValue:[],
+    resetFields:null
   },
   reducers:{
     saveBrands(state,{payload:list}){
       return {...state,list}
+    },
+    saveCollection(state,{payload:{changedValue,resetFields}}){
+      return {...state,changedValue,resetFields}
     }
+
   },
   effects:{
     *fetchBrandsList({payload},{call,select,put}){
@@ -18,6 +24,11 @@ const brands ={
           payload:result.data
         })
       }
+    },
+    *onReset({payload},{call,select,put}){
+      // const page = yield select(state => state.users.page);
+      const resetFields = yield select(state => state.brands.resetFields);
+      resetFields && resetFields();
     }
   },
   subscriptions:{

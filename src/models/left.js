@@ -9,7 +9,8 @@ const left = {
     linklist: {
       index:['home'],
       spots:['home','shop','brand','product','order','capital','system'],
-      futures:['home','shop','brand','product','system']
+      futures:['home','shop','brand','product','system'],
+      test:['refs']
     },
     currentIndex: 0,
     subIndex: 0,
@@ -55,7 +56,7 @@ const left = {
 
       let sublist = currentlist[index].child;
 
-      let sublength = sublist.length + 1;
+      let sublength = sublist ? sublist.length + 1 : 0;
 
       currentlist.forEach((value,i) => {
         if( i === index){
@@ -82,6 +83,7 @@ const left = {
         let linkType = arr[1] ? arr[1] : 'index';
         let subLink = arr[2];
         let list = getList(linkType);
+
         dispatch({
           type:'save',
           payload:list
@@ -92,8 +94,9 @@ const left = {
           const linkIndex = left.state.linklist[linkType].indexOf(link);
           const subLinkList = list[linkIndex].child;
           const subLinkItem = _.find(subLinkList,{link:pathname});
+
           // const subLinkIndex = Array.indexOf(subLinkList,subLinkItem);
-          const subLinkIndex = subLinkItem.index;
+          const subLinkIndex = subLinkItem ? subLinkItem.index : 0;
           dispatch({
             type:'selectSubMeanu',
             payload:subLinkIndex
