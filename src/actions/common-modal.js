@@ -8,7 +8,6 @@ export function showModelHandler(dispatch,id,event){
 }
 export function hideModelHandler(dispatch,resetFields,id,event){
   resetFields && resetFields();
-
   dispatch({
     type:'commonModal/setVisible',
     payload:{[id]:false}

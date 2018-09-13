@@ -40,28 +40,24 @@ class AlertProp extends Component {
     return(
       <div>
         <Form>
-            {/*<CheckboxGroup options={plainOptions} onChange={onChange} />*/}
-            {/*<br /><br />*/}
-            {/*<CheckboxGroup options={options} onChange={onChange} />*/}
-            {/*<br /><br />*/}
-            {/*<CheckboxGroup options={optionsWithDisabled} disabled defaultValue={['Apple']} onChange={onChange} />*/}
-            {/*<br /><br />*/}
-            {/*<Button onClick={this.onReset}>重置</Button>*/}
-            <FormItem
-              {...formItemLayout}
-            >
-              {
-                getFieldDecorator('userMode')(
-                  <CheckboxGroup options={options} onChange={onChange} />
-                )
-              }
-            </FormItem>
+          {/*<CheckboxGroup options={plainOptions} onChange={onChange} />*/}
+          {/*<br /><br />*/}
+          {/*<CheckboxGroup options={options} onChange={onChange} />*/}
+          {/*<br /><br />*/}
+          {/*<CheckboxGroup options={optionsWithDisabled} disabled defaultValue={['Apple']} onChange={onChange} />*/}
+          {/*<br /><br />*/}
+          {/*<Button onClick={this.onReset}>重置</Button>*/}
+          <FormItem {...formItemLayout}>
+            {
+              getFieldDecorator('userMode')(<CheckboxGroup options={options} onChange={onChange} />)
+            }
+          </FormItem>
         </Form>
       </div>
     )
   }
 }
-function sateMapToProps(props) {
+function mapStateToProps(props) {
   return{}
 }
-export default connect(sateMapToProps)(Form.create()(AlertProp))
+export default connect(mapStateToProps)(Form.create()(AlertProp))

@@ -1,31 +1,37 @@
-import { Modal,Form } from 'antd';
+import { Component } from 'react';
+import { Modal } from 'antd';
 import { connect } from 'dva';
-import { showModelHandler,okHandler} from 'actions/common-modal';
+import { showModelHandler,okHandler,hideModelHandler} from 'actions/common-modal';
 import Brands from '../units/Brands-list';
 
-const selectBrandsModal = ({dispatch,children,id,title,visible,onOk,form:{resetFields}}) => (
-  <Form>
-    <span onClick={showModelHandler.bind(null,dispatch,id)}>{children}</span>
-    <Modal
-      title={title}
-      visible={visible[id]}
-      width="1000px"
-      onOk={onOk ? okHandler.bind(null,dispatch,null,onOk,id) : okHandler.bind(null,dispatch,null,null,id,true)}
-      onCancel={hideModelHandler.bind(null,dispatch,resetFields,id)}
-    >
-        <Brands/>
+class selectBrandsModal extends Component{
+  constructor(props){
+    super(props)
+  };
+  onRef = (ref) => {
+    this.child = ref
+  };
+  resetHandel = () => {
+    const { onReset } = this.child;
+    onReset()
+  };
+  render(){
+    const { dispatch,children,id,title,visible,onOk } = this.props;
 
-    </Modal>
-  </Form>
-);
-function hideModelHandler(dispatch,resetFields,id){
-  // dispatch({
-  //   type:'commonModal/setVisible',
-  //   payload:{[id]:false}
-  // });
-  // dispatch({
-  //   type:'brands/onReset'
-  // })
+    return(
+      <span>
+        <span onClick={showModelHandler.bind(null,dispatch,id)}>{ children }</span>
+        <Modal
+          width="1000px"
+          title={title}
+          visible={visible[id]}
+          onOk={onOk ? okHandler.bind(null,dispatch,null,onOk,id) : okHandler.bind(null,dispatch,null,null,id,true)}
+          onCancel={hideModelHandler.bind(null,dispatch,this.resetHandel.bind(this),id)}>
+          <Brands onRef={this.onRef}/>
+        </Modal>
+      </span>
+    )
+  }
 }
 function mapStateToProps(state,props){
   const { visible } = state.commonModal;
@@ -35,5 +41,5 @@ function mapStateToProps(state,props){
     visible
   }
 }
-export default connect(mapStateToProps)(Form.create()(selectBrandsModal));
+export default connect(mapStateToProps)(selectBrandsModal);
 
