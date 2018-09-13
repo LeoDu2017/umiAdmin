@@ -3,6 +3,7 @@ import {Component} from 'react';
 import {Modal} from 'antd';
 import { showModelHandler,okHandler,hideModelHandler} from 'actions/common-modal';
 import Brands from 'components/units/Brands-list';
+import AlertProp from './alert';
 
 class Children extends Component{
   constructor(props){
@@ -11,6 +12,10 @@ class Children extends Component{
   onRef = (ref) => {
     this.child = ref
   };
+  resetForm = () =>{
+    this.child.onReset()
+  };
+  // hideModelHandler.bind(null,dispatch,null,id)
   render(){
     const {dispatch,children,visible,title,id,onOk} = this.props;
     return(
@@ -21,9 +26,9 @@ class Children extends Component{
           visible={visible[id]}
           title={title}
           onOk={onOk ? okHandler.bind(null,dispatch,null,onOk,id) : okHandler.bind(null,dispatch,null,null,id,true)}
-          onCancel={hideModelHandler.bind(null,dispatch,null,id)}
+          onCancel={this.resetForm}
         >
-          <Brands/>
+          <AlertProp onRef={this.onRef}/>
         </Modal>
       </span>
 
