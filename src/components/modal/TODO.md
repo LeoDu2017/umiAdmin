@@ -5,9 +5,7 @@
       
       父级：
           class selectBrandsModal extends Component{
-                  
                           ····
-            
             onRef = (ref) => {
               this.child = ref
             };
@@ -18,20 +16,14 @@
             render(){          
               return(
                           ····
-                        
                 <Brands onRef={this.onRef}/>
-                          
                           ····
-                          
-              )
+                )
             }
           }
       子级：
           class brandsList extends Component{
-          
-                  
-                          ····   
-                                   
+                          ···    
             componentDidMount(){
               this.props.onRef(this)
             };
