@@ -15,7 +15,7 @@ class Children extends Component{
   resetForm = () =>{
     this.child.onReset()
   };
-  // hideModelHandler.bind(null,dispatch,null,id)
+
   render(){
     const {dispatch,children,visible,title,id,onOk} = this.props;
     return(

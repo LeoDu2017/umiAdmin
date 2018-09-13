@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Modal } from 'antd';
 import { connect } from 'dva';
-import { showModelHandler,okHandler,hideModelHandler} from 'actions/common-modal';
+import { showModelHandler,okHandler,hideModelHandler } from 'actions/common-modal';
 import Brands from '../units/Brands-list';
 
 class selectBrandsModal extends Component{
@@ -17,7 +17,6 @@ class selectBrandsModal extends Component{
   };
   render(){
     const { dispatch,children,id,title,visible,onOk } = this.props;
-
     return(
       <span>
         <span onClick={showModelHandler.bind(null,dispatch,id)}>{ children }</span>
@@ -33,10 +32,8 @@ class selectBrandsModal extends Component{
     )
   }
 }
-function mapStateToProps(state,props){
+function mapStateToProps(state){
   const { visible } = state.commonModal;
-  const { content } = props;
-
   return{
     visible
   }

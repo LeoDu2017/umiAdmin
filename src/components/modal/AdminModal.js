@@ -127,9 +127,5 @@ function mapStateToProps(state,props){
   }
 }
 
-
-
-//  Form.create()(UserEditModal); {onFieldsChange:FieldsChange}
-
 export default connect(mapStateToProps)(Form.create()(UserEditModal));
 
