@@ -64,7 +64,6 @@ const left = {
         }else{
           value.sublength = 1
         }
-
       });
       return {...state,list:currentlist,currentIndex:index,open:true}
     },

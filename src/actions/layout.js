@@ -185,7 +185,10 @@ export function getList(linkType){
     test:[{
       name:'refs',
       link:'/test/refs',
-      type:'refs'
+      type:'refs',
+      index:0,
+      sublength:0,
+      child:[]
     }]
   };
   return list.hasOwnProperty(linkType) ? list[linkType] : list.index
