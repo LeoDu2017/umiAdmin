@@ -18,7 +18,7 @@
                           ····
                 <Brands onRef={this.onRef}/>
                           ····
-                )
+              )
             }
           }
       子级：
@@ -30,7 +30,7 @@
             onReset = () => {
               const {form:{resetFields}} = this.props;
               resetFields()
-            };  
+            };
             render(){
               <div>
                 <Form>
