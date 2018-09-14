@@ -8,6 +8,9 @@ export default{
       let visible = state.visible;
       visible = {...visible,...payload};
       return { ...state,visible}
+    },
+    setCurrentStep(state,{payload:currentStep}){
+      return { ...state,currentStep}
     }
   },
   subscriptions:{

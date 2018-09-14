@@ -23,8 +23,7 @@ const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,bann
         title={title}
         visible={visible[id]}
         onOk={onOk ? okHandler.bind(null,dispatch,null,onOk,id) : okHandler.bind(null,dispatch,null,null,id,true)}
-        onCancel={hideModelHandler.bind(null,dispatch,null,id)}
-      >
+        onCancel={hideModelHandler.bind(null,dispatch,null,id)}>
         <Form>
           <FormItem {...formItemLayout} label='品牌名称' className="g-f-item">
             <Input disabled={true} value={content.title}/>
@@ -53,16 +52,12 @@ const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,bann
               </FormItem>
             )
           }
-
-
         </Form>
       </Modal>
 </span>);
 
 function mapStateToProps(state){
-  const {visible} = state.commonModal;
-  return{
-    visible
-  }
+  const { visible } = state.commonModal;
+  return{ visible }
 }
 export default connect(mapStateToProps)(ShowBrandModal);

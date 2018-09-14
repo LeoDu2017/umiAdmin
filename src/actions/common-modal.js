@@ -25,13 +25,5 @@ export function okHandler(dispatch,validateFields,callBack,id,noForm){
   }) :  dispatch({type:'commonModal/setVisible',payload:{[id]:false}});
   noForm && callBack(id)
 }
-export function pageChangeHandler(dispatch,page){
-  dispatch({
-    type:'brands/setCurrent',
-    payload:page
-  });
-  dispatch({
-    type:'brands/fetchBrandsList',
-    payload:{ page }
-  })
-}
+
+

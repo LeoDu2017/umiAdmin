@@ -1,7 +1,7 @@
 import { Pagination,List,Card,Checkbox,Form } from 'antd';
 import { Component } from 'react';
 import { connect } from 'dva';
-import { pageChangeHandler } from 'actions/common-modal';
+import { pageChangeHandler } from 'actions/brand-select';
 
 class brandsList extends Component{
   componentDidMount(){
@@ -12,13 +12,13 @@ class brandsList extends Component{
     resetFields()
   };
   render(){
-    const { dispatch,form:{getFieldDecorator},list,total,current } = this.props;
+    const { dispatch,form:{getFieldDecorator},list,total,current,onSelect } = this.props;
     return(
       <div>
         <Form>
           <Form.Item style={{'marginBottom':'0'}}>
             {
-              getFieldDecorator('userMode')(<Checkbox.Group onChange={onChange}>
+              getFieldDecorator('userMode')(<Checkbox.Group onChange={ onSelect }>
                 <List
                   style={{'padding':'20px','paddingBottom':'0'}}
                   grid={{ gutter: 16, column: 4 }}
@@ -47,9 +47,9 @@ class brandsList extends Component{
     )
   }
 }
-function onChange(changedVaule){
-  console.log(changedVaule)
-}
+// function onChange(changedVaule){
+//   console.log(changedVaule)
+// }
 function mapStateToProps(state,props){
   let {list,total,current} = state.brands;
   return {list,total,current}
