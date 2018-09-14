@@ -103,7 +103,7 @@ const brandList = ({dispatch,brands,countries,banneds,current,total}) => {
               current: current,
               total: total,
               pageSize:2,
-              onChange: changePageHandel,
+              onChange: changePageHandel.bind(null,dispatch),
             }}/>
         </Col>
       </Col>

@@ -18,6 +18,9 @@ const brand = {
     setBanned(state,{payload:banned}){
       return {...state,banned}
     },
+    setCurrent(state,{payload:current}){
+      return {...state,current}
+    },
     saveChanged(state,{payload}){
       let {brands} = state;
       let {id,area} = payload;
@@ -75,14 +78,18 @@ const brand = {
   },
   subscriptions:{
     setup({ dispatch,history}){
-      return history.listen(({ pathname}) => {
+      return history.listen(({ pathname,query}) => {
         let arr = pathname.split('/');
         let childLink = arr[2];
         let subChildLink = arr[3];
-
         if(childLink === 'brand' && subChildLink === 'list'){
           dispatch({
-            type:'fetchBrands'
+            type:'fetchBrands',
+            payload:query
+          });
+          dispatch({
+            type:'setCurrent',
+            payload:Number(query.page)
           });
           dispatch({
             type:'fetchBanned'

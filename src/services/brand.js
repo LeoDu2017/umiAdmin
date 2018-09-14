@@ -3,10 +3,11 @@ import { api } from 'utils/config';
 
 const { getBrandsListApi,delBrandApi,getBannedApi,udateBannedApi,getAllBrandsApi } = api;
 
-export function getBrandsListService(){
+export function getBrandsListService(data){
   return request({
     url: getBrandsListApi,
-    method: 'get'
+    method: 'get',
+    data
   })
 }
 export function delBrandService(data){

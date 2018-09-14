@@ -248,3 +248,47 @@
     export default connect(mapStateToProps)(selectBrandsModal);    
     
     
+2018-09-14
+
+一、分页：
+  1、在视图层 Table 元素添加 Pagination 属性：
+    <Table
+      dataSource={brands}
+      columns={columns}
+      pagination={{
+        // simple: true,
+        current: current,
+        total: total,
+        pageSize:2,
+        onChange: changePageHandel.bind(null,dispatch),
+      }}/>
+  2、在 Model 页面初始化接口中：
+      setup({ dispatch,history}){
+        return history.listen(({ pathname,query}) => {
+          let arr = pathname.split('/');
+          let childLink = arr[2];
+          let subChildLink = arr[3];
+          if(childLink === 'brand' && subChildLink === 'list'){
+            dispatch({
+              type:'fetchBrands',
+              payload:query
+            });
+            dispatch({
+              type:'setCurrent',
+              payload:Number(query.page)
+            });
+            dispatch({
+              type:'fetchBanned'
+            })
+          }
+        });
+      }
+  3、在 Action 中添加翻页功能：
+      export function changePageHandel(dispatch,page){
+        dispatch(
+          routerRedux.push({
+            pathname: '/spots/brand/list',
+            query: { page },
+          })
+        );
+      }

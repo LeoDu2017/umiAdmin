@@ -1,7 +1,9 @@
 import _ from "lodash"
 import { Modal } from 'antd';
-const confirm = Modal.confirm;
+import { routerRedux } from 'dva/router';
 
+
+const confirm = Modal.confirm;
 export function getCountry(id,countries){
   const country = _.find(countries, { 'id': id }) && countries[_.findIndex(countries, { 'id': id })].name;
   return country
@@ -42,4 +44,12 @@ export function onCollection(dispatch,resetFields,changedValue){
     type:'brands/saveCollection',
     payload:{changedValue,resetFields}
   })
+}
+export function changePageHandel(dispatch,page){
+  dispatch(
+    routerRedux.push({
+      pathname: '/spots/brand/list',
+      query: { page },
+    })
+  );
 }
