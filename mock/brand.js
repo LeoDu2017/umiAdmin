@@ -38,7 +38,7 @@ module.exports = {
   [`GET ${apiPrefix}/brand/list`] (req, res) {
     const { query } = req;
     let { pageSize, page, ...other } = query;
-    pageSize = pageSize || 10;
+    pageSize = pageSize || 2;
     page = page || 1;
 
     let newData = database.mybrands;

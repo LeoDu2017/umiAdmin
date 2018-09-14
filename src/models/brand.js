@@ -4,11 +4,16 @@ const brand = {
   namespace:'brand',
   state:{
     brands:[],
+    total:0,
+    current:1,
     banned:[]
   },
   reducers:{
     setBrands(state,{payload:brands}){
       return {...state,brands}
+    },
+    setTotal(state,{payload:total}){
+      return {...state,total}
     },
     setBanned(state,{payload:banned}){
       return {...state,banned}
@@ -33,6 +38,10 @@ const brand = {
       yield put({
         type:'setBrands',
         payload:brads.data
+      });
+      yield put({
+        type:'setTotal',
+        payload:brads.total
       })
     },
     *fetchBanned({payload},{select,call, put}){

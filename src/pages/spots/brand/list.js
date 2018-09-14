@@ -4,9 +4,9 @@ import { Table,Tag,Col,Button,Divider } from 'antd';
 import BrandDetailModal from 'components/modal/ShowBrandModal';
 import SelecteBrandsModal from 'components/modal/SelecteBrandsModal';
 
-import { getCountry,removeBrand,saveBanned } from 'actions/brand';
+import { getCountry,removeBrand,saveBanned,changePageHandel } from 'actions/brand';
 
-const brandList = ({dispatch,brands,countries,banneds}) => {
+const brandList = ({dispatch,brands,countries,banneds,current,total}) => {
   const columns = [
     {
       title: intl.get('BRANDSERIAL'),
@@ -95,9 +95,16 @@ const brandList = ({dispatch,brands,countries,banneds}) => {
           </span>
         </header>
         <Col className="g-t-form-wrap">
-          <Table dataSource={brands} columns={columns}>
-
-          </Table>
+          <Table
+            dataSource={brands}
+            columns={columns}
+            pagination={{
+              // simple: true,
+              current: current,
+              total: total,
+              pageSize:2,
+              onChange: changePageHandel,
+            }}/>
         </Col>
       </Col>
     </Col>
@@ -105,7 +112,7 @@ const brandList = ({dispatch,brands,countries,banneds}) => {
 };
 
 function mapStateToProps(state){
-  const { brands,banned } = state.brand;
+  const { brands,banned,total,current } = state.brand;
   const countries = [
     {'id':'1','name':'Afghanistan'},
     {'id':'2','name':'Aland Islands'},
@@ -347,7 +354,7 @@ function mapStateToProps(state){
     const label = country.name;
     return {value,label}
   });
-  return {brands,countries,banneds}
+  return {brands,countries,banneds,total,current}
 }
 
 export default connect(mapStateToProps)(brandList);
