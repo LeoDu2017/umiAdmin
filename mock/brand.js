@@ -26,7 +26,8 @@ module.exports = {
     let newData = database.allbrands;
 
     res.status(200).json({
-      data: newData.slice((page - 1) * pageSize, page * pageSize)
+      data: newData.slice((page - 1) * pageSize, page * pageSize),
+      total: newData.length,
     })
   },
   [`GET ${apiPrefix}/brand/banned`] (req, res) {

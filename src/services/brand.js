@@ -23,9 +23,10 @@ export function getBannedService(data){
     method: 'get'
   })
 }
-export function getAllBrandsService(){
+export function getAllBrandsService(data){
   return request({
     url: getAllBrandsApi,
+    data,
     method: 'get'
   })
 }

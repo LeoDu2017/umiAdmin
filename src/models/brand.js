@@ -12,14 +12,14 @@ const brand = {
     setBrands(state,{payload:brands}){
       return {...state,brands}
     },
+    setCurrent(state,{payload:current}){
+      return {...state,current}
+    },
     setTotal(state,{payload:total}){
       return {...state,total}
     },
     setBanned(state,{payload:banned}){
       return {...state,banned}
-    },
-    setCurrent(state,{payload:current}){
-      return {...state,current}
     },
     saveChanged(state,{payload}){
       let {brands} = state;

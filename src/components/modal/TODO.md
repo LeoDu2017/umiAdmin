@@ -57,5 +57,51 @@
               </div>
             }        
           }
+      3、添加翻页功能：
+        1)、引入分页组件：
+        
+          import { Pagination } from 'antd';
           
-      
+        2)、设置分页组件参数： total、current、pageSize、onChange
+        
+          function mapStateToProps(state,props){
+            let {list,total,current} = state.brands;
+            return {list,total,current}
+          }
+          <Pagination
+            style={{'margin':'0','float':'right'}}
+            total={total}
+            current={current}
+            pageSize={12}
+            onChange={pageChangeHandler.bind(null,dispatch)}/>
+            
+        3)、在 Model 层处理相关参数：
+          
+          *fetchBrandsList({payload},{call,select,put}){
+            const result = yield call(getAllBrandsService,payload);
+            if(result.success){
+              yield put({
+                type:'saveBrands',
+                payload:result.data
+              });
+              yield put({
+                type:'setTotal',
+                payload:result.total
+              })
+            }
+          }, 
+        
+        4)、在 Action 层添加分页操作函数：pageChangeHandler
+        
+          export function pageChangeHandler(dispatch,page){
+            dispatch({
+              type:'brands/setCurrent',
+              payload:page
+            });
+            dispatch({
+              type:'brands/fetchBrandsList',
+              payload:{ page }
+            })
+          } 
+        
+          

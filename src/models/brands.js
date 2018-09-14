@@ -4,9 +4,17 @@ const brands ={
   state:{
     list:[],
     changedValue:[],
+    total:0,
+    current:1,
     resetFields:null
   },
   reducers:{
+    setCurrent(state,{payload:current}){
+      return {...state,current}
+    },
+    setTotal(state,{payload:total}){
+      return {...state,total}
+    },
     saveBrands(state,{payload:list}){
       return {...state,list}
     },
@@ -22,6 +30,10 @@ const brands ={
         yield put({
           type:'saveBrands',
           payload:result.data
+        });
+        yield put({
+          type:'setTotal',
+          payload:result.total
         })
       }
     },
