@@ -1,10 +1,7 @@
-import _ from "lodash";
 import { Form,Modal,Checkbox,Input } from 'antd';
 import { connect } from 'dva';
 import { showModelHandler,hideModelHandler,okHandler } from 'actions/common-modal';
 import { onChange } from 'actions/brand';
-import { getCountry } from "public/country/country";
-
 
 const FormItem = Form.Item;
 const formItemLayout = {
@@ -62,10 +59,8 @@ const ShowBrandModal = ({dispatch,children,id,visible,content,country,title,bann
       </Modal>
 </span>);
 
-function mapStateToProps(state,props){
+function mapStateToProps(state){
   const {visible} = state.commonModal;
-  const {content} = props;
-
   return{
     visible
   }

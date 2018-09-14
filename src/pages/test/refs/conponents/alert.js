@@ -1,33 +1,31 @@
 import {connect} from 'dva';
 import {Component} from 'react';
-import {Checkbox,Form,Button} from 'antd';
+import {Checkbox,Form} from 'antd';
 const CheckboxGroup = Checkbox.Group;
 const FormItem = Form.Item;
 
 function onChange(checkedValues) {
   console.log('checked = ', checkedValues);
 }
-
-const plainOptions = ['Apple', 'Pear', 'Orange'];
+//
+// const plainOptions = ['Apple', 'Pear', 'Orange'];
 const options = [
   { label: 'Apple', value: 'Apple' },
   { label: 'Pear', value: 'Pear' },
   { label: 'Orange', value: 'Orange' },
 ];
-const optionsWithDisabled = [
-  { label: 'Apple', value: 'Apple' },
-  { label: 'Pear', value: 'Pear' },
-  { label: 'Orange', value: 'Orange', disabled: false },
-];
+// const optionsWithDisabled = [
+//   { label: 'Apple', value: 'Apple' },
+//   { label: 'Pear', value: 'Pear' },
+//   { label: 'Orange', value: 'Orange', disabled: false },
+// ];
 const formItemLayout = {
   // labelCol: { span: 6 },
   wrapperCol: { span: 14 },
 };
 
 class AlertProp extends Component {
-  constructor(props){
-    super(props)
-  };
+
   componentDidMount(){
     this.props.onRef(this)
   };

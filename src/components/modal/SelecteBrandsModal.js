@@ -5,9 +5,6 @@ import { showModelHandler,okHandler,hideModelHandler } from 'actions/common-moda
 import Brands from '../units/Brands-list';
 
 class selectBrandsModal extends Component{
-  constructor(props){
-    super(props)
-  };
   onRef = (ref) => {
     this.child = ref
   };

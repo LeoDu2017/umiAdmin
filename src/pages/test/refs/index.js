@@ -4,9 +4,6 @@ import {Button} from 'antd';
 import Children from './conponents/children'
 
 class RefsView extends Component {
-  constructor(props){
-    super(props)
-  };
   render(){
     return(
       <span style={{'padding':'50px','textAlign':'center','margin':'100px auto','display':'block'}}>

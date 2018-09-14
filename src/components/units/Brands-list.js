@@ -4,9 +4,6 @@ import { connect } from 'dva';
 import { pageChangeHandler } from 'actions/common-modal';
 
 class brandsList extends Component{
-  constructor(props){
-    super(props)
-  };
   componentDidMount(){
     this.props.onRef(this)
   };

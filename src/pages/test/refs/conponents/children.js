@@ -1,14 +1,11 @@
 import {connect} from 'dva';
 import {Component} from 'react';
 import {Modal} from 'antd';
-import { showModelHandler,okHandler,hideModelHandler} from 'actions/common-modal';
-import Brands from 'components/units/Brands-list';
+import { showModelHandler,okHandler} from 'actions/common-modal';
+
 import AlertProp from './alert';
 
 class Children extends Component{
-  constructor(props){
-    super(props)
-  };
   onRef = (ref) => {
     this.child = ref
   };
@@ -35,7 +32,7 @@ class Children extends Component{
     )
   }
 }
-function mapStateToProps(state,props){
+function mapStateToProps(state){
   const {visible} = state.commonModal;
   return{visible}
 }
