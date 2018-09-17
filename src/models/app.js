@@ -45,7 +45,6 @@ const main = {
         dispatch({ type: 'setLocale', payload: { query } });
 
         if(!pathname.includes('login') && !pathname.includes('api')){
-
           dispatch({
             type: 'loginhook',
           });
@@ -54,5 +53,7 @@ const main = {
     }
   }
 };
+
+
 
 export default main
