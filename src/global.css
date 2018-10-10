@@ -8,6 +8,7 @@ dl {
 html, body, :global(#root) {
   height: 100%;
   color: #7a7676;
+  overflow: hidden !important;
   font-family:"Helvetica Neue", Helvetica, "PingFang SC", 微软雅黑, Tahoma, Arial, sans-serif;
 }
 :global(.g-t-header){

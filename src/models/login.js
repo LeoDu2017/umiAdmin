@@ -21,9 +21,7 @@ export default{
   },
   effects:{
     * login({ payload },{call, put,select}) {
-
       const data = yield call(login, payload);
-
       if (data && data.success) {
         yield put({
           type: 'checklogin',

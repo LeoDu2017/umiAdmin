@@ -21,10 +21,10 @@ const UserEditModal = ({dispatch,children,visible,id,add,onOk,record,form:{getFi
       <Modal
         title= {add ? `${intl.get('ADD')}${intl.get('ADMIN')}` : `${intl.get('EDIT')}${intl.get('ADMIN')}`}
         visible={visible[id]}
-        onOk={okHandler.bind(null,dispatch,validateFields,onOk,id)}
+        onOk={okHandler.bind(null,dispatch,validateFields,onOk,id,false)}
         onCancel={hideModelHandler.bind(null,dispatch,resetFields,id)}
       >
-        <Form horizontal="true" onSubmit={okHandler.bind(null,dispatch,validateFields,onOk)}>
+        <Form horizontal="true">
           <FormItem
             {...formItemLayout}
             label={intl.get('USERNAME')}

@@ -82,7 +82,6 @@ const login = ({loading,dispatch,currentIndex,copyRight,languages}) => (
             {intl.get('DETAILS')}
           </Button>
         </a>
-
       </Col>
     </Col>
     <Col className={styles.advantage}>

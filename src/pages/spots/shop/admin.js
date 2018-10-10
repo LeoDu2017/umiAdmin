@@ -49,12 +49,12 @@ const adminTable = ({dispatch,shopAdmins}) => {
     key: 'action',
     render: (text, record) => (
       <span>
-      <a href="javascript:;" onClick={resetPassword.bind(null,dispatch,record.id)}>{intl.get('RESETPASSWORD')}</a>
+      <a href="javascript:" onClick={resetPassword.bind(null,dispatch,record.id)}>{intl.get('RESETPASSWORD')}</a>
       <Divider type="vertical" />
-      <a href="javascript:;" onClick={deleteAdmin.bind(null,dispatch,record.id)}>{intl.get('DELETE')}</a>
+      <a href="javascript:" onClick={deleteAdmin.bind(null,dispatch,record.id)}>{intl.get('DELETE')}</a>
       <Divider type="vertical" />
       <UserModal record={record} add={false} id={record.id} onOk={editHandler.bind(null,dispatch,record.id)}>
-        <a href="javascript:;">
+        <a href="javascript:">
           {intl.get('EDIT')}
         </a>
       </UserModal>
@@ -76,7 +76,7 @@ const adminTable = ({dispatch,shopAdmins}) => {
           </UserModal>
         </header>
         <Col className="g-t-form-wrap">
-          <Table dataSource={shopAdmins} columns={columns} />
+          <Table dataSource={shopAdmins} columns={columns}/>
         </Col>
       </Col>
     </Col>

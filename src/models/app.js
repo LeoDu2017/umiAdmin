@@ -4,7 +4,7 @@ import intl from 'react-intl-universal';
 
 const main = {
   namespace:'app',
-  state:{  },
+  state:{ },
   reducers:{ },
   effects:{
     *loginhook({ payload },{select,call, put}){
@@ -23,7 +23,6 @@ const main = {
         currentLocale = "en-US";
       }
       let data = require(`locale/${currentLocale}`);
-
       yield put({
         type:'lang/choose',
         payload:{languages,lang:currentLocale}
@@ -41,9 +40,7 @@ const main = {
   subscriptions:{
     setup({ dispatch,history}){
       return history.listen(({ pathname, query }) => {
-
         dispatch({ type: 'setLocale', payload: { query } });
-
         if(!pathname.includes('login') && !pathname.includes('api')){
           dispatch({
             type: 'loginhook',
@@ -53,7 +50,5 @@ const main = {
     }
   }
 };
-
-
 
 export default main
